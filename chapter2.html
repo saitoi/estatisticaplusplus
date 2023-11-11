@@ -2,25 +2,60 @@
 <html>
 <head>
     <title>Capítulo 2: Compilação de Programas em C</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        pre { background-color: #f4f4f4; padding: 10px; border-left: 3px solid #ccc; margin: 20px; }
-        h1, h2 { color: #333; }
-    </style>
+    <!-- Estilos pelo CSS -->
+    <link rel="stylesheet" type="text/css" href="css/codigo.css">
+    <link rel="stylesheet" type="text/css" href="css/texto.css">
+    <!-- Fim dos estilos -->
 </head>
-<body>
 
-    <h1>Basic Usage of GCC</h1>
-    <p>Chapter 2 covers the basic usage of the GCC compiler, including compiling and running simple programs.</p>
-    <h2>Compiling a Simple Program</h2>
-    <p>To compile a program, use the gcc command followed by the filename:</p>
-    <pre>
-$ gcc -o outputfile inputfile.c
-    </pre>
-    <p>After compilation, you can run the program using:</p>
-    <pre>
-$ ./outputfile
-    </pre>
+<h1>2. Compilando Programas em C</h1>
+
+<h2>2.1 Primeiros Passos</h2>
+<p>
+    Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso <code class="c">Hello, World!</code> A seguir, mostraremos como compilar esse programa em C usando o compilador GCC:
+</p>
+<pre class="codigo">
+    <code class="c">
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World!");
+    return 0;
+}
+    </code>
+</pre>
+<p>
+    No entanto, o código-fonte ainda não pode ser entendido pelo computador, sendo necessário realizar a compilação do código para gerar um arquivo executável que possa ser executado. Para isso, usamos um compilador de C, como o GCC. O processo de compilação do código em C é realizado pelo compilador, que transforma o código-fonte em um arquivo executável contendo as instruções que o computador deve seguir para executar o programa.
+</p>
+
+<p>
+    Para compilar o programa, é necessário informar o nome do arquivo que contém o código fonte e o nome do arquivo executável que será gerado. No caso deste exemplo, o arquivo com o código fonte tem o nome &ldquo;helloworld.c&rdquo; e o arquivo executável terá o nome &ldquo;hello&rdquo;. A compilação será feita pelo terminal:
+</p>
+
+<pre><code class="bash">$ gcc helloworld.c -o hello</code></pre>
+
+<p>
+    O parâmetro &ldquo;-o&rdquo; indica que queremos criar um arquivo executável com o nome &ldquo;hello&rdquo;, enquanto &ldquo;helloworld.c&rdquo; é o nome do arquivo que contém o código-fonte.
+</p>
+
+<p>
+    Além disso, é recomendável utilizar a <i>flag</i> &ldquo;-Wall&rdquo; durante a compilação de programas em C. Essa opção habilita uma checagem mais rigorosa do código-fonte e gera avisos adicionais caso detecte possíveis problemas no código, como variáveis não inicializadas ou operações com ponteiros inválidos. Para utilizar a <i>flag</i> &ldquo;-Wall&rdquo;, basta incluí-la no comando de compilação:
+</p>
+
+<pre><code class="bash">$ gcc -Wall helloworld.c -o hello</code></pre>
+
+<p>
+    Por fim, para executar o programa, basta digitar &ldquo;./hello&rdquo; no terminal. Esse comando informa ao sistema operacional que desejamos executar o arquivo &ldquo;hello&rdquo; que foi gerado pela compilação do programa &ldquo;helloworld.c&rdquo;. Se tudo ocorrer bem, o programa exibirá a mensagem <code class="c">Hello, World!</code>code> no terminal.
+</p>
+
+<h2>2.2 Trabalhando com Núltiplos Arquivos</h2>
+<p>
+    Quando se está trabalhando em um projeto em C, é comum que esse seja dividido em múltiplos arquivos. Essa prática permite uma melhor organização e compartimentalização do projeto, além de economizar tempo de compilação.
+</p>
+
+<p>
+    Por exemplo, digamos que queremos criar um programa que calcule o quadrado de um número. Podemos dividir o projeto em dois arquivos: um arquivo &ldquo;main.c&rdquo;, que contém a função principal do programa, e um arquivo &ldquo;quadrado.h&rdquo;, que contém a função que calcula o quadrado do número. Além disso, criaremos um arquivo &ldquo;quadrado.h&rdquo;, que contém somente a declaração da função que calcula o quadrado.
+</p>
 
 </body>
 </html>
