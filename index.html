@@ -5,29 +5,37 @@
     <!-- Estilos pelo CSS -->
     <link rel="stylesheet" type="text/css" href="css/codigo.css">
     <link rel="stylesheet" type="text/css" href="css/texto.css">
-    <style>
-        body { font-family: Arial, sans-serif; }
-        #toc { width: 20%; float: left; }
-        #content { width: 75%; float: right; }
-        iframe { width: 100%; height: 600px; border: none; }
-        h1, h2 { color: #333; }
-    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/bash.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <!-- Fim dos estilos -->
 </head>
 <body>
 
     <div id="toc">
         <ul>
+            <!-- Primeiro Capítulo -->
             <li><a href="chapter1.html" target="chapterFrame">Capítulo 1: Introdução</a></li>
             <ul>
                 <li><a href="chapter1.html" target="chapterFrame">Capítulo 1.1: Características da Linguagem C</a></li> <!-- Fazer um link para cada seção -->
             </ul>
+            <!-- Segundo Capítulo -->
             <li><a href="chapter2.html" target="chapterFrame">Capítulo 2: Compilando Programas em C</a></li>
+            <ul>
+                <li><a href="chapter2.html" target="chapterFrame">Capítulo 2.1: Primeiros Passos</a></li>
+                <li><a href="chapter2.html" target="chapterFrame">Capítulo 2.2: Trabalhando Com Múltiplos Arquivos</a></li>
+                <li><a href="chapter2.html" target="chapterFrame">Capítulo 2.3: Utilizando Makefile</a></li>
+            </ul>
+            <!-- Terceiro Capítulo -->
             <li><a href="chapter3.html" target="chapterFrame">Capítulo 3: Bandeiras de Aviso do Compilador</a></li>
+            <!-- Quarto Capítulo -->
             <li><a href="chapter4.html" target="chapterFrame">Capítulo 4: Depuração</a></li>
+            <!-- Quinto Capítulo -->
             <li><a href="chapter5.html" target="chapterFrame">Capítulo 5: Componentes do Compilador</a></li>
-            <li><a href="chapter6.html" target="chapterFrame">Capítulo 6: Otimizaç]ao</a></li>
-            <!-- Additional chapters can be linked similarly -->
+            <!-- Sexto Capítulo -->
+            <li><a href="chapter6.html" target="chapterFrame">Capítulo 6: Otimização</a></li>
         </ul>
     </div>
 

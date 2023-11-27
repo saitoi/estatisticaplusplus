@@ -5,57 +5,123 @@
     <!-- Estilos pelo CSS -->
     <link rel="stylesheet" type="text/css" href="css/codigo.css">
     <link rel="stylesheet" type="text/css" href="css/texto.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/bash.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <!-- Fim dos estilos -->
 </head>
-
+<body>
 <h1>2. Compilando Programas em C</h1>
-
+<!-- Primeira Seção -->
 <h2>2.1 Primeiros Passos</h2>
 <p>
-    Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso <code class="c">Hello, World!</code> A seguir, mostraremos como compilar esse programa em C usando o compilador GCC:
+Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso <code class="bash">Hello, World!</code> A seguir, mostraremos como compilar esse programa em C usando o compilador GCC:
 </p>
-<pre class="codigo">
-    <code class="c">
-#include <stdio.h>
+<figure><pre><code class="c">#include&lt;stdio.h&gt;
 
 int main() {
     printf("Hello, World!");
     return 0;
-}
-    </code>
-</pre>
+}</code></pre><figcaption>helloworld.c</figcaption></figure>
 <p>
-    No entanto, o código-fonte ainda não pode ser entendido pelo computador, sendo necessário realizar a compilação do código para gerar um arquivo executável que possa ser executado. Para isso, usamos um compilador de C, como o GCC. O processo de compilação do código em C é realizado pelo compilador, que transforma o código-fonte em um arquivo executável contendo as instruções que o computador deve seguir para executar o programa.
+No entanto, o código-fonte ainda não pode ser entendido pelo computador, sendo necessário realizar a compilação do código para gerar um arquivo executável que possa ser executado. Para isso, usamos um compilador de C, como o GCC. O processo de compilação do código em C é realizado pelo compilador, que transforma o código-fonte em um arquivo executável contendo as instruções que o computador deve seguir para executar o programa. Para compilar o programa, é necessário informar o nome do arquivo que contém o código fonte e o nome do arquivo executável que será gerado. No caso deste exemplo, o arquivo com o código fonte tem o nome &ldquo;helloworld.c&rdquo; e o arquivo executável terá o nome &ldquo;hello&rdquo;. A compilação será feita pelo terminal:
 </p>
-
+<figure><pre><code class="bash">$ gcc helloworld.c -o hello</code></pre></figure>
 <p>
-    Para compilar o programa, é necessário informar o nome do arquivo que contém o código fonte e o nome do arquivo executável que será gerado. No caso deste exemplo, o arquivo com o código fonte tem o nome &ldquo;helloworld.c&rdquo; e o arquivo executável terá o nome &ldquo;hello&rdquo;. A compilação será feita pelo terminal:
+O parâmetro <code class="bash">-o</code> indica que queremos criar um arquivo executável com o nome &ldquo;hello&rdquo;, enquanto &ldquo;helloworld.c&rdquo; é o nome do arquivo que contém o código-fonte. Além disso, é recomendável utilizar a <i>flag</i> <code class="bash">-Wall</code> durante a compilação de programas em C. Essa opção habilita uma checagem mais rigorosa do código-fonte e gera avisos adicionais caso detecte possíveis problemas no código, como variáveis não inicializadas ou operações com ponteiros inválidos. Para utilizar a <i>flag</i> <code class="bash">-Wall</code>, basta incluí-la no comando de compilação:
 </p>
-
-<pre><code class="bash">$ gcc helloworld.c -o hello</code></pre>
-
+<figure><pre><code class="bash">$ gcc -Wall helloworld.c -o hello</code></pre></figure>
 <p>
-    O parâmetro &ldquo;-o&rdquo; indica que queremos criar um arquivo executável com o nome &ldquo;hello&rdquo;, enquanto &ldquo;helloworld.c&rdquo; é o nome do arquivo que contém o código-fonte.
+Por fim, para executar o programa, basta digitar <code class="bash">./hello</code> no terminal. Esse comando informa ao sistema operacional que desejamos executar o arquivo &ldquo;hello&rdquo; que foi gerado pela compilação do programa &ldquo;helloworld.c&rdquo;. Se tudo ocorrer bem, o programa exibirá a mensagem <code class="bash">Hello, World!</code> no terminal.
 </p>
-
+<!-- Segunda Seção -->
+<h2>2.2 Trabalhando com Múltiplos Arquivos</h2>
 <p>
-    Além disso, é recomendável utilizar a <i>flag</i> &ldquo;-Wall&rdquo; durante a compilação de programas em C. Essa opção habilita uma checagem mais rigorosa do código-fonte e gera avisos adicionais caso detecte possíveis problemas no código, como variáveis não inicializadas ou operações com ponteiros inválidos. Para utilizar a <i>flag</i> &ldquo;-Wall&rdquo;, basta incluí-la no comando de compilação:
+Quando se está trabalhando em um projeto em C, é comum que esse seja dividido em múltiplos arquivos. Essa prática permite uma melhor organização e compartimentalização do projeto, além de economizar tempo de compilação. Por exemplo, digamos que queremos criar um programa que calcule o quadrado de um número. Podemos dividir o projeto em dois arquivos: um arquivo &ldquo;main.c&rdquo;, que contém a função principal do programa, e um arquivo &ldquo;quadrado.h&rdquo;, que contém a função que calcula o quadrado do número. Além disso, criaremos um arquivo &ldquo;quadrado.h&rdquo;, que contém somente a declaração da função que calcula o quadrado.
 </p>
+<figure><pre><code class="c">#include&lt;stdio.h&gt;
+#include"quadrado.h"
 
-<pre><code class="bash">$ gcc -Wall helloworld.c -o hello</code></pre>
-
+int main() {
+    double x;
+    printf("Digite um númeroç: ");
+    scanf("%lf", &x);
+    printf("O quadrado de %lf é %lf\n", x, quadrado(x));
+    return 0;
+}</code></pre><figcaption>main.c</figcaption></figure>
+<figure><pre><code class="c">int calc_quadrado(int x) {
+    return x * x;
+}</code></pre><figcaption>quadrado.c</figcaption></figure>
+<figure><pre><code class="c">int calc_quadrado(int x)</pre></code><figcaption>quadrado.h</figcaption></figure>
 <p>
-    Por fim, para executar o programa, basta digitar &ldquo;./hello&rdquo; no terminal. Esse comando informa ao sistema operacional que desejamos executar o arquivo &ldquo;hello&rdquo; que foi gerado pela compilação do programa &ldquo;helloworld.c&rdquo;. Se tudo ocorrer bem, o programa exibirá a mensagem <code class="c">Hello, World!</code>code> no terminal.
+É importante notar que, se incluíssemos diretamente o arquivo &ldquo;quadrado.c&rdquo; em &ldquo;main.c&rdquo;, haveria duas definições da função <code class="hljs c">quadrado(double x)</code>, uma em cada arquivo, o que causaria um erro. Por isso, incluímos o arquivo de cabeçalho &ldquo;quadrado.h&rdquo;, que contém apenas a declaração da função, sem sua definição.  Podemos compilar o programa de uma vez só, escrevendo no terminal do Linux:
 </p>
-
-<h2>2.2 Trabalhando com Núltiplos Arquivos</h2>
+<figure><pre><code class="bash">$ gcc -Wall main.c quadrado.c -o programa</code></pre></figure>
 <p>
-    Quando se está trabalhando em um projeto em C, é comum que esse seja dividido em múltiplos arquivos. Essa prática permite uma melhor organização e compartimentalização do projeto, além de economizar tempo de compilação.
+E roda o programa com:
 </p>
-
+<figure><pre><code class="bash">./programa</code></pre></figure>
 <p>
-    Por exemplo, digamos que queremos criar um programa que calcule o quadrado de um número. Podemos dividir o projeto em dois arquivos: um arquivo &ldquo;main.c&rdquo;, que contém a função principal do programa, e um arquivo &ldquo;quadrado.h&rdquo;, que contém a função que calcula o quadrado do número. Além disso, criaremos um arquivo &ldquo;quadrado.h&rdquo;, que contém somente a declaração da função que calcula o quadrado.
+Para evitar a necessidade de compilar o programa inteiro sempre que houver uma alteração, podemos primeiro compilar cada arquivo em um arquivo objeto. Isso pode ser feito através dos seguintes comandos:
 </p>
+<figure><pre><code class="bash">$ gcc -Wall main.c -c
+$ gcc -Wall quadrado.c -c</code></pre></figure>
+<p>
+Isso irá gerar dois arquivos objetos: &ldquo;main.o&rdquo; e &ldquo;quadrado.o&rdquo;. Agora, podemos ligar os dois arquivos em um executável, sem precisarmos compilar o programa inteiro novamente:
+</p>
+<figure><pre><code class="bash">$ gcc main.o quadrado.o -o programa</code></pre></figure>
+<p>
+Com isso, podemos fazer alterações no arquivo &ldquo;quadrado.c&rdquo;, por exemplo, e compilar apenas esse arquivo, ligando-o depois aos demais arquivos já pré-compilados, sem a necessidade de recompilar o arquivo &ldquo;main.c&rdquo;.
+</p>
+<!-- Terceira Seção -->
+<h2>2.3 Utilizando Makefiles</h2>
+<p>
+Ao trabalhar em projetos grandes com muitos arquivos, é difícil gerenciar e entender as dependências entre esses arquivos. É comum que apenas alguns arquivos precisem ser recompilados após alterações, e recompilar todos os arquivos novamente pode ser demorado e desnecessário. Para lidar com esses problemas, é possível usar o <code class="bash">make</code> e o &ldquo;Makefile&rdquo;. O <code class="bash">make</code> é uma ferramenta que automatiza a compilação de programas a partir de arquivos-fonte. Ele trabalha a partir de um arquivo chamado &ldquo;Makefile&rdquo;, que especifica como os arquivos-fonte devem ser compilados em arquivos objeto e como esses objetos devem ser ligados para criar o programa final.</p>
+<p>
+O Makefile é composto por regras. Cada regra especifica um alvo e suas dependências, ou pré-requisitos, seguido por comandos para criar o alvo. Quando um alvo é requisitado, o <code class="bash">make</code> verifica se ele já existe e se é mais antigo que seus pré-requisitos. Se o alvo não existe ou é mais antigo que seus pré-requisitos, o <code class="bash">make</code> executa a regra dos pré-requisitos primeiro, em ordem de dependência, e depois a regra do alvo para criar o alvo. Se o alvo já existe e não é mais antigo que seus pré-requisitos, o <code class="bash">make</code> não executa a regra. A estrutura básica de um &ldquo;Makefile&rdquo; é a seguinte:
+</p>
+<figure><pre><code class="makefile">alvo: dependencia
+    comando
 
+dependencia:
+    comando</code></pre><figcaption>Makefile</figcaption></figure>
+<p>
+O alvo é o nome do arquivo que queremos criar ou atualizar, e a dependência é o nome do arquivo ou arquivos que precisam estar atualizados antes de criarmos o alvo. O comando é uma linha de código executada na linha de comando que compila os arquivos. Segue um exemplo abaixo:
+</p>
+<figure><pre><code class="makefile">saudacao:
+    echo "Ola, mundo!"</code></pre><figcaption>Makefile</figcaption></figure>
+<p>
+Se o arquivo &ldquo;saudacao&rdquo; não existe, o comando <code class="hljs makefile">echo ''Olá, mundo!''</code> será executado. Caso contrário, nada será feito. Mas se quisermos executar novamente o comando, podemos simplesmente chamar <code class="bash">make saudacao</code> na linha de comando. Mais em cima, escrevemos que o comando deve criar o arquivo alvo. No entanto, o comando do arquivo &ldquo;saudacao&rdquo; somente escreve uma frase no terminal. Assim, como nenhum arquivo será criado, toda vez que <code class="bash">make</code> for chamado, o mesmo comando será executado. Agora, vejamos um exemplo mais complexo:
+</p>
+<figure><pre><code class="makefile">hello: hello.o
+    gcc hello.o -o hello
+
+hello.o: hello.c
+    gcc -Wall hello.c -c</code></pre><figcaption>Makefile</figcaption></figure>
+<p>
+O arquivo &ldquo;hello.c&rdquo; possui o seguinte código:
+</p>
+<figure><pre><code class="c">#include&lt;stdio.h&gt;
+
+int main()
+{
+    printf("Hello, World!\\n");
+    return 0;
+}</code></pre><figcaption>hello.c</figcaption></figure>
+<p>
+Nesse exemplo, o objetivo é criar o arquivo executável &ldquo;hello&rdquo;. Ele depende do arquivo objeto &ldquo;hello.o&rdquo;, que por sua vez depende do arquivo fonte &ldquo;hello.c&rdquo;. Quando chamamos <code class="bash">make</code> na linha de comando, o Makefile verificará o arquivo &ldquo;hello&rdquo; para ver se ele precisa ser recompilado. Se ele não existir ou for mais antigo que &ldquo;hello.o&rdquo;, o <code class="bash">make</code> executará o comando <code class="bash">gcc hello.o -o hello</code>. Antes de executar esse comando, o <code class="bash">make</code> verificará o arquivo &ldquo;hello.o&rdquo; para ver se ele precisa ser recompilado. Se ele não existir ou for mais antigo que &ldquo;hello.c&rdquo;, o Make executará o comando <code class="bash">gcc -Wall hello.c -c</code> para gerar o objeto &ldquo;hello.o&rdquo;. Portanto, o passo-a-passo seguido pelo <code class="bash">make</code> é:
+</p>
+<ol>
+    <li>Verificar se &ldquo;hello&rdquo; precisa ser recompilado;</li>
+    <li>Verificar se &ldquo;hello.o&rdquo; precisa ser recompilado;</li>
+    <li>Executar o comando <code class="bash">gcc -Wall hello.c -c</code> se necessário;</li>
+    <li>Executar o comando <code class="bash">gcc hello.o -o hello</code> para gerar o executável.</li>
+</ol>
+<p>
+Ao usar um Makefile, podemos garantir que apenas os arquivos que precisam ser recompilados serão atualizados, economizando tempo e esforço. Além disso, a estrutura do Makefile ajuda a gerenciar as dependências de forma mais clara e organizada.
+<!-- Escrever sobre o make clean -->
+</p>
 </body>
 </html>

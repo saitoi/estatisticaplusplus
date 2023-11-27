@@ -5,9 +5,14 @@
     <!-- Estilos pelo CSS -->
     <link rel="stylesheet" type="text/css" href="css/codigo.css">
     <link rel="stylesheet" type="text/css" href="css/texto.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/bash.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <!-- Fim dos estilos -->
 </head>
-
+<body>
 <h1>Compilando com Otimização</h1>
 
 <p>
@@ -143,5 +148,5 @@ int sign(int x)
 <p>
     Observe que, embora o GCC geralmente encontre a maioria das variáveis não inicializadas, ele faz isso usando heurísticas que ocasionalmente podem perder alguns casos complicados ou emitir falsos avisos sobre outros. Nessa última situação, muitas vezes é possível reescrever as linhas relevantes de maneira mais simples que remove o aviso e melhora a legibilidade do código-fonte.
 </p>
-
+</body>
 </html>
