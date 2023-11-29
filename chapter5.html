@@ -9,32 +9,47 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+          // Selecione todos os elementos <code> que possuem múltiplas classes
+          document.querySelectorAll('code[class*="hljs-"]').forEach((codeElement) => {
+            // Separe as classes
+            const classes = codeElement.className.split(' ');
+      
+            // Crie uma expressão regular para combinar classes hljs-
+            const classRegex = /hljs-.*/;
+      
+            // Filtrar as classes que correspondem à expressão regular
+            const hljsClasses = classes.filter(className => classRegex.test(className));
+      
+            // Destacar o texto do elemento <code>
+            hljsClasses.forEach(hljsClass => {
+              const language = hljsClass.replace('hljs-', ''); // Remover o prefixo hljs-
+              hljs.highlightElement(codeElement, { language });
+            });
+          });
+        });
+      </script>
     <!-- Fim dos estilos -->
 </head>
 <body>
 
-    <h1>Compilando para a Depuração</h1>
-    
-    <p>Geralmente, os arquivos executáveis não incluem informações ou referências ao código-fonte original do programa. Isso pode ser inadequado para fins de depuração, já que não teremos meios de identificar a causa de um erro caso o programa pare de funcionar inesperadamente (crash).</p>
+<h1>5. Componentes do Compilador</h1>
 
-    <p>O GCC fornece a flag de compilação '-g' responsável por armazenar informações adicionais sobre a depuração do programa em arquivos executáveis e de objeto. Desse modo, podemos retornar à linha do programa que originou o erro.</p>
+<!-- Primeira Seção -->
+<h2>5.1 Pré-processador</h2>
 
-    <h2>Examinando Arquivos Centrais</h2>
-    
-    <p>Além de permitir que programas sejam executados sob o depurador, um benefício importante da opção '-g' é a capacidade de examinar a causa de uma falha de programa a partir de um 'despejo de núcleo'. Quando um programa termina de forma anormal (ou seja, falha), o sistema operacional pode criar um arquivo de núcleo (geralmente chamado de 'core'), que contém o estado na memória do programa no momento da falha. Esse arquivo é frequentemente chamado de despejo de núcleo. Combinado com informações da tabela de símbolos produzida pelo '-g', o despejo de núcleo pode ser usado para encontrar a linha onde o programa parou e os valores de suas variáveis nesse ponto.</p>
+<p>
+Como dito no capítulo inicial, pré-processador é o componente do GCC responsável por processar e manipular o código-fonte antes da compilação começar. Ele lê o código-fonte e realiza um conjunto de operações, incluindo substituição de macros, inclusão de arquivos e compilação condicional. Essas operações são definidas por um conjunto de diretivas, que são comandos especiais com o símbolo &ldquo;#&rdquo; em seu início.
+</p>
 
-    <p>Isso é útil tanto durante o desenvolvimento de software quanto após a implantação, pois permite investigar problemas quando um programa falha 'no campo'.</p>
+<p>
+A diretiva de pré-processamento <code class="hljs- c sembg">#include</code> é utilizada para incluir ao código o conteúdo de um arquivo especificado. Existem duas notações: é possível incluir um arquivo utilizando <code class="hljs- c sembg">#include&lt;arquivo&gt;</code> ou<code class="hljs- c sembg">#include"arquivo"</code>. No primeiro caso, o pré-processador buscará o arquivo em algum diretório do sistema (geralmente o /usr/include, em um sistema Unix) e, no segundo caso, o arquivo será buscado no diretório onde se localiza o código.
+</p>
 
-    <h2>Exibindo uma pilha de chamadas</h2>
-
-    <p>O depurador também pode mostrar as chamadas de função e os argumentos até o ponto atual de execução, isso é chamado de pilha de chamadas e é exibido com o comando backtrace:</p>
-
-    <pre>
-    #0 0x080483ed em foo (p=0x0) em null.c:13
-    #1 0x080483d9 em main () em null.c:7
-    </pre>
-
-    <p>Neste caso, a pilha de chamadas mostra que a falha ocorreu na linha 13 após a chamada da função foo a partir de main com um argumento de p=0x0 na linha 7 em 'null.c'. É possível mover-se para diferentes níveis na pilha de chamadas e examinar suas variáveis usando os comandos up e down do depurador.</p>
+<!-- Segunda Seção -->
+<!-- Terceira Seção -->
+<!-- Quarta Seção -->
     
 </body>
 </html>

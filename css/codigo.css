@@ -9,6 +9,10 @@ pre{
 
 /* Estilo específico para a linguagem Bash */
 code.bash {
-    color: #7f007f;
+    color: #b904b9;
     font-weight: normal;
+}
+
+code.sembg{
+    background-color: inherit;
 }

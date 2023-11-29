@@ -9,6 +9,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+          // Selecione todos os elementos <code> que possuem múltiplas classes
+          document.querySelectorAll('code[class*="hljs-"]').forEach((codeElement) => {
+            // Separe as classes
+            const classes = codeElement.className.split(' ');
+      
+            // Crie uma expressão regular para combinar classes hljs-
+            const classRegex = /hljs-.*/;
+      
+            // Filtrar as classes que correspondem à expressão regular
+            const hljsClasses = classes.filter(className => classRegex.test(className));
+      
+            // Destacar o texto do elemento <code>
+            hljsClasses.forEach(hljsClass => {
+              const language = hljsClass.replace('hljs-', ''); // Remover o prefixo hljs-
+              hljs.highlightElement(codeElement, { language });
+            });
+          });
+        });
+      </script>
     <!-- Fim dos estilos -->
 </head>
 <body>
@@ -20,19 +41,19 @@ O GCC compila programas usando o dialeto GNU da linguagem C como base, que incor
 </p>
 
 <p>
-Para lidar com esses conflitos, o GCC oferece várias opções de linha de comando, conhecidas como <strong>bandeiras</strong> ou <strong><i>flags</i></strong>, que permitem aos desenvolvedores controlar o comportamento do compilador ao compilar o código fonte. A <i>flag</i> <code class="bash">-ansi</code> é usada para desabilitar as extensões do GNU C que conflitam com o padrão ANSI C. A <i>flag</i> <code class="bash">-pedantic</code> desabilita todas as extensões do GNU C, não apenas aquelas que conflitam com o padrão ANSI.
+Para lidar com esses conflitos, o GCC oferece várias opções de linha de comando, conhecidas como <strong>bandeiras</strong> ou <strong><i>flags</i></strong>, que permitem aos desenvolvedores controlar o comportamento do compilador ao compilar o código fonte. A <i>flag</i> <code class="hljs- bash sembg">-ansi</code> é usada para desabilitar as extensões do GNU C que conflitam com o padrão ANSI C. A <i>flag</i> <code class="hljs- bash sembg">-pedantic</code> desabilita todas as extensões do GNU C, não apenas aquelas que conflitam com o padrão ANSI.
 </p>
 
 <p>
-No capítulo anterior, usamos a <i>flag</i> <code class="bash">-Wall</code> na compilação do nosso programa. Essa <i>flag</i> é uma combinação de várias <i>flags</i> de aviso especializadas que detectam erros comuns de programação. Cada uma das <i>flags</i> contidas em <code class="bash">-Wall</code> pode ser usada individualmente. Algumas dessas <i>flags</i> são:
+No capítulo anterior, usamos a <i>flag</i> <code class="hljs- bash sembg">-Wall</code> na compilação do nosso programa. Essa <i>flag</i> é uma combinação de várias <i>flags</i> de aviso especializadas que detectam erros comuns de programação. Cada uma das <i>flags</i> contidas em <code class="hljs- bash sembg">-Wall</code> pode ser usada individualmente. Algumas dessas <i>flags</i> são:
 </p>
 
 <ul>
-    <li><code class="bash">-Wcomment</code>: Avisa sobre problemas de formatação em comentários, como comentários dentro de comentários.</li>
-    <li><code class="bash">-Wformat</code>: Avisa sobre o uso incorreto de formatação em <i>strings</i> em funções como <code class="hljs c">printf</code> e <code class="hljs c">scanf</code>.</li>
-    <li><code class="bash">-Wunused</code>: Avisa sobre variáveis que foram declaradas mas não foram usadas no programa.</li>
-    <li><code class="bash">-Wimplicit</code>: Avisa sobre funções que foram usadas sem serem declaradas, o que pode acontecer se esquecer de incluir o arquivo de cabeçalho.</li>
-    <li><code class="bash">-Wreturn-type</code>: Avisa sobre funções que não retornam nenhum valor mas que não foram declaradas como <code class="hljs c">void</code>.</li>
+    <li><code class="hljs- bash sembg">-Wcomment</code>: Avisa sobre problemas de formatação em comentários, como comentários dentro de comentários.</li>
+    <li><code class="hljs- bash sembg">-Wformat</code>: Avisa sobre o uso incorreto de formatação em <i>strings</i> em funções como <code class="hljs- c sembg">printf</code> e <code class="hljs- c sembg">scanf</code>.</li>
+    <li><code class="hljs- bash sembg">-Wunused</code>: Avisa sobre variáveis que foram declaradas mas não foram usadas no programa.</li>
+    <li><code class="hljs- bash sembg">-Wimplicit</code>: Avisa sobre funções que foram usadas sem serem declaradas, o que pode acontecer se esquecer de incluir o arquivo de cabeçalho.</li>
+    <li><code class="hljs- bash sembg">-Wreturn-type</code>: Avisa sobre funções que não retornam nenhum valor mas que não foram declaradas como <code class="hljs- c sembg">void</code>.</li>
 </ul>
 
 <p>
@@ -40,17 +61,17 @@ O GCC também inclui outras <i>flags</i> de aviso úteis, como:
 </p>
 
 <ul>
-    <li><code class="bash">-W</code>: Uma <i>flag</i> geral, semelhante a <code class="bash">-Wall</code>, que avisa sobre diversos erros comuns.</li>
-    <li><code class="bash">-Wconversion</code>: Avisa sobre conversões implícitas de tipo, como entre <code class="hljs c">float</code> e <code class="hljs c">integer</code>, que podem causar resultados inesperados.</li>
-    <li><code class="bash">-Wshadow</code>: Avisa sobre a declaração de variáveis em um escopo em que elas já foram declaradas.</li>
-    <li><code class="bash">-Wtraditional</code>: Avisa sobre partes do código que seriam interpretadas de forma diferente por um compilador ANSI/ISO e um pré-ANSI.</li>
+    <li><code class="hljs- bash sembg">-W</code>: Uma <i>flag</i> geral, semelhante a <code class="hljs- bash sembg">-Wall</code>, que avisa sobre diversos erros comuns.</li>
+    <li><code class="hljs- bash sembg">-Wconversion</code>: Avisa sobre conversões implícitas de tipo, como entre <code class="hljs- c sembg">float</code> e <code class="hljs- c sembg">int</code>, que podem causar resultados inesperados.</li>
+    <li><code class="hljs- bash sembg">-Wshadow</code>: Avisa sobre a declaração de variáveis em um escopo em que elas já foram declaradas.</li>
+    <li><code class="hljs- bash sembg">-Wtraditional</code>: Avisa sobre partes do código que seriam interpretadas de forma diferente por um compilador ANSI/ISO e um pré-ANSI.</li>
 </ul>
 
 <p>
-Se você quiser que o programa pare de compilar se houver qualquer aviso das <i>flags</i> que você aplicou, use a <i>flag</i> "<code class="bash">-Werror</code>". Usar <i>flags</i> ao compilar um programa é uma boa prática, mas a grande quantidade pode tornar a escolha de quais usar difícil. Com isso em mente, recomendamos que, em geral, as seguintes <i>flags</i> sejam usadas:
+Se você quiser que o programa pare de compilar se houver qualquer aviso das <i>flags</i> que você aplicou, use a <i>flag</i> "<code class="hljs- bash sembg">-Werror</code>". Usar <i>flags</i> ao compilar um programa é uma boa prática, mas a grande quantidade pode tornar a escolha de quais usar difícil. Com isso em mente, recomendamos que, em geral, as seguintes <i>flags</i> sejam usadas:
 </p>
 
-<figure><pre><code class="bash">$ gcc -ansi -pedantic -Wall -W</code></pre></figure>
+<figure><pre><code class="bash">$ gcc -ansi -pedantic -Wall -W programa.c -o programa</code></pre></figure>
 
 </body>
 </html>

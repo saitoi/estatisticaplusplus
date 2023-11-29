@@ -9,6 +9,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+          // Selecione todos os elementos <code> que possuem múltiplas classes
+          document.querySelectorAll('code[class*="hljs-"]').forEach((codeElement) => {
+            // Separe as classes
+            const classes = codeElement.className.split(' ');
+      
+            // Crie uma expressão regular para combinar classes hljs-
+            const classRegex = /hljs-.*/;
+      
+            // Filtrar as classes que correspondem à expressão regular
+            const hljsClasses = classes.filter(className => classRegex.test(className));
+      
+            // Destacar o texto do elemento <code>
+            hljsClasses.forEach(hljsClass => {
+              const language = hljsClass.replace('hljs-', ''); // Remover o prefixo hljs-
+              hljs.highlightElement(codeElement, { language });
+            });
+          });
+        });
+      </script>
     <!-- Fim dos estilos -->
 </head>
 <body>
@@ -19,7 +40,7 @@
 <h2>2.1. Primeiros Passos</h2>
 
 <p>
-Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso <code class="bash">Hello, World!</code>. A seguir, mostraremos como compilar esse programa em C utilizando o compilador GCC:
+Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso <code class="hljs- bash sembg">"Hello, World!"</code>. A seguir, mostraremos como compilar esse programa em C utilizando o compilador GCC:
 </p>
 
 <figure><pre><code class="c">#include&lt;stdio.h&gt;
@@ -36,13 +57,13 @@ No entanto, o código-fonte ainda não pode ser entendido pelo computador, sendo
 <figure><pre><code class="bash">$ gcc helloworld.c -o hello</code></pre></figure>
 
 <p>
-O parâmetro <code class="bash">-o</code> indica que queremos criar um arquivo executável com o nome <b>hello</b>, enquanto <b>helloworld.c</b> é o nome do arquivo que contém o código-fonte. Além disso, é recomendável utilizar a <i>flag</i> <code class="bash">-Wall</code> durante a compilação de programas em C. Essa opção habilita uma checagem mais rigorosa do código-fonte e gera avisos adicionais caso detecte possíveis problemas no código, como variáveis não inicializadas ou operações com ponteiros inválidos. Para utilizar a <i>flag</i> <code class="bash">-Wall</code>, basta incluí-la no comando de compilação:
+O parâmetro <code class="hljs- bash sembg">-o</code> indica que queremos criar um arquivo executável com o nome <b>hello</b>, enquanto <b>helloworld.c</b> é o nome do arquivo que contém o código-fonte. Além disso, é recomendável utilizar a <i>flag</i> <code class="hljs- bash sembg">-Wall</code> durante a compilação de programas em C. Essa opção habilita uma checagem mais rigorosa do código-fonte e gera avisos adicionais caso detecte possíveis problemas no código, como variáveis não inicializadas ou operações com ponteiros inválidos. Para utilizar a <i>flag</i> <code class="hljs- bash sembg">-Wall</code>, basta incluí-la no comando de compilação:
 </p>
 
 <figure><pre><code class="bash">$ gcc -Wall helloworld.c -o hello</code></pre></figure>
 
 <p>
-Por fim, para executar o programa, basta digitar <code class="bash">./hello</code> no terminal. Esse comando informa ao sistema operacional que desejamos executar o arquivo <b>hello</b> que foi gerado pela compilação do programa <b>helloworld.c</b>. Se tudo ocorrer bem, o programa exibirá a mensagem <code class="bash">Hello, World!</code> no terminal.
+Por fim, para executar o programa, basta digitar <code class="hljs- bash sembg">./hello</code> no terminal. Esse comando informa ao sistema operacional que desejamos executar o arquivo <b>hello</b> que foi gerado pela compilação do programa <b>helloworld.c</b>. Se tudo ocorrer bem, o programa exibirá a mensagem <code class="hljs- bash sembg">"Hello, World!"</code> no terminal.
 </p>
 
 <!-- Segunda Seção -->
@@ -56,10 +77,10 @@ Quando se está trabalhando em um projeto em C, é comum que esse seja dividido 
 #include"quadrado.h"
 
 int main() {
-    double x;
+    int x;
     printf("Digite um númeroç: ");
-    scanf("%lf", &x);
-    printf("O quadrado de %lf é %lf\n", x, quadrado(x));
+    scanf("%d", &x);
+    printf("O quadrado de %d é %d\n", x, calc_quadrado(x));
     return 0;
 }</code></pre><figcaption class="arq">main.c</figcaption></figure>
 
@@ -69,7 +90,7 @@ int main() {
 <figure><pre><code class="c">int calc_quadrado(int x)</pre></code><figcaption class="arq">quadrado.h</figcaption></figure>
 
 <p>
-É importante notar que, se incluíssemos diretamente o arquivo <b>quadrado.c</b> em <b>main.c</b>, haveria duas definições da função <code class="hljs c">quadrado(double x)</code>, uma em cada arquivo, o que causaria um erro. Por isso, incluímos o arquivo de cabeçalho <b>quadrado.h</b>, que contém apenas a declaração da função, sem sua definição.  Podemos compilar o programa de uma vez só, escrevendo no terminal do Linux:
+É importante notar que, se incluíssemos diretamente o arquivo <b>quadrado.c</b> em <b>main.c</b>, haveriam duas definições da função <code class="hljs- c sembg">int calc_quadrado(int x)</code>, uma em cada arquivo, o que causaria um erro. Por isso, incluímos o arquivo de cabeçalho <b>quadrado.h</b>, que contém apenas a declaração da função, sem sua definição.  Podemos compilar o programa de uma vez só, escrevendo no terminal do Linux:
 </p>
 
 <figure><pre><code class="bash">$ gcc -Wall main.c quadrado.c -o programa</code></pre></figure>
@@ -102,11 +123,11 @@ Com isso, podemos fazer alterações no arquivo <b>quadrado.c</b>, por exemplo, 
 <h2>2.3. Utilizando Makefiles</h2>
 
 <p>
-Ao trabalhar em projetos grandes com muitos arquivos, é difícil gerenciar e entender as dependências entre esses arquivos. É comum que apenas alguns arquivos precisem ser recompilados após alterações, e recompilar todos os arquivos novamente pode ser demorado e desnecessário. Para lidar com esses problemas, é possível usar o <code class="bash">make</code> e o <b>Makefile</b>. O <code class="bash">make</code> é uma ferramenta que automatiza a compilação de programas a partir de arquivos-fonte. Ele trabalha a partir de um arquivo chamado <b>Makefile</b>, que especifica como os arquivos-fonte devem ser compilados em arquivos objeto e como esses objetos devem ser ligados para criar o programa final.
+Ao trabalhar em projetos grandes com muitos arquivos, é difícil gerenciar e entender as dependências entre esses arquivos. É comum que apenas alguns arquivos precisem ser recompilados após alterações, e recompilar todos os arquivos novamente pode ser demorado e desnecessário. Para lidar com esses problemas, é possível usar o <code class="hljs- bash sembg">make</code> e o <b>Makefile</b>. O <code class="hljs- bash sembg">make</code> é uma ferramenta que automatiza a compilação de programas a partir de arquivos-fonte. Ele trabalha a partir de um arquivo chamado <b>Makefile</b>, que especifica como os arquivos-fonte devem ser compilados em arquivos objeto e como esses objetos devem ser ligados para criar o programa final.
 </p>
 
 <p>
-O <b>Makefile</b> é composto por regras. Cada regra especifica um alvo e suas dependências, ou pré-requisitos, seguido por comandos para criar o alvo. Quando um alvo é requisitado, o <code class="bash">make</code> verifica se ele já existe e se é mais antigo que seus pré-requisitos. Se o alvo não existe ou é mais antigo que seus pré-requisitos, o <code class="bash">make</code> executa a regra dos pré-requisitos primeiro, em ordem de dependência, e depois a regra do alvo para criar o alvo. Se o alvo já existe e não é mais antigo que seus pré-requisitos, o <code class="bash">make</code> não executa a regra. A estrutura básica de um <b>Makefile</b> é a seguinte:
+O <b>Makefile</b> é composto por regras. Cada regra especifica um alvo e suas dependências, ou pré-requisitos, seguido por comandos para criar o alvo. Quando um alvo é requisitado, o <code class="hljs- bash sembg">make</code> verifica se ele já existe e se é mais antigo que seus pré-requisitos. Se o alvo não existe ou é mais antigo que seus pré-requisitos, o <code class="hljs- bash sembg">make</code> executa a regra dos pré-requisitos primeiro, em ordem de dependência, e depois a regra do alvo para criar o alvo. Se o alvo já existe e não é mais antigo que seus pré-requisitos, o <code class="hljs- bash sembg">make</code> não executa a regra. A estrutura básica de um <b>Makefile</b> é a seguinte:
 </p>
 
 <figure><pre><code class="makefile">alvo: dependencia
@@ -123,7 +144,7 @@ O alvo é o nome do arquivo que queremos criar ou atualizar, e a dependência é
     echo "Ola, mundo!"</code></pre><figcaption class="arq">Makefile</figcaption></figure>
 
 <p>
-Se o arquivo <b>saudacao</b> não existe, o comando <code class="hljs makefile">echo ''Olá, mundo!''</code> será executado. Caso contrário, nada será feito. Mas se quisermos executar novamente o comando, podemos simplesmente chamar <code class="bash">make saudacao</code> na linha de comando. Mais em cima, escrevemos que o comando deve criar o arquivo alvo. No entanto, o comando do arquivo <b>saudacao</b> somente escreve uma frase no terminal. Assim, como nenhum arquivo será criado, toda vez que <code class="bash">make</code> for chamado, o mesmo comando será executado. Agora, vejamos um exemplo mais complexo:
+Se o arquivo <b>saudacao</b> não existe, o comando <code class="hljs- makefile sembg">echo "Olá, mundo!"</code> será executado. Caso contrário, nada será feito. Mas se quisermos executar novamente o comando, podemos simplesmente chamar <code class="hljs- bash sembg">make saudacao</code> na linha de comando. Mais em cima, escrevemos que o comando deve criar o arquivo alvo. No entanto, o comando do arquivo <b>saudacao</b> somente escreve uma frase no terminal. Assim, como nenhum arquivo será criado, toda vez que <code class="hljs- bash sembg">make</code> for chamado, o mesmo comando será executado. Agora, vejamos um exemplo mais complexo:
 </p>
 
 <figure><pre><code class="makefile">hello: hello.o
@@ -145,14 +166,14 @@ int main()
 }</code></pre><figcaption class="arq">hello.c</figcaption></figure>
 
 <p>
-Nesse exemplo, o objetivo é criar o arquivo executável <b>hello</b>. Ele depende do arquivo objeto <b>hello.o</b>, que por sua vez depende do arquivo fonte <b>hello.c</b>. Quando chamamos <code class="bash">make</code> na linha de comando, o <b>Makefile</b> verificará o arquivo <b>hello</b> para ver se ele precisa ser recompilado. Se ele não existir ou for mais antigo que <b>hello.o</b>, o <code class="bash">make</code> executará o comando <code class="bash">gcc hello.o -o hello</code>. Antes de executar esse comando, o <code class="bash">make</code> verificará o arquivo <b>hello.o</b> para ver se ele precisa ser recompilado. Se ele não existir ou for mais antigo que <b>hello.c</b>, o <code class="bash">make</code> executará o comando <code class="bash">gcc -Wall hello.c -c</code> para gerar o objeto <b>hello.o</b>. Portanto, o passo-a-passo seguido pelo <code class="bash">make</code> é:
+Nesse exemplo, o objetivo é criar o arquivo executável <b>hello</b>. Ele depende do arquivo objeto <b>hello.o</b>, que por sua vez depende do arquivo fonte <b>hello.c</b>. Quando chamamos <code class="hljs- bash sembg">make</code> na linha de comando, o <b>Makefile</b> verificará o arquivo <b>hello</b> para ver se ele precisa ser recompilado. Se ele não existir ou for mais antigo que <b>hello.o</b>, o <code class="hljs- bash sembg">make</code> executará o comando <code class="hljs- bash sembg">gcc hello.o -o hello</code>. Antes de executar esse comando, o <code class="hljs- bash sembg">make</code> verificará o arquivo <b>hello.o</b> para ver se ele precisa ser recompilado. Se ele não existir ou for mais antigo que <b>hello.c</b>, o <code class="hljs- bash sembg">make</code> executará o comando <code class="hljs- bash sembg">gcc -Wall hello.c -c</code> para gerar o objeto <b>hello.o</b>. Portanto, o passo-a-passo seguido pelo <code class="hljs- bash sembg">make</code> é:
 </p>
 
 <ol>
     <li>Verificar se <b>hello</b> precisa ser recompilado.</li>
     <li>Verificar se <b>hello.o</b> precisa ser recompilado.</li>
-    <li>Executar o comando <code class="bash">gcc -Wall hello.c -c</code> se necessário.</li>
-    <li>Executar o comando <code class="bash">gcc hello.o -o hello</code> para gerar o executável.</li>
+    <li>Executar o comando <code class="hljs- bash sembg">gcc -Wall hello.c -c</code> se necessário.</li>
+    <li>Executar o comando <code class="hljs- bash sembg">gcc hello.o -o hello</code> para gerar o executável.</li>
 </ol>
 
 <p>

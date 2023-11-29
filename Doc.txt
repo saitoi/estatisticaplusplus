@@ -23,7 +23,7 @@ OBS: _LINGUAGEM pode ser: c, makefile, bash (terminal).
 
 Trechos de código:
     <p>
-        <code class="_LINGUAGEM">
+        <code class="hljs- _LINGUAGEM sembg">
             _CÓDIGO
         </code>
     </p>

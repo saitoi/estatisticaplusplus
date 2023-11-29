@@ -9,6 +9,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+          // Selecione todos os elementos <code> que possuem múltiplas classes
+          document.querySelectorAll('code[class*="hljs-"]').forEach((codeElement) => {
+            // Separe as classes
+            const classes = codeElement.className.split(' ');
+      
+            // Crie uma expressão regular para combinar classes hljs-
+            const classRegex = /hljs-.*/;
+      
+            // Filtrar as classes que correspondem à expressão regular
+            const hljsClasses = classes.filter(className => classRegex.test(className));
+      
+            // Destacar o texto do elemento <code>
+            hljsClasses.forEach(hljsClass => {
+              const language = hljsClass.replace('hljs-', ''); // Remover o prefixo hljs-
+              hljs.highlightElement(codeElement, { language });
+            });
+          });
+        });
+      </script>
     <!-- Fim dos estilos -->
 </head>
 <body>

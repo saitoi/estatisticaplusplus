@@ -9,6 +9,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+          // Selecione todos os elementos <code> que possuem múltiplas classes
+          document.querySelectorAll('code[class*="hljs-"]').forEach((codeElement) => {
+            // Separe as classes
+            const classes = codeElement.className.split(' ');
+      
+            // Crie uma expressão regular para combinar classes hljs-
+            const classRegex = /hljs-.*/;
+      
+            // Filtrar as classes que correspondem à expressão regular
+            const hljsClasses = classes.filter(className => classRegex.test(className));
+      
+            // Destacar o texto do elemento <code>
+            hljsClasses.forEach(hljsClass => {
+              const language = hljsClass.replace('hljs-', ''); // Remover o prefixo hljs-
+              hljs.highlightElement(codeElement, { language });
+            });
+          });
+        });
+      </script>
     <!-- Fim dos estilos -->
 </head>
 <body>
@@ -18,7 +39,7 @@
 <h2>4.1. Compilando para Depuração</h2>
 
 <p>
-Durante o desenvolvimento de software, a <strong>depuração</strong> ou <strong><i>debugging</i></strong> desempenha um papel fundamental na identificação e correção eficiente de erros no código. Ao compilar programas em C, existe uma prática recomendada para facilitar a depuração: a utilização da opção <code class="bash">-g</code> ao chamar o GCC. Essa opção instrui o compilador a incluir informações de depuração no executável gerado. Essas informações, como símbolos de função, variáveis locais e localizações de linha, permitem uma análise detalhada do código durante a depuração. Por exemplo, ao executar o programa em um depurador, é possível definir pontos de interrupção, inspecionar valores de variáveis e rastrear a execução do código passo a passo.
+Durante o desenvolvimento de software, a <strong>depuração</strong> ou <strong><i>debugging</i></strong> desempenha um papel fundamental na identificação e correção eficiente de erros no código. Ao compilar programas em C, existe uma prática recomendada para facilitar a depuração: a utilização da opção <code class="hljs- bash sembg">-g</code> ao chamar o GCC. Essa opção instrui o compilador a incluir informações de depuração no executável gerado. Essas informações, como símbolos de função, variáveis locais e localizações de linha, permitem uma análise detalhada do código durante a depuração. Por exemplo, ao executar o programa em um depurador, é possível definir pontos de interrupção, inspecionar valores de variáveis e rastrear a execução do código passo a passo.
 </p>
 
 <p>
@@ -41,14 +62,14 @@ int foo (int *p)
 }</pre><figcaption class="arq">exemplo.c</figcaption></figure>
 
 <p>
-Nesse código, temos duas funções: <code class="hljs c">main</code> e <code class="hljs c">foo</code>. A função <code class="hljs c">main</code> inicializa um ponteiro <code class="hljs c">p</code> com o valor nulo (0) e, em seguida, chama a função <code class="hljs c">foo</code> passando esse ponteiro como argumento. A função <code class="hljs c">foo</code> recebe um ponteiro como parâmetro e tenta acessar o valor apontado por ele. No entanto, como <code class="hljs c">p</code> é nulo, essa operação resulta em um erro. Para compilar esse código com a opção de depuração, você pode usar o seguinte comando:
+Nesse código, temos duas funções: <code class="hljs- c sembg">int main()</code> e <code class="hljs- c sembg">int foo()</code>. A função <code class="hljs- c sembg">main</code> inicializa um ponteiro <code class="hljs- c sembg">p</code> com o valor nulo (0) e, em seguida, chama a função <code class="hljs- c sembg">foo</code> passando esse ponteiro como argumento. A função <code class="hljs- c sembg">foo</code> recebe um ponteiro como parâmetro e tenta acessar o valor apontado por ele. No entanto, como <code class="hljs- c sembg">p</code> é nulo, essa operação resulta em um erro. Para compilar esse código com a opção de depuração, você pode usar o seguinte comando:
 </p>
 
 <figure><pre><code class="bash">
 $ gcc -Wall -g exemplo.c -o exemplo</code></pre></figure>
 
 <p>
-Ao executá-lo, receberemos uma mensagem de erro, indicando que houve uma violação de segmentação, <code class="bash">segmentation fault</code>. Essa mensagem é exibida quando ocorre uma tentativa de acessar uma área da memória que não é permitida, como no caso em que o ponteiro <code class="hljs c">p</code> aponta para o valor nulo.
+Ao executá-lo, receberemos uma mensagem de erro, indicando que houve uma violação de segmentação, <code class="hljs- bash sembg">segmentation fault</code>. Essa mensagem é exibida quando ocorre uma tentativa de acessar uma área da memória que não é permitida, como no caso em que o ponteiro <code class="hljs- c sembg">p</code> aponta para o valor nulo.
 </p>
 
 <figure><pre><code class="bash">$ ./exemplo
@@ -74,7 +95,7 @@ Vamos falar sobre o arquivo <b>core</b> mencionado na mensagem de erro. Ele é u
 <h2>4.2. Depurando Programas</h2>
 
 <p>
-Vamos agora usar o gdb para depurar o nosso executável ``exemplo''. Para isso, escrevemos o seguinte comando:
+Vamos agora usar o gdb para depurar o nosso executável <b>exemplo</b>. Para isso, escrevemos o seguinte comando:
 </p>
 
 <figure><pre><code class="bash">$ gdb exemplo core
@@ -88,14 +109,14 @@ warning: Section '.reg-xstate/17012' in core file too small.
 (gdb)</code></pre></figure>
 
 <p>
-O GDB aponta a linha do código onde ocorreu a falha do programa. Nesse caso, o erro ocorreu quando o programa tentou desreferenciar o ponteiro <code class="hljs c">p</code>. Para entender melhor o motivo da falha, podemos examinar o valor de <code class="hljs c">p</code> com o comando <code class="bash">print</code>:
+O GDB aponta a linha do código onde ocorreu a falha do programa. Nesse caso, o erro ocorreu quando o programa tentou desreferenciar o ponteiro <code class="hljs- c sembg">p</code>. Para entender melhor o motivo da falha, podemos examinar o valor de <code class="hljs- c sembg">p</code> com o comando <code class="hljs- bash sembg">print</code>:
 </p>
 
 <figure><pre><code class="bash"> (gdb) print p
 $1 = (int *) 0x0</code></pre></figure>
 
 <p>
-Como visto acima, o ponteiro <code class="hljs c">p</code> é nulo, explicando a falha ao tentarmos desreferenciá-lo. Para investigar a sequência de chamadas de funções que conduziu ao estado atual do programa, pode-se exibir um rastreamento de pilha com o comando <code class="bash">backtrace</code>:
+Como visto acima, o ponteiro <code class="hljs- c sembg">p</code> é nulo, explicando a falha ao tentarmos desreferenciá-lo. Para investigar a sequência de chamadas de funções que conduziu ao estado atual do programa, pode-se exibir um rastreamento de pilha com o comando <code class="hljs- bash sembg">backtrace</code>:
 </p>
 
 <figure><pre><code class="bash">(gdb) backtrace
@@ -103,14 +124,14 @@ Como visto acima, o ponteiro <code class="hljs c">p</code> é nulo, explicando a
 #1  0x000055661c113149 in main () at exemplo.c:7</code></pre></figure>
 
 <p>
-Outra funcionalidade importante do GDB é a capacidade de definir pontos de interrupção usando o comando <code class="bash">break</code>, permitindo a parada da execução do programa em pontos específicos. Tais pontos poder ser determinados para funções específicas, linhas ou lugares na memória. Vamos definir um ponto de interrupção no início da função <code class="hljs c">main</code>:
+Outra funcionalidade importante do GDB é a capacidade de definir pontos de interrupção usando o comando <code class="hljs- bash sembg">break</code>, permitindo a parada da execução do programa em pontos específicos. Tais pontos poder ser determinados para funções específicas, linhas ou lugares na memória. Vamos definir um ponto de interrupção no início da função <code class="hljs- c sembg">main</code>:
 </p>
 
 <figure><pre><code class="bash">(gdb) break main
 Breakpoint 1 at 0x55661c113135: file exemplo.c, line 5.</code></pre></figure>
 
 <p>
-Agora, quando executarmos o programa no GDB, o programa irá parar assim que a função <code class="hljs c">main</code> for executada. Poderemos, então, avançar pela execução do programa passo a passo com o comando <code class="bash">step</code>, aprimorando a observação do comportamento do programa:
+Agora, quando executarmos o programa no GDB, o programa irá parar assim que a função <code class="hljs- c sembg">main</code> for executada. Poderemos, então, avançar pela execução do programa passo a passo com o comando <code class="hljs- bash sembg">step</code>, aprimorando a observação do comportamento do programa:
 </p>
 
 <figure><pre><code class="bash">(gdb) run
@@ -124,7 +145,7 @@ $2 = (int *) 0x0    /* ponteiro nulo */
 (gdb)</code></pre></figure>
 
 <p>
-As variáveis podem ser modificadas durante a depuração com o comando <code class="bash">set var</code>, o que é útil para testar diferentes cenários. Vamos continuar com o nosso exemplo e modificar os valores de <code class="hljs">p</code> e <code class="hljs c">*p</code>. Por fim, após modificarmos as variáveis, retomaremos a execução do programa com o comando <code class="bash">continue</code>:
+As variáveis podem ser modificadas durante a depuração com o comando <code class="hljs- bash sembg">set var</code>, o que é útil para testar diferentes cenários. Vamos continuar com o nosso exemplo e modificar os valores de <code class="hljs- c sembg">p</code> e <code class="hljs- c sembg">*p</code>. Por fim, após modificarmos as variáveis, retomaremos a execução do programa com o comando <code class="hljs- bash sembg">continue</code>:
 </p>
 
 <figure><pre><code class="bash">(gdb) set variable p = malloc(sizeof(int))
