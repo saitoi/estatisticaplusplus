@@ -7,44 +7,50 @@
     <link rel="stylesheet" type="text/css" href="css/texto.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/bash.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <!-- Fim dos estilos -->
 </head>
 <body>
 
-    <h1>Capítulo 3: Bandeiras de Aviso do Compilador</h1>
+<h1>3. Bandeiras de Aviso do Compilador</h1>
 
-    <p>O GCC compila programas usando o dialeto GNU da linguagem C como base, que incorpora o padrão ANSI C e várias extensões do GNU C. Essas extensões incluem recursos como declarações de variáveis no meio de um bloco de código, expressões com efeitos colaterais e construtores de atributos, entre outros. No entanto, programas válidos escritos em ANSI C podem conflitar com algumas extensões do GNU C.</p>
+<p>
+O GCC compila programas usando o dialeto GNU da linguagem C como base, que incorpora o padrão ANSI C e várias extensões do GNU C. Essas extensões incluem recursos como declarações de variáveis no meio de um bloco de código, expressões com efeitos colaterais e construtores de atributos, entre outros. No entanto, programas válidos escritos em ANSI C podem conflitar com algumas extensões do GNU C.
+</p>
 
-    <p>Para lidar com esses conflitos, o GCC oferece várias opções de linha de comando, conhecidas como <b>bandeiras</b> ou <b>flags</b>, que permitem aos desenvolvedores controlar o comportamento do compilador ao compilar o código fonte. A flag "<code>-ansi</code>" é usada para desabilitar as extensões do GNU C que conflitam com o padrão ANSI C. A flag "<code>-pedantic</code>" desabilita todas as extensões do GNU C, não apenas aquelas que conflitam com o padrão ANSI.</p>
+<p>
+Para lidar com esses conflitos, o GCC oferece várias opções de linha de comando, conhecidas como <strong>bandeiras</strong> ou <strong><i>flags</i></strong>, que permitem aos desenvolvedores controlar o comportamento do compilador ao compilar o código fonte. A <i>flag</i> <code class="bash">-ansi</code> é usada para desabilitar as extensões do GNU C que conflitam com o padrão ANSI C. A <i>flag</i> <code class="bash">-pedantic</code> desabilita todas as extensões do GNU C, não apenas aquelas que conflitam com o padrão ANSI.
+</p>
 
-    <p>No capítulo anterior, usamos a flag "<code>-Wall</code>" na compilação do nosso programa. Essa flag é uma combinação de várias flags de aviso especializadas que detectam erros comuns de programação. Cada uma das flags contidas em "<code>-Wall</code>" pode ser usada individualmente. Algumas dessas flags são:</p>
+<p>
+No capítulo anterior, usamos a <i>flag</i> <code class="bash">-Wall</code> na compilação do nosso programa. Essa <i>flag</i> é uma combinação de várias <i>flags</i> de aviso especializadas que detectam erros comuns de programação. Cada uma das <i>flags</i> contidas em <code class="bash">-Wall</code> pode ser usada individualmente. Algumas dessas <i>flags</i> são:
+</p>
 
-    <ul>
-        <li><strong>Wcomment</strong>: avisa sobre problemas de formatação em comentários, como comentários dentro de comentários.</li>
-        <li><strong>Wformat</strong>: avisa sobre o uso incorreto de formatação em strings em funções como <code>printf</code> e <code>scanf</code>.</li>
-        <li><strong>Wunused</strong>: avisa sobre variáveis que foram declaradas mas não foram usadas no programa.</li>
-        <li><strong>Wimplicit</strong>: avisa sobre funções que foram usadas sem serem declaradas, o que pode acontecer se esquecer de incluir o arquivo de cabeçalho.</li>
-        <li><strong>Wreturn-type</strong>: avisa sobre funções que não retornam nenhum valor mas que não foram declaradas como <code>void</code>.</li>
-    </ul>
+<ul>
+    <li><code class="bash">-Wcomment</code>: Avisa sobre problemas de formatação em comentários, como comentários dentro de comentários.</li>
+    <li><code class="bash">-Wformat</code>: Avisa sobre o uso incorreto de formatação em <i>strings</i> em funções como <code class="hljs c">printf</code> e <code class="hljs c">scanf</code>.</li>
+    <li><code class="bash">-Wunused</code>: Avisa sobre variáveis que foram declaradas mas não foram usadas no programa.</li>
+    <li><code class="bash">-Wimplicit</code>: Avisa sobre funções que foram usadas sem serem declaradas, o que pode acontecer se esquecer de incluir o arquivo de cabeçalho.</li>
+    <li><code class="bash">-Wreturn-type</code>: Avisa sobre funções que não retornam nenhum valor mas que não foram declaradas como <code class="hljs c">void</code>.</li>
+</ul>
 
-    <p>O GCC também inclui outras flags de aviso úteis, como:</p>
+<p>
+O GCC também inclui outras <i>flags</i> de aviso úteis, como:
+</p>
 
-    <ul>
-        <li><strong>W</strong>: uma flag geral, semelhante a -Wall, que avisa sobre diversos erros comuns.</li>
-        <li><strong>Wconversion</strong>: avisa sobre conversões implícitas de tipo, como entre <i>float</i> e <i>integer</i>, que podem causar resultados inesperados.</li>
-        <li><strong>Wshadow</strong>: avisa sobre a declaração de variáveis em um escopo em que elas já foram declaradas.</li>
-        <li><strong>Wtraditional</strong>: avisa sobre partes do código que seriam interpretadas de forma diferente por um compilador ANSI/ISO e um pré-ANSI.</li>
-    </ul>
+<ul>
+    <li><code class="bash">-W</code>: Uma <i>flag</i> geral, semelhante a <code class="bash">-Wall</code>, que avisa sobre diversos erros comuns.</li>
+    <li><code class="bash">-Wconversion</code>: Avisa sobre conversões implícitas de tipo, como entre <code class="hljs c">float</code> e <code class="hljs c">integer</code>, que podem causar resultados inesperados.</li>
+    <li><code class="bash">-Wshadow</code>: Avisa sobre a declaração de variáveis em um escopo em que elas já foram declaradas.</li>
+    <li><code class="bash">-Wtraditional</code>: Avisa sobre partes do código que seriam interpretadas de forma diferente por um compilador ANSI/ISO e um pré-ANSI.</li>
+</ul>
 
-    <p>Se você quiser que o programa pare de compilar se houver qualquer aviso das flags que você aplicou, use a flag "<code>-Werror</code>".</p>
+<p>
+Se você quiser que o programa pare de compilar se houver qualquer aviso das <i>flags</i> que você aplicou, use a <i>flag</i> "<code class="bash">-Werror</code>". Usar <i>flags</i> ao compilar um programa é uma boa prática, mas a grande quantidade pode tornar a escolha de quais usar difícil. Com isso em mente, recomendamos que, em geral, as seguintes <i>flags</i> sejam usadas:
+</p>
 
-    <p>Usar flags ao compilar um programa é uma boa prática, mas a grande quantidade pode tornar a escolha de quais usar difícil. Com isso em mente, recomendamos que, em geral, as seguintes flags sejam usadas:</p>
-    
-    <pre>
-$ gcc -ansi -pedantic -Wall -W</pre>
+<figure><pre><code class="bash">$ gcc -ansi -pedantic -Wall -W</code></pre></figure>
 
 </body>
 </html>

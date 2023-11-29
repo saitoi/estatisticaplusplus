@@ -38,7 +38,11 @@ figure{
 }
 
 figcaption{
-    font-weight: bold;
-    margin-left: 40px;
     text-align: center;
+}
+
+figcaption.arq{
+    text-align: center;
+    font-weight: bold;
+    color: #0066cc;
 }
