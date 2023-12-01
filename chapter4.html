@@ -59,7 +59,7 @@ int foo (int *p)
 {
     int y = *p;
     return y;
-}</pre><figcaption class="arq">exemplo.c</figcaption></figure>
+}</code></pre><figcaption class="arq">exemplo.c</figcaption></figure>
 
 <p>
 Nesse código, temos duas funções: <code class="hljs- c sembg">int main()</code> e <code class="hljs- c sembg">int foo()</code>. A função <code class="hljs- c sembg">main</code> inicializa um ponteiro <code class="hljs- c sembg">p</code> com o valor nulo (0) e, em seguida, chama a função <code class="hljs- c sembg">foo</code> passando esse ponteiro como argumento. A função <code class="hljs- c sembg">foo</code> recebe um ponteiro como parâmetro e tenta acessar o valor apontado por ele. No entanto, como <code class="hljs- c sembg">p</code> é nulo, essa operação resulta em um erro. Para compilar esse código com a opção de depuração, você pode usar o seguinte comando:
