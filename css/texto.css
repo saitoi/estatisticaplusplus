@@ -4,8 +4,27 @@ body, html{
 }
 
 #toc{
-    width: 20%; 
+    width: 25%; 
     float: left;
+}
+
+#toc ul {
+    list-style: none;
+    padding: 0;
+}
+
+#toc ul li {
+    margin-bottom: 8px;
+}
+
+#toc ul li a {
+    text-decoration: none;
+    color: black; /* Cor dos links */
+    font-weight: bold;
+}
+
+#toc ul li a:hover {
+    text-decoration: underline;
 }
 
 #content{

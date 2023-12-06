@@ -40,7 +40,7 @@
 <h2>2.1. Primeiros Passos</h2>
 
 <p>
-Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso <code class="hljs- bash sembg">"Hello, World!"</code>. A seguir, mostraremos como compilar esse programa em C utilizando o compilador GCC:
+Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso <code class="hljs- c sembg">"Hello, World!"</code>. A seguir, mostraremos como compilar esse programa em C utilizando o compilador GCC:
 </p>
 
 <figure><pre><code class="c">#include&lt;stdio.h&gt;
@@ -63,7 +63,7 @@ O parâmetro <code class="hljs- bash sembg">-o</code> indica que queremos criar 
 <figure><pre><code class="bash">$ gcc -Wall helloworld.c -o hello</code></pre></figure>
 
 <p>
-Por fim, para executar o programa, basta digitar <code class="hljs- bash sembg">./hello</code> no terminal. Esse comando informa ao sistema operacional que desejamos executar o arquivo <b>hello</b> que foi gerado pela compilação do programa <b>helloworld.c</b>. Se tudo ocorrer bem, o programa exibirá a mensagem <code class="hljs- bash sembg">"Hello, World!"</code> no terminal.
+Por fim, para executar o programa, basta digitar <code class="hljs- bash sembg">./hello</code> no terminal. Esse comando informa ao sistema operacional que desejamos executar o arquivo <b>hello</b> que foi gerado pela compilação do programa <b>helloworld.c</b>. Se tudo ocorrer bem, o programa exibirá a mensagem <code class="hljs- bash sembg">Hello, World!</code> no terminal.
 </p>
 
 <!-- Segunda Seção -->
@@ -78,7 +78,7 @@ Quando se está trabalhando em um projeto em C, é comum que esse seja dividido 
 
 int main() {
     int x;
-    printf("Digite um númeroç: ");
+    printf("Digite um número: ");
     scanf("%d", &x);
     printf("O quadrado de %d é %d\n", x, calc_quadrado(x));
     return 0;

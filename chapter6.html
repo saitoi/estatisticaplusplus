@@ -33,140 +33,114 @@
     <!-- Fim dos estilos -->
 </head>
 <body>
-<h1>Capítulo 6: Compilando com Otimização</h1>
+<h1>6. Compilando com Otimização</h1>
 
 <p>
-    O GCC é um compilador otimizador que pode gerar arquivos executáveis mais rápidos e/ou menores, levando em consideração as características do processador alvo e a ordem das instruções.
+O GCC é um compilador otimizador que pode gerar arquivos executáveis mais rápidos e/ou menores, levando em consideração as características do processador alvo e a ordem das instruções. A otimização é um processo complexo que envolve a escolha da melhor combinação de instruções de máquina para cada comando de alto nível no código-fonte. Diferentes códigos devem ser gerados para processadores distintos, devido ao uso de linguagens de montagem e máquina incompatíveis. Além disso, cada tipo de processador possui características próprias, como o número de registradores disponíveis, que afetam a forma como o código é gerado. Ao compilar com otimização, o GCC leva em consideração todos esses fatores.
 </p>
 
+<h2>6.1. Otimização em Nível de Nódigo-fonte</h2>
+
 <p>
-    A otimização é um processo complexo que envolve a escolha da melhor combinação de instruções de máquina para cada comando de alto nível no código-fonte. Diferentes códigos devem ser gerados para processadores distintos, devido ao uso de linguagens de montagem e máquina incompatíveis. Além disso, cada tipo de processador possui características próprias, como o número de registradores disponíveis, que afetam a forma como o código é gerado. Ao compilar com otimização, o GCC leva em consideração todos esses fatores.
+A otimização em nível de código-fonte melhora o desempenho de um programa por meio de alterações no código-fonte. Duas otimizações comuns são a eliminação de subexpressões repetidas e o <i>inline</i> de funções.
 </p>
 
-<h2>Otimização em nível de código-fonte</h2>
+<h3>6.1.1. Eliminação de Subexpressões Comuns</h3>
 
 <p>
-    A otimização em nível de código-fonte melhora o desempenho de um programa por meio de alterações no código-fonte. Duas otimizações comuns são a eliminação de subexpressões repetidas e o inline de funções.
+A eliminação de subexpressões repetidas evita a reavaliação de uma mesma expressão várias vezes. Por exemplo, a expressão <code class="hljs- c sembg">x = cos(v).(1+sin(u/2)) + sin(w).(1-sin(u/2))</code> pode ser reescrita como <code class="hljs- c sembg">t = sin(u/2); x = cos(v).(1+t) + sin(w).(1-t)</code>, evitando a avaliação duplicada de <code class="hljs- c sembg">sin(u/2)</code>.
 </p>
 
-<h3>Eliminação de Subexpressões Comuns</h3>
+<h3>6.1.2. Inclusão de Função</h3>
 
 <p>
-    A eliminação de subexpressões repetidas evita a reavaliação de uma mesma expressão várias vezes. Por exemplo, a expressão <code>x = cos(v).(1+sin(u/2)) + sin(w).(1-sin(u/2))</code> pode ser reescrita como <code>t = sin(u/2); x = cos(v).(1+t) + sin(w).(1-t)</code>, evitando a avaliação duplicada de <code>sin(u/2)</code>.
+O <i>inline</i> de funções substitui uma chamada de função pelo seu próprio corpo, reduzindo a sobrecarga das chamadas de função. Por exemplo, a função <code class="hljs- c sembg">sq(x)</code> pode ser inlineada neste <i>loop</i>:
 </p>
 
-<h3>Inclusão de Função</h3>
+<figure><pre><code class="c">for (i = 0; i &lt; 1000000; i++)
+  sum += sq(i + 0.5);</code></pre></figure>
 
 <p>
-    O inline de funções substitui uma chamada de função pelo seu próprio corpo, reduzindo a sobrecarga das chamadas de função. Por exemplo, a função <code>sq(x)</code> pode ser inlineada neste loop:
+Isso substitui o <i>loop</i> interno pelo corpo da função <code class="hljs- c sembg">sq(x)</code>, melhorando o desempenho ao evitar chamadas de função.
 </p>
 
-<pre class="codigo">
-    <code class="c">
-for (i = 0; i < 1000000; i++)
-  sum += sq(i + 0.5);
-    </code>
-</pre>
+<h3>6.1.3. <i>Trade-offs</i> de Velocidade e Espaço</h3>
 
 <p>
-    Isso substitui o loop interno pelo corpo da função <code>sq(x)</code>, melhorando o desempenho ao evitar chamadas de função.
+Algumas formas de otimização podem aumentar a velocidade e reduzir o tamanho do programa simultaneamente, enquanto outras produzem código mais rápido em troca de um executável maior. Isso é conhecido como <i>trade-off</i> de velocidade e espaço. Essas otimizações também podem ser usadas ao contrário, diminuindo o tamanho do executável em detrimento da velocidade de execução.
 </p>
 
-<h3>Trade-offs de velocidade e espaço</h3>
+<h3>6.1.4. Desenrolamento de <i>Loops</i></h3>
 
 <p>
-    Algumas formas de otimização podem aumentar a velocidade e reduzir o tamanho do programa simultaneamente, enquanto outras produzem código mais rápido em troca de um executável maior. Isso é conhecido como trade-off de velocidade e espaço. Essas otimizações também podem ser usadas ao contrário, diminuindo o tamanho do executável em detrimento da velocidade de execução.
+O desenrolamento de <i>loops</i> é uma otimização que aumenta a velocidade dos <i>loops</i> eliminando a condição de "fim do <i>loop</i>" em cada iteração. Ele permite atribuições diretas, sem a necessidade de testes, resultando em uma execução mais rápida. O desenrolamento de <i>loops</i> pode aumentar o tamanho do executável, exceto em <i>loops</i> muito curtos.
 </p>
 
-<h3>Desenrolamento de loops</h3>
+<h3>6.1.5 Agendamento</h3>
 
 <p>
-    O desenrolamento de loops é uma otimização que aumenta a velocidade dos loops eliminando a condição de "fim do loop" em cada iteração. Ele permite atribuições diretas, sem a necessidade de testes, resultando em uma execução mais rápida. O desenrolamento de loops pode aumentar o tamanho do executável, exceto em loops muito curtos.
+O agendamento é o nível mais baixo de otimização, onde o compilador determina a melhor ordem de execução das instruções individuais. Ele melhora a velocidade do executável sem aumentar seu tamanho, mas requer memória adicional e tempo durante o processo de compilação.
 </p>
 
-<h3>Agendamento</h3>
+<h2>6.2. Níveis de Otimização no GCC</h2>
 
 <p>
-    O agendamento é o nível mais baixo de otimização, onde o compilador determina a melhor ordem de execução das instruções individuais. Ele melhora a velocidade do executável sem aumentar seu tamanho, mas requer memória adicional e tempo durante o processo de compilação.
-</p>
-
-<h2>Níveis de Otimização no GCC:</h2>
-
-<p>
-    O GCC oferece diferentes níveis de otimização (0 a 3) para controlar o tempo de compilação, uso de memória do compilador e o trade-off entre velocidade e espaço no executável resultante. Os níveis de otimização são:
+O GCC oferece diferentes níveis de otimização (0 a 3) para controlar o tempo de compilação, uso de memória do compilador e o <i>trade-off</i> entre velocidade e espaço no executável resultante. Os níveis de otimização são:
 </p>
 
 <ul>
-    <li><code>'-O0'</code> (padrão): Sem otimização, compilando de forma direta para depuração.</li>
-    <li><code>'-O1'</code>: Otimizações comuns sem trade-offs de velocidade e espaço.</li>
-    <li><code>'-O2'</code>: Otimizações adicionais sem aumentar o tamanho do executável.</li>
-    <li><code>'-O3'</code>: Otimizações mais custosas que podem aumentar o tamanho do executável.</li>
-    <li><code>'-funroll-loops'</code>: Desenrolamento de loops, aumentando o tamanho do executável.</li>
-    <li><code>'-Os'</code>: Otimizações para reduzir o tamanho do executável.</li>
+    <li><code class="hljs- bash sembg">-O0</code> (padrão): Sem otimização, compilando de forma direta para depuração.</li>
+    <li><code class="hljs- bash sembg">-O1</code>: Otimizações comuns sem <i>trade-offs</i> de velocidade e espaço.</li>
+    <li><code class="hljs- bash sembg">-O2</code>: Otimizações adicionais sem aumentar o tamanho do executável.</li>
+    <li><code class="hljs- bash sembg">-O3</code>: Otimizações mais custosas que podem aumentar o tamanho do executável.</li>
+    <li><code class="hljs- bash sembg">-funroll-loops</code>: Desenrolamento de <i>loops</i>, aumentando o tamanho do executável.</li>
+    <li><code class="hljs- bash sembg">-Os</code>: Otimizações para reduzir o tamanho do executável.</li>
 </ul>
 
 <p>
-    É importante considerar os custos das otimizações, como maior complexidade na depuração e maior tempo/memória de compilação. Geralmente, <code>'-O0'</code> é usado para depuração e <code>'-O2'</code> para desenvolvimento e implantação.
+É importante considerar os custos das otimizações, como maior complexidade na depuração e maior tempo/memória de compilação. Geralmente, <code class="hljs- bash sembg">-O0</code> é usado para depuração e <code class="hljs- bash sembg">-O2</code> para desenvolvimento e implantação.
 </p>
 
-<h2>6.6 Otimização e depuração</h2>
+<h2>6.3. Otimização e depuração</h2>
 
 <p>
-    Com o GCC, é possível usar otimização em combinação com a opção de depuração <code>'-g'</code>. Muitos outros compiladores não permitem isso.
-    Ao usar depuração e otimização juntas, as reorganizações internas feitas pelo otimizador podem dificultar a compreensão do que está acontecendo ao examinar um programa otimizado no depurador. Por exemplo, variáveis temporárias geralmente são eliminadas e a ordem das instruções pode ser alterada.
-    No entanto, quando um programa trava inesperadamente, qualquer informação de depuração é melhor do que nenhuma, portanto, o uso de <code>'-g'</code> é recomendado para programas otimizados, tanto para desenvolvimento quanto para implantação. A opção de depuração <code>'-g'</code> é habilitada por padrão para versões dos pacotes GNU, juntamente com a opção de otimização <code>'-O2'</code>.
+Com o GCC, é possível usar otimização em combinação com a opção de depuração <code class="hljs- bash sembg">-g</code>. Muitos outros compiladores não permitem isso. Ao usar depuração e otimização juntas, as reorganizações internas feitas pelo otimizador podem dificultar a compreensão do que está acontecendo ao examinar um programa otimizado no depurador. Por exemplo, variáveis temporárias geralmente são eliminadas e a ordem das instruções pode ser alterada. No entanto, quando um programa trava inesperadamente, qualquer informação de depuração é melhor do que nenhuma, portanto, o uso de <code class="hljs- bash sembg">-g</code> é recomendado para programas otimizados, tanto para desenvolvimento quanto para implantação. A opção de depuração <code class="hljs- bash sembg">-g</code> é habilitada por padrão para versões dos pacotes GNU, juntamente com a opção de otimização <code class="hljs- bash sembg">-O2</code>.
 </p>
 
-<h2>6.7 Otimização e avisos do compilador</h2>
+<h2>6.4. Otimização e avisos do compilador</h2>
 
 <p>
-    Quando a otimização é ativada, o GCC pode produzir avisos adicionais que não aparecem ao compilar sem otimização.
+Quando a otimização é ativada, o GCC pode produzir avisos adicionais que não aparecem ao compilar sem otimização. Como parte do processo de otimização, o compilador examina o uso de todas as variáveis e seus valores iniciais - isso é chamado de análise de fluxo de dados. Isso serve como base para outras estratégias de otimização, como agendamento de instruções. Um efeito colateral da análise de fluxo de dados é que o compilador pode detectar o uso de variáveis não inicializadas.
 </p>
 
 <p>
-    Como parte do processo de otimização, o compilador examina o uso de todas as variáveis e seus valores iniciais - isso é chamado de análise de fluxo de dados. Isso serve como base para outras estratégias de otimização, como agendamento de instruções. Um efeito colateral da análise de fluxo de dados é que o compilador pode detectar o uso de variáveis não inicializadas.
+A opção <code class="hljs- bash sembg">-Wuninitialized</code> (incluída em <code class="hljs- bash sembg">-Wall</code>) avisa sobre variáveis que são lidas sem serem inicializadas. Ela só funciona quando o programa é compilado com otimização, para que a análise de fluxo de dados seja ativada. A seguinte função contém um exemplo de tal variável:
 </p>
 
-<p>
-    A opção <code>'-Wuninitialized'</code> (incluída em <code>'-Wall'</code>) avisa sobre variáveis que são lidas sem serem inicializadas. Ela só funciona quando o programa é compilado com otimização, para que a análise de fluxo de dados seja ativada. A seguinte função contém um exemplo de tal variável:
-</p>
-
-<pre class="codigo">
-    <code class="c">
-int sign(int x)
+<figure><pre><code class="c">int sign(int x)
 {
     int s;
     if (x > 0)
         s = 1;
-    else if (x < 0)
+    else if (x &lt; 0)
         s = -1;
     return s;
-}
-    </code>
-</pre>
+}</code></pre></figure>
 
 <p>
-    A função funciona corretamente para a maioria dos argumentos, mas tem um bug quando x é zero - nesse caso, o valor de retorno da variável s será indefinido.
-</p>
-
-<p>
-    Compilar o programa apenas com a opção <code>'-Wall'</code> não produz nenhum aviso, porque a análise de fluxo de dados não é realizada sem otimização:
+A função funciona corretamente para a maioria dos argumentos, mas tem um bug quando x é zero - nesse caso, o valor de retorno da variável s será indefinido. Compilar o programa apenas com a opção <code class="hljs- bash sembg">-Wall</code> não produz nenhum aviso, porque a análise de fluxo de dados não é realizada sem otimização:
 </p>
 
 <pre><code class="bash">$ gcc -Wall -c uninit.c</code></pre>
 
 <p>
-    Para gerar um aviso, o programa deve ser compilado com <code>'-Wall'</code> e otimização simultaneamente. Na prática, o nível de otimização <code>'-O2'</code> é necessário para obter bons avisos:
+Para gerar um aviso, o programa deve ser compilado com <code class="hljs- bash sembg">-Wall</code> e otimização simultaneamente. Na prática, o nível de otimização <code class="hljs- bash sembg">-O2</code> é necessário para obter bons avisos:
 </p>
 
 <pre><code class="bash">$ gcc -Wall -O2 -c uninit.c</code></pre>
 
 <p>
-    Isso detecta corretamente a possibilidade de a variável s ser usada sem ser definida.
-</p>
-
-<p>
-    Observe que, embora o GCC geralmente encontre a maioria das variáveis não inicializadas, ele faz isso usando heurísticas que ocasionalmente podem perder alguns casos complicados ou emitir falsos avisos sobre outros. Nessa última situação, muitas vezes é possível reescrever as linhas relevantes de maneira mais simples que remove o aviso e melhora a legibilidade do código-fonte.
+Isso detecta corretamente a possibilidade de a variável s ser usada sem ser definida. Observe que, embora o GCC geralmente encontre a maioria das variáveis não inicializadas, ele faz isso usando heurísticas que ocasionalmente podem perder alguns casos complicados ou emitir falsos avisos sobre outros. Nessa última situação, muitas vezes é possível reescrever as linhas relevantes de maneira mais simples que remove o aviso e melhora a legibilidade do código-fonte.
 </p>
 </body>
 </html>
