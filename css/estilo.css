@@ -1,12 +1,14 @@
-/* estilos.css */
+/* estilo.css */
 
 body {
     font-family: Arial, sans-serif;
+    margin: 0%;
 }
 
 #toc {
     width: 20%;
     float: left;
+    font-size: 0.95em;
 }
 
 #content {
@@ -25,7 +27,7 @@ h1, h2 {
 }
 
 #toc ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
 }
 
@@ -35,10 +37,26 @@ h1, h2 {
 
 #toc ul li a {
     text-decoration: none;
-    color: #0066cc; /* Cor dos links */
+    color: #0066cc;
     font-weight: bold;
+    display: block;
 }
 
 #toc ul li a:hover {
     text-decoration: underline;
+    color: blue; /* Adding blue color when hovering over links */
+}
+
+#toc ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-left: 20px;
+}
+
+#toc ul ul {
+    list-style-type: circle;
+}
+
+#toc ul ul ul {
+    list-style-type: square;
 }

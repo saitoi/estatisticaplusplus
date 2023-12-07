@@ -1,9 +1,12 @@
+/* texto.css */
 body, html{
     font-family: Arial, sans-serif;
     height: 100%;
+    line-height: 1.35em;
 }
 
 #toc{
+    height: 0%;
     width: 25%; 
     float: left;
 }
@@ -21,10 +24,6 @@ body, html{
     text-decoration: none;
     color: black; /* Cor dos links */
     font-weight: bold;
-}
-
-#toc ul li a:hover {
-    text-decoration: underline;
 }
 
 #content{
