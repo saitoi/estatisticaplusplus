@@ -5,15 +5,28 @@ body, html{
     line-height: 1.35em;
 }
 
+/********************************************************* SUMÁRIO À ESQUERDA *********************************************************/
 #toc{
     height: 0%;
-    width: 25%; 
+    width: 25%;
+    font-size: 0.95em;
     float: left;
 }
 
 #toc ul {
     list-style: none;
     padding: 0;
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-left: 20px;
+}
+
+#toc ul ul {
+    list-style-type: circle;
+}
+
+#toc ul ul ul {
+    list-style-type: square;
 }
 
 #toc ul li {
@@ -22,10 +35,17 @@ body, html{
 
 #toc ul li a {
     text-decoration: none;
-    color: black; /* Cor dos links */
+    color: #0066cc;
     font-weight: bold;
+    display: block;
 }
 
+#toc ul li a:hover {
+    text-decoration: underline;
+    color: blue; /* Adiciona sublinhado quando passa o mouse */
+}
+
+/********************************************************* CONTEÚDO À DIREITA *********************************************************/
 #content{
     width: 75%;
     height: 100%;
@@ -38,7 +58,7 @@ iframe{
     border: none;
 }
 
-/* Texto */
+/********************************************************* TEXTO *********************************************************/
 h1, h2{
     color: #333;
 }
