@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/codigo.css">
     <link rel="stylesheet" type="text/css" href="css/texto.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-light.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script>
@@ -34,13 +34,73 @@
 </head>
 <body>
 
+<div>
+<div id="toc">
+<ul>
+  <!-- Capítulos e Seções -->
+  <li><a href="chapter1.html">Capítulo 1: Introdução</a>
+    <ul>
+      <li><a href="chapter1.html#secao1.1">Seção 1.1: Características da Linguagem C</a></li>
+      <li><a href="chapter1.html#secao1.2">Seção 1.2: O Que É Um Compilador?</a></li>
+      <li><a href="chapter1.html#secao1.3">Seção 1.3: GNU Compiler Collection</a></li>
+    </ul>
+  </li>
+  <li><a href="chapter2.html">Capítulo 2: Compilando Programas em C</a>
+    <ul>
+      <li><a href="chapter2.html#secao2.1">Seção 2.1: Primeiros Passos</a></li>
+      <li><a href="chapter2.html#secao2.2">Seção 2.2: Trabalhando Com Múltiplos Arquivos</a></li>
+      <li><a href="chapter2.html#secao2.3">Seção 2.3: Utilizando Makefile</a></li>
+    </ul>
+  </li>
+  <li><a href="chapter3.html">Capítulo 3: Bandeiras de Aviso do Compilador</a></li>
+  <li><a href="chapter4.html">Capítulo 4: Depuração</a>
+    <ul>
+      <li><a href="chapter4.html#secao4.1">Seção 4.1: Compilando para Depuração</a></li>
+      <li><a href="chapter4.html#secao4.2">Seção 4.2: Depurando Programas</a></li>
+    </ul>
+  </li>
+  <li><a href="chapter5.html">Capítulo 5: Componentes do Compilador</a>
+    <ul>
+      <li><a href="chapter5.html#secao5.1">Seção 5.1: Pré-processador</a>
+        <ul>
+          <li><a href="chapter5.html#subsecao5.1.1">Subseção 5.1.1: Inclusão de Arquivos</a></li>
+          <li><a href="chapter5.html#subsecao5.1.2">Subseção 5.1.2: Definição de Macros</a></li>
+        </ul>
+      </li>
+      <li><a href="chapter5.html#secao5.2">Seção 5.2: Compilador</a></li>
+      <li><a href="chapter5.html#secao5.3">Seção 5.3: Montador</a></li>
+      <li><a href="chapter5.html#secao5.4">Seção 5.4: Ligador</a></li>
+    </ul>
+  </li>
+  <li><a href="chapter6.html">Capítulo 6: Otimização</a>
+    <ul>
+      <li><a href="chapter6.html#secao6.1">Seção 6.1: Otimização em Nível de Código-fonte</a>
+        <ul>
+          <li><a href="chapter6.html#subsecao6.1.1">Subseção 6.1.1: Eliminação de Subexpressões Comuns</a></li>
+          <li><a href="chapter6.html#subsecao6.1.2">Subseção 6.1.2: Inclusão de Função</a></li>
+          <li><a href="chapter6.html#subsecao6.1.3">Subseção 6.1.3: Trade-offs de Velocidade e Espaço</a></li>
+          <li><a href="chapter6.html#subsecao6.1.4">Subseção 6.1.4: Desenrolamento de Loops</a></li>
+          <li><a href="chapter6.html#subsecao6.1.5">Subseção 6.1.5: Agendamento</a></li>
+        </ul>
+      </li>
+      <li><a href="chapter6.html#secao6.2">Seção 6.2: Níveis de Otimização</a></li>
+      <li><a href="chapter6.html#secao6.3">Seção 6.3: Otimização e Depuração</a></li>
+      <li><a href="chapter6.html#secao6.4">Seção 6.4: Otimização e Avisos do Compilador</a></li>
+    </ul>
+  </li>
+  <!-- Capítulos e Seções (FIM) -->
+  <li><a href="glossario.html">Glossário</a></li>
+</ul>
+</div>
+<!-- Conteúdo -->
+<div id="content">
 <h1>5. Componentes do Compilador</h1>
 
 <!-- Primeira Seção -->
 <h2 id="secao5.1">5.1. Pré-processador</h2>
 
 <p>
-Como dito no capítulo inicial, pré-processador é o componente do GCC responsável por processar e manipular o código-fonte antes da compilação começar. Ele lê o código-fonte e realiza um conjunto de operações, incluindo substituição de macros, inclusão de arquivos e compilação condicional. Essas operações são definidas por um conjunto de diretivas, que são comandos especiais com o símbolo &ldquo;#&rdquo; em seu início.
+Como dito no capítulo inicial, pré-processador é o componente do GCC responsável por processar e manipular o código-fonte antes da compilação começar. Ele lê o código-fonte e realiza um conjunto de operações, incluindo substituição de macros, inclusão de arquivos e compilação condicional. Essas operações são definidas por um conjunto de diretivas, que são comandos especiais com o símbolo <code class="hljs-meta c sembg">#</code> em seu início.
 </p>
 
 <h3 id="subsecao5.1.1">5.1.1. Inclusão de Arquivos</h3>
@@ -56,13 +116,13 @@ Geralmente, os arquivos incluídos possuem a extensão .h (de <i>header</i>), qu
 <figure><pre><code class="c">#include"preproc.c"
 
 int main(){
-    say_hello();
-  
-    puts("Digite um número para obter sua raiz quadrada:");
-    scanf("%lf", &y);
-    raiz = raiz_quadrada(y);
-    printf("O valor da raiz quadrada desse número é: %lf\n", raiz);
-    return 0;
+  say_hello();
+
+  puts("Digite um número para obter sua raiz quadrada:");
+  scanf("%lf", &y);
+  raiz = raiz_quadrada(y);
+  printf("O valor da raiz quadrada desse número é: %lf\n", raiz);
+  return 0;
 }</code></pre><figcaption class="arq">main.c</figcaption></figure>
 
 <figure><pre><code class="c">#pragma once
@@ -72,15 +132,15 @@ int main(){
 double y, raiz;
 
 void say_hello(){
-    puts("Hello!");
+  puts("Hello!");
 }
 
 double raiz_quadrada(double x){
-    return sqrt(x);
+  return sqrt(x);
 }</code></pre><figcaption class="arq">preproc.c</figcaption></figure>
 
 <p>
-Ao compilar o programa <b>main.c</b>, o pré-processador acoplará à esse arquivo o código que está no arquivo <b>preproc.c</b>. Note que só foi preciso utilizar apenas o <code class="hljs- c sembg">#include"preproc.c"</code> no arquivo principal, pois esse arquivo já possui as outras diretivas necessárias para a execução do código. Devido o tratamento recursivo do compilador, pode ser que ocorra múltiplos <code class="hljs- c sembg">#include</code> acidentais, que podem ser resolvidos com a diretiva <code class="hljs- c sembg">#pragma once</code>. Essa diretiva indica que o respectivo arquivo deve ser lido apenas uma vez durante o processo de compilação. Com o comando <code class="bash">gcc main.c -E -o main_preproc.c</code> é possível gerar um arquivo com o código fonte do C pré-processado. No final desse arquivo gerado, está o código dos dois arquivos <b>preproc.c</b> e <b>main.c</b>.
+Ao compilar o programa <b>main.c</b>, o pré-processador acoplará à esse arquivo o código que está no arquivo <b>preproc.c</b>. Note que só foi preciso utilizar apenas o <code class="hljs- c sembg">#include"preproc.c"</code> no arquivo principal, pois esse arquivo já possui as outras diretivas necessárias para a execução do código. Devido o tratamento recursivo do compilador, pode ser que ocorra múltiplos <code class="hljs- c sembg">#include</code> acidentais, que podem ser resolvidos com a diretiva <code class="hljs- c sembg">#pragma once</code>. Essa diretiva indica que o respectivo arquivo deve ser lido apenas uma vez durante o processo de compilação. Com o comando <code class="hljs- bash sembg">gcc main.c -E -o main_preproc.c</code> é possível gerar um arquivo com o código fonte do C pré-processado. No final desse arquivo gerado, está o código dos dois arquivos <b>preproc.c</b> e <b>main.c</b>.
 </p>
 
 <h3 id="subsecao5.1.2">5.1.2. Definição de Macros</h3>
@@ -96,9 +156,9 @@ Uma macro é um pedaço de código ao qual é dado um nome e é definida por mei
 
 int main()
 {
-    printf("The value of NUM is: %d\n", NUM);
-    printf("The value of SQUARE(NUM) is: %d\n", SQUARE(NUM));
-    return 0;
+  printf("The value of NUM is: %d\n", NUM);
+  printf("The value of SQUARE(NUM) is: %d\n", SQUARE(NUM));
+  return 0;
 }</code></pre><figcaption class="arq">main.c</figcaption></figure>
 
 <p>
@@ -119,11 +179,11 @@ Podemos querer executar uma parte do programa somente quando certa macro estiver
 int main()
 {
 #ifdef NUM
-    printf("The value of NUM is: %d\n", NUM);
+  printf("The value of NUM is: %d\n", NUM);
 #else
-    #error "A macro NUM não foi definida!";
+  #error "A macro NUM não foi definida!";
 #endif
-    return 0;
+  return 0;
 }</code></pre><figcaptio class="arq">main.c</figcaption></figure>
 
 <p>
@@ -143,9 +203,9 @@ As definições de macros na linha de comando (ex.: <code class="hljs- bash semb
 
 int main(){
 #ifndef NUM
-    #error "A macro NUM não foi definida!";
+  #error "A macro NUM não foi definida!";
 #else
-    printf("The value of NUM is: %d\n", NUM);
+  printf("The value of NUM is: %d\n", NUM);
 #endif
     return 0;
 }</code></pre><figcaption class="arq">main.c</figcaption></figure>
@@ -160,13 +220,13 @@ Também é possível utilizar a diretiva <code class="hljs- c sembg">#elif</code
 #define Z 'z'
 int main(){
 #ifdef X
-    printf("The value of X is: %c\n", X)
+  printf("The value of X is: %c\n", X)
 #elif defined(Y)
-    printf("The value of Y is: %c\n", Y)
+  printf("The value of Y is: %c\n", Y)
 #elif defined(Z)
-    printf("The value of Z is: %c\n", Z);
+  printf("The value of Z is: %c\n", Z);
 #endif
-    return 0;
+  return 0;
 }</code></pre><figcaption class="arq">main.c</figcaption></figure>
 
 <h3 id="subsecao5.1.4">5.1.4. Fornecendo Instruções</h3>
@@ -177,7 +237,7 @@ A diretiva <code class="hljs- c sembg">#pragma</code> é utilizada para fornecer
 
 <figure><pre><code class="c">#pragma inline
 int add(int a, int b){
-    return a + b;
+  return a + b;
 }</code></pre></figure>
 
 <p>
@@ -186,7 +246,7 @@ Sendo assim, a função <code class="hljs- c sembg">int add()</code> não terá 
 
 <figure><pre><code class="c">#pragma optimize("", off) // Desliga a otimização
 int add(int a, int b){
-    return a + b;
+  return a + b;
 }
 #pragma optimize("", on) // Liga a otimização novamente</code></pre></figure>
 
@@ -197,22 +257,22 @@ Por fim, a diretiva <code class="hljs- c sembg">#pragma</code> pode ser utilizad
 <figure><pre><code class="c">#include<stdio.h>
 
 struct{
-    char c; // 1 byte
-    int i; // 4 bytes
-    double d; // 8 bytes
+  char c; // 1 byte
+  int i; // 4 bytes
+  double d; // 8 bytes
 }s1;
 #pragma pack(push, 1) // Força o alinhamento mínimo
 struct{
-    char c; // 1 byte
-    int i; // 4 bytes
-    double d; // 8 bytes
+  char c; // 1 byte
+  int i; // 4 bytes
+  double d; // 8 bytes
 }s2;
 #pragma pack(pop) // Restaura o alinhamento padrão
 
 int main(){
-    printf("The size of struct 1 is: %ld\n", sizeof(s1));
-    printf("The size of struct 2 is: %ld\n", sizeof(s2));
-    return 0;
+  printf("The size of struct 1 is: %ld\n", sizeof(s1));
+  printf("The size of struct 2 is: %ld\n", sizeof(s2));
+  return 0;
 }</code></pre><figcaption class="arq">main.c</figcaption></figure>
 
 <p>
@@ -247,8 +307,8 @@ O montador é o componente responsável por traduzir um código de montagem em c
 <figure><pre><code class="c">#include <stdio.h>
 
 int main() {
-    printf("Olá, mundo!\n");
-    return 0;
+  printf("Olá, mundo!\n");
+  return 0;
 }</code></pre><figcaption class="arq">main.c</figcaption></figure>
 
 <p>
@@ -275,5 +335,7 @@ O ligador é o componente que lida com a fase final da compilação, isto é, el
 
 <p>Continuar...</p>
 
+</div>
+</div>
 </body>
 </html>

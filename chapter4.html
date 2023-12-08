@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/codigo.css">
     <link rel="stylesheet" type="text/css" href="css/texto.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-light.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script>
@@ -33,6 +33,66 @@
     <!-- Fim dos estilos -->
 </head>
 <body>
+<div>
+<div id="toc">
+<ul>
+  <!-- Capítulos e Seções -->
+  <li><a href="chapter1.html">Capítulo 1: Introdução</a>
+    <ul>
+      <li><a href="chapter1.html#secao1.1">Seção 1.1: Características da Linguagem C</a></li>
+      <li><a href="chapter1.html#secao1.2">Seção 1.2: O Que É Um Compilador?</a></li>
+      <li><a href="chapter1.html#secao1.3">Seção 1.3: GNU Compiler Collection</a></li>
+    </ul>
+  </li>
+  <li><a href="chapter2.html">Capítulo 2: Compilando Programas em C</a>
+    <ul>
+      <li><a href="chapter2.html#secao2.1">Seção 2.1: Primeiros Passos</a></li>
+      <li><a href="chapter2.html#secao2.2">Seção 2.2: Trabalhando Com Múltiplos Arquivos</a></li>
+      <li><a href="chapter2.html#secao2.3">Seção 2.3: Utilizando Makefile</a></li>
+    </ul>
+  </li>
+  <li><a href="chapter3.html">Capítulo 3: Bandeiras de Aviso do Compilador</a></li>
+  <li><a href="chapter4.html">Capítulo 4: Depuração</a>
+    <ul>
+      <li><a href="chapter4.html#secao4.1">Seção 4.1: Compilando para Depuração</a></li>
+      <li><a href="chapter4.html#secao4.2">Seção 4.2: Depurando Programas</a></li>
+    </ul>
+  </li>
+  <li><a href="chapter5.html">Capítulo 5: Componentes do Compilador</a>
+    <ul>
+      <li><a href="chapter5.html#secao5.1">Seção 5.1: Pré-processador</a>
+        <ul>
+          <li><a href="chapter5.html#subsecao5.1.1">Subseção 5.1.1: Inclusão de Arquivos</a></li>
+          <li><a href="chapter5.html#subsecao5.1.2">Subseção 5.1.2: Definição de Macros</a></li>
+        </ul>
+      </li>
+      <li><a href="chapter5.html#secao5.2">Seção 5.2: Compilador</a></li>
+      <li><a href="chapter5.html#secao5.3">Seção 5.3: Montador</a></li>
+      <li><a href="chapter5.html#secao5.4">Seção 5.4: Ligador</a></li>
+    </ul>
+  </li>
+  <li><a href="chapter6.html">Capítulo 6: Otimização</a>
+    <ul>
+      <li><a href="chapter6.html#secao6.1">Seção 6.1: Otimização em Nível de Código-fonte</a>
+        <ul>
+          <li><a href="chapter6.html#subsecao6.1.1">Subseção 6.1.1: Eliminação de Subexpressões Comuns</a></li>
+          <li><a href="chapter6.html#subsecao6.1.2">Subseção 6.1.2: Inclusão de Função</a></li>
+          <li><a href="chapter6.html#subsecao6.1.3">Subseção 6.1.3: Trade-offs de Velocidade e Espaço</a></li>
+          <li><a href="chapter6.html#subsecao6.1.4">Subseção 6.1.4: Desenrolamento de Loops</a></li>
+          <li><a href="chapter6.html#subsecao6.1.5">Subseção 6.1.5: Agendamento</a></li>
+        </ul>
+      </li>
+      <li><a href="chapter6.html#secao6.2">Seção 6.2: Níveis de Otimização</a></li>
+      <li><a href="chapter6.html#secao6.3">Seção 6.3: Otimização e Depuração</a></li>
+      <li><a href="chapter6.html#secao6.4">Seção 6.4: Otimização e Avisos do Compilador</a></li>
+    </ul>
+  </li>
+  <!-- Capítulos e Seções (FIM) -->
+  <li><a href="glossario.html">Glossário</a></li>
+</ul>
+</div>
+<!-- Conteúdo -->
+<div id="content">
 <h1>4. Depuração</h1>
 
 <!-- Primeira Seção -->
@@ -50,23 +110,22 @@ Abaixo está um exemplo de código que podemos usar para ilustrar como compilar 
 
 int main (void)
 {
-    int *p = 0;
-    /* ponteiro nulo */
-    return foo (p);
+  int *p = 0;
+  /* ponteiro nulo */
+  return foo (p);
 }
 
 int foo (int *p)
 {
-    int y = *p;
-    return y;
+  int y = *p;
+  return y;
 }</code></pre><figcaption class="arq">exemplo.c</figcaption></figure>
 
 <p>
 Nesse código, temos duas funções: <code class="hljs- c sembg">int main()</code> e <code class="hljs- c sembg">int foo()</code>. A função <code class="hljs- c sembg">main</code> inicializa um ponteiro <code class="hljs- c sembg">p</code> com o valor nulo (0) e, em seguida, chama a função <code class="hljs- c sembg">foo</code> passando esse ponteiro como argumento. A função <code class="hljs- c sembg">foo</code> recebe um ponteiro como parâmetro e tenta acessar o valor apontado por ele. No entanto, como <code class="hljs- c sembg">p</code> é nulo, essa operação resulta em um erro. Para compilar esse código com a opção de depuração, você pode usar o seguinte comando:
 </p>
 
-<figure><pre><code class="bash">
-$ gcc -Wall -g exemplo.c -o exemplo</code></pre></figure>
+<figure><pre><code class="bash">$ gcc -Wall -g exemplo.c -o exemplo</code></pre></figure>
 
 <p>
 Ao executá-lo, receberemos uma mensagem de erro, indicando que houve uma violação de segmentação, <code class="hljs- bash sembg">segmentation fault</code>. Essa mensagem é exibida quando ocorre uma tentativa de acessar uma área da memória que não é permitida, como no caso em que o ponteiro <code class="hljs- c sembg">p</code> aponta para o valor nulo.
@@ -105,14 +164,14 @@ Program terminated with signal SIGSEGV, Segmentation fault.
     
 warning: Section '.reg-xstate/17012' in core file too small.
 #0  0x00005636c35b715b in foo (p=0x0) at exemplo.c:12
-11        int y = *p;
+11    int y = *p;
 (gdb)</code></pre></figure>
 
 <p>
 O GDB aponta a linha do código onde ocorreu a falha do programa. Nesse caso, o erro ocorreu quando o programa tentou desreferenciar o ponteiro <code class="hljs- c sembg">p</code>. Para entender melhor o motivo da falha, podemos examinar o valor de <code class="hljs- c sembg">p</code> com o comando <code class="hljs- bash sembg">print</code>:
 </p>
 
-<figure><pre><code class="bash"> (gdb) print p
+<figure><pre><code class="bash">(gdb) print p
 $1 = (int *) 0x0</code></pre></figure>
 
 <p>
@@ -137,9 +196,9 @@ Agora, quando executarmos o programa no GDB, o programa irá parar assim que a f
 <figure><pre><code class="bash">(gdb) run
 Starting program: exemplo
 Breakpoint 1, main () at exemplo.c:5
-5        int *p = 0;
+5    int *p = 0;
 (gdb) step
-7        return foo(p);
+7    return foo(p);
 (gdp) print p
 $2 = (int *) 0x0    /* ponteiro nulo */
 (gdb)</code></pre></figure>
@@ -163,5 +222,7 @@ Continuing.
 Em resumo, introduzimos o processo de depuração de programas em C usando o depurador GNU, GDB. Abrangemos os comandos essenciais, incluindo como iniciar o GDB, definir pontos de interrupção, inspecionar variáveis e alterar seus valores, bem como rastrear a sequência de chamadas de funções, técnicas vitais para entender e resolver os problemas que ocorrem durante a execução do seu código.
 </p>
 
+</div>
+</div>
 </body>
 </html>

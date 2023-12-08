@@ -3,14 +3,18 @@ code{
 }
 
 pre{
-    padding: auto;
     margin-left: 40px;
 }
 
 /* Estilo específico para a linguagem Bash */
 code.bash {
-    color: #b904b9;
+    color: rgb(255, 3, 255);
     font-weight: normal;
+    background-color: black;
+}
+
+code.c{
+    background-color:rgb(249, 252, 239);
 }
 
 code.sembg{
