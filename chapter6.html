@@ -39,19 +39,20 @@
 O GCC é um compilador otimizador que pode gerar arquivos executáveis mais rápidos e/ou menores, levando em consideração as características do processador alvo e a ordem das instruções. A otimização é um processo complexo que envolve a escolha da melhor combinação de instruções de máquina para cada comando de alto nível no código-fonte. Diferentes códigos devem ser gerados para processadores distintos, devido ao uso de linguagens de montagem e máquina incompatíveis. Além disso, cada tipo de processador possui características próprias, como o número de registradores disponíveis, que afetam a forma como o código é gerado. Ao compilar com otimização, o GCC leva em consideração todos esses fatores.
 </p>
 
-<h2>6.1. Otimização em Nível de Nódigo-fonte</h2>
+<!-- Primeira Seção -->
+<h2 id="secao6.1">6.1. Otimização em Nível de Nódigo-fonte</h2>
 
 <p>
 A otimização em nível de código-fonte melhora o desempenho de um programa por meio de alterações no código-fonte. Duas otimizações comuns são a eliminação de subexpressões repetidas e o <i>inline</i> de funções.
 </p>
 
-<h3>6.1.1. Eliminação de Subexpressões Comuns</h3>
+<h3 id="subsecao6.1.1">6.1.1. Eliminação de Subexpressões Comuns</h3>
 
 <p>
 A eliminação de subexpressões repetidas evita a reavaliação de uma mesma expressão várias vezes. Por exemplo, a expressão <code class="hljs- c sembg">x = cos(v).(1+sin(u/2)) + sin(w).(1-sin(u/2))</code> pode ser reescrita como <code class="hljs- c sembg">t = sin(u/2); x = cos(v).(1+t) + sin(w).(1-t)</code>, evitando a avaliação duplicada de <code class="hljs- c sembg">sin(u/2)</code>.
 </p>
 
-<h3>6.1.2. Inclusão de Função</h3>
+<h3 id="subsecao6.1.2">6.1.2. Inclusão de Função</h3>
 
 <p>
 O <i>inline</i> de funções substitui uma chamada de função pelo seu próprio corpo, reduzindo a sobrecarga das chamadas de função. Por exemplo, a função <code class="hljs- c sembg">sq(x)</code> pode ser inlineada neste <i>loop</i>:
@@ -64,25 +65,26 @@ O <i>inline</i> de funções substitui uma chamada de função pelo seu próprio
 Isso substitui o <i>loop</i> interno pelo corpo da função <code class="hljs- c sembg">sq(x)</code>, melhorando o desempenho ao evitar chamadas de função.
 </p>
 
-<h3>6.1.3. <i>Trade-offs</i> de Velocidade e Espaço</h3>
+<h3 id="subsecao6.1.3">6.1.3. <i>Trade-offs</i> de Velocidade e Espaço</h3>
 
 <p>
 Algumas formas de otimização podem aumentar a velocidade e reduzir o tamanho do programa simultaneamente, enquanto outras produzem código mais rápido em troca de um executável maior. Isso é conhecido como <i>trade-off</i> de velocidade e espaço. Essas otimizações também podem ser usadas ao contrário, diminuindo o tamanho do executável em detrimento da velocidade de execução.
 </p>
 
-<h3>6.1.4. Desenrolamento de <i>Loops</i></h3>
+<h3 id="subsecao6.1.4">6.1.4. Desenrolamento de <i>Loops</i></h3>
 
 <p>
 O desenrolamento de <i>loops</i> é uma otimização que aumenta a velocidade dos <i>loops</i> eliminando a condição de "fim do <i>loop</i>" em cada iteração. Ele permite atribuições diretas, sem a necessidade de testes, resultando em uma execução mais rápida. O desenrolamento de <i>loops</i> pode aumentar o tamanho do executável, exceto em <i>loops</i> muito curtos.
 </p>
 
-<h3>6.1.5 Agendamento</h3>
+<h3 id="subsecao6.1.5">6.1.5 Agendamento</h3>
 
 <p>
 O agendamento é o nível mais baixo de otimização, onde o compilador determina a melhor ordem de execução das instruções individuais. Ele melhora a velocidade do executável sem aumentar seu tamanho, mas requer memória adicional e tempo durante o processo de compilação.
 </p>
 
-<h2>6.2. Níveis de Otimização no GCC</h2>
+<!-- Segunda Seção -->
+<h2 id="secao6.2">6.2. Níveis de Otimização no GCC</h2>
 
 <p>
 O GCC oferece diferentes níveis de otimização (0 a 3) para controlar o tempo de compilação, uso de memória do compilador e o <i>trade-off</i> entre velocidade e espaço no executável resultante. Os níveis de otimização são:
@@ -101,13 +103,15 @@ O GCC oferece diferentes níveis de otimização (0 a 3) para controlar o tempo 
 É importante considerar os custos das otimizações, como maior complexidade na depuração e maior tempo/memória de compilação. Geralmente, <code class="hljs- bash sembg">-O0</code> é usado para depuração e <code class="hljs- bash sembg">-O2</code> para desenvolvimento e implantação.
 </p>
 
-<h2>6.3. Otimização e depuração</h2>
+<!-- Terceira Seção -->
+<h2 id="secao6.3">6.3. Otimização e depuração</h2>
 
 <p>
 Com o GCC, é possível usar otimização em combinação com a opção de depuração <code class="hljs- bash sembg">-g</code>. Muitos outros compiladores não permitem isso. Ao usar depuração e otimização juntas, as reorganizações internas feitas pelo otimizador podem dificultar a compreensão do que está acontecendo ao examinar um programa otimizado no depurador. Por exemplo, variáveis temporárias geralmente são eliminadas e a ordem das instruções pode ser alterada. No entanto, quando um programa trava inesperadamente, qualquer informação de depuração é melhor do que nenhuma, portanto, o uso de <code class="hljs- bash sembg">-g</code> é recomendado para programas otimizados, tanto para desenvolvimento quanto para implantação. A opção de depuração <code class="hljs- bash sembg">-g</code> é habilitada por padrão para versões dos pacotes GNU, juntamente com a opção de otimização <code class="hljs- bash sembg">-O2</code>.
 </p>
 
-<h2>6.4. Otimização e avisos do compilador</h2>
+<!-- Quarta Seção -->
+<h2 id="secao6.4">6.4. Otimização e avisos do compilador</h2>
 
 <p>
 Quando a otimização é ativada, o GCC pode produzir avisos adicionais que não aparecem ao compilar sem otimização. Como parte do processo de otimização, o compilador examina o uso de todas as variáveis e seus valores iniciais - isso é chamado de análise de fluxo de dados. Isso serve como base para outras estratégias de otimização, como agendamento de instruções. Um efeito colateral da análise de fluxo de dados é que o compilador pode detectar o uso de variáveis não inicializadas.

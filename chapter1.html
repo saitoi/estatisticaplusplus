@@ -41,7 +41,7 @@ Esse capítulo visa estabelecer conceitos importantes que envolvem a linguagem C
 </p>
 
 <!-- Primeira Seção -->
-<h2>1.1. Características da Linguagem C</h2>
+<h2 id="secao1.1">1.1. Características da Linguagem C</h2>
 
 <p>
 C é uma <strong>linguagem de programação compilada</strong>, isto é, ao escrevermos o código fonte na própria linguagem, no caso em C, um programa chamado compilador reescreve esse código fonte para a linguagem de máquina. Sendo assim, o compilador tem como entrada um arquivo com código fonte da linguagem e que gera como saída um <strong>arquivo objeto</strong>, com <strong>código objeto</strong>, que é ligado à outros arquivos objeto, para gerar um <strong>arquivo executável</strong>. O arquivo executável é um arquivo que pode ser executado no computador alvo. Na próxima seção, serão dados mais detalhes sobre o processo de compilação de um arquivo em C. Abaixo seguem algumas características importantes da linguagem C:
@@ -73,7 +73,7 @@ Vale notar que esses tipos podem variar de máquina para máquina, sendo interes
 </p>
 
 <!-- Segunda Seção -->
-<h2>1.2. O Que É Um Compilador?</h2>
+<h2 id="secao1.2">1.2. O Que É Um Compilador?</h2>
 
 <p>
 O compilador é um programa de computador responsável por reescrever o código fonte em código de máquina que poderá ser executado no computador. Sendo assim, o compilador recebe como entrada um arquivo com o código fonte e gera na saída um arquivo que pode ser executado no computador.
@@ -103,7 +103,7 @@ Por fim, os programas que traduzem código em Assembly para linguagem de máquin
 </p>
 
 <!-- Terceira Seção -->
-<h2>1.3. GNU Compiler Collection</h2>
+<h2 id="secao1.3">1.3. GNU Compiler Collection</h2>
 
 <p>
 O GNU Compiler Collection é uma coleção de compiladores do tipo <i>Ahead-of-time</i> do projeto GNU criada em 1987. Essa coleção possui compiladores para linguagens como: ADA, C++, Fortran, Java, Objective-C e Pascal. Além disso, possui compatibilidade com muitas arquiteturas, como ARM, x86 e AMD64 (x86-64), sendo considerado favorito pelos desenvolvedores. Essa ferramenta vem como padrão na maioria dos sistemas Linux e é o compilador principal para o MAC OS, mas também pode ser utilizado em sistemas Windows partir de ferramentas como MSYS2 e MinGW. A grande parte desses compiladores, atualmente, está escrita em C, inclusive o próprio compilador C, num processo chamado de <strong><i>bootstrapping</i></strong>. O foco será em um dos compiladores da GNU, o GNU C Compiler (GCC).

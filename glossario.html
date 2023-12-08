@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Capítulo 1: Introdução</title>
+    <!-- Estilos pelo CSS -->
+    <link rel="stylesheet" type="text/css" href="css/codigo.css">
+    <link rel="stylesheet" type="text/css" href="css/texto.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+          // Selecione todos os elementos <code> que possuem múltiplas classes
+          document.querySelectorAll('code[class*="hljs-"]').forEach((codeElement) => {
+            // Separe as classes
+            const classes = codeElement.className.split(' ');
+      
+            // Crie uma expressão regular para combinar classes hljs-
+            const classRegex = /hljs-.*/;
+      
+            // Filtrar as classes que correspondem à expressão regular
+            const hljsClasses = classes.filter(className => classRegex.test(className));
+      
+            // Destacar o texto do elemento <code>
+            hljsClasses.forEach(hljsClass => {
+              const language = hljsClass.replace('hljs-', ''); // Remover o prefixo hljs-
+              hljs.highlightElement(codeElement, { language });
+            });
+          });
+        });
+      </script>
+    <!-- Fim dos estilos -->
+</head>
+<body>
+
+<h1>Glossário</h1>
+
+<ul>
+    <li><strong>Arquivo Executável:</strong> É um arquivo, interpretado pelo sistema operacional como um programa, que contém instruções do processador em questão, geralmente representadas em binário, para a execução de tarefas no computador.</li>
+    <li><strong>Arquivo Objeto:</strong> Arquivo resultante da compilação de um código fonte. Possui vários formatos como o ELF (Executable and Linking Format) do padrão Unix. Além de código objeto, é composto por um cabeçalho com informações de debug, alocação de memória e símbolos (nome de variáveis e de funções). Podem ser ligados à outros arquivos objetos para formar um arquivo executável ou arquivo de biblioteca.</li>
+    <li><strong>Assembly:</strong> Notação legível para o ser humano do código de máquina, isto é, um apelido que representa uma instrução de máquina, mais fácil de ser entendido do que uma sequência binária.</li>
+    <li><strong>Bootstrapping:</strong> Processo pelo qual o compilador de uma linguagem é escrito na própria linguagem. Geralmente, o compilador inicial é feito em uma linguagem de baixo nível e depois ele é reescrito na própria linguagem em alto nível.</li>
+    <li><strong>Bytecode:</strong> Código intermediário gerado pelo interpretador e que será executado diretamente em uma máquina virtual.</li>
+    <li><strong>Código Fonte:</strong> É um arquivo, interpretado pelo sistema operacional como um programa, que contém instruções do processador em questão, geralmente representadas em binário, para a execução de tarefas no computador.</li>
+    <li><strong>Código Objeto:</strong> Código escrito em linguagem de máquina (binária) ou em uma linguagem intermediária que pode ser interpretada e executada pelo computador.</li>
+    <li><strong>Linguagem de Programação:</strong> É uma estrutura contendo regras semânticas e sintáticas expressas através de um código fonte que pode ser transformado em um programa de computador a partir da compilação ou ser interpretado para assim ser executado.</li>
+</ul>
+
+</body>

@@ -37,13 +37,13 @@
 <h1>5. Componentes do Compilador</h1>
 
 <!-- Primeira Seção -->
-<h2>5.1. Pré-processador</h2>
+<h2 id="secao5.1">5.1. Pré-processador</h2>
 
 <p>
 Como dito no capítulo inicial, pré-processador é o componente do GCC responsável por processar e manipular o código-fonte antes da compilação começar. Ele lê o código-fonte e realiza um conjunto de operações, incluindo substituição de macros, inclusão de arquivos e compilação condicional. Essas operações são definidas por um conjunto de diretivas, que são comandos especiais com o símbolo &ldquo;#&rdquo; em seu início.
 </p>
 
-<h3>5.1.1. Inclusão de Arquivos</h3>
+<h3 id="subsecao5.1.1">5.1.1. Inclusão de Arquivos</h3>
 
 <p>
 A diretiva de pré-processamento <code class="hljs- c sembg">#include</code> é utilizada para incluir ao código o conteúdo de um arquivo especificado. Existem duas notações: é possível incluir um arquivo utilizando <code class="hljs- c sembg">#include&lt;arquivo&gt;</code> ou<code class="hljs- c sembg">#include"arquivo"</code>. No primeiro caso, o pré-processador buscará o arquivo em algum diretório do sistema (geralmente o /usr/include, em um sistema Unix) e, no segundo caso, o arquivo será buscado no diretório onde se localiza o código.
@@ -83,7 +83,7 @@ double raiz_quadrada(double x){
 Ao compilar o programa <b>main.c</b>, o pré-processador acoplará à esse arquivo o código que está no arquivo <b>preproc.c</b>. Note que só foi preciso utilizar apenas o <code class="hljs- c sembg">#include"preproc.c"</code> no arquivo principal, pois esse arquivo já possui as outras diretivas necessárias para a execução do código. Devido o tratamento recursivo do compilador, pode ser que ocorra múltiplos <code class="hljs- c sembg">#include</code> acidentais, que podem ser resolvidos com a diretiva <code class="hljs- c sembg">#pragma once</code>. Essa diretiva indica que o respectivo arquivo deve ser lido apenas uma vez durante o processo de compilação. Com o comando <code class="bash">gcc main.c -E -o main_preproc.c</code> é possível gerar um arquivo com o código fonte do C pré-processado. No final desse arquivo gerado, está o código dos dois arquivos <b>preproc.c</b> e <b>main.c</b>.
 </p>
 
-<h3>5.1.2. Definição de Macros</h3>
+<h3 id="subsecao5.1.2">5.1.2. Definição de Macros</h3>
 
 <p>
 Uma macro é um pedaço de código ao qual é dado um nome e é definida por meio do uso da diretiva <code class="hljs- c sembg">#define</code>. Essa diretiva permite que você atribua um nome à um valor, uma expressão ou até mesmo a um bloco de código, tornando mais fácil e conveniente usar esse nome ao invés de repetir o código. Abaixo está um exemplo de código que utiliza macros:
@@ -108,7 +108,7 @@ O pré-processador substitui as ocorrências das macros pelo seu conteúdo corre
 <figure><pre><code class="bash">The value of NUM is: 10
 The value of SQUARE(NUM) is: 100</code></pre></figure>
 
-<h3>5.1.3. Compilação Condicional</h3>
+<h3 id="subsecao5.1.3">5.1.3. Compilação Condicional</h3>
 
 <p>
 Podemos querer executar uma parte do programa somente quando certa macro estiver definida, denominada compilação condicional. Para isso, delimitamos tal seção do código com as diretivas <code class="hljs- c sembg">#ifdef</code> e <code class="hljs- c sembg">#endif</code>:
@@ -169,7 +169,7 @@ int main(){
     return 0;
 }</code></pre><figcaption class="arq">main.c</figcaption></figure>
 
-<h3>5.1.4. Fornecendo Instruções</h3>
+<h3 id="subsecao5.1.4">5.1.4. Fornecendo Instruções</h3>
 
 <p>
 A diretiva <code class="hljs- c sembg">#pragma</code> é utilizada para fornecer instruções ao compilador. Essa diretiva é muito dependente do compilador que está sendo utilizado pois não é do padrão C, podendo sofrer certas mudanças em seu funcionamento de acordo com a plataforma em que está sendo executada. Ela é principalmente utilizada para indicar como o compilador deve agir em certos casos. Por exemplo, pode ser utilizada para forçar que uma função seja <i>inline</i>, como segue no trecho de código abaixo:
@@ -231,14 +231,14 @@ The size of struct 2 is: 13</code></pre></figure>
 
 
 <!-- Segunda Seção -->
-<h2>5.2. Compilador</h2>
+<h2 id="secao5.2">5.2. Compilador</h2>
 
 <p>
 Falar sobre Árvore de Derivação, resumir o processo de compilação e técnicas, comentar sobre otimização (otimização já foi falada no capítulo seguinte, então é só comentar informações relevantes)...
 </p>
 
 <!-- Terceira Seção -->
-<h2>5.3. Montador</h2>
+<h2 id="secao5.3">5.3. Montador</h2>
 
 <p>
 O montador é o componente responsável por traduzir um código de montagem em código de máquina, como dito na introdução. Além disso, esse componente irá lidar com os símbolos, as diretivas de montagem e os dados, que serão organizados de maneira executável. Como o GCC é compatível com diversas arquiteturas, ele dá suporte a diretivas específicas dessas arquiteturas que tratam de alinhamentos dos dados, definição de constantes e strings, determinam seções de código, dados e endereços de memória onde as instruções e/ou os dados serão posicionados, entre outras. É durante a montagem que o GCC lida com resolução de endereços, <i>offsets</i> (deslocamentos) que indica a distância entre partes do código, alinhamento na memória, manipulação de macros e gera a tabela de símbolos e de realocação. Para ilustrar o processo de montagem, considere o seguinte exemplo simples de código em C:
@@ -267,7 +267,7 @@ Isso irá gerar um arquivo de montagem chamado <b>hello_world.s</b>. Para compil
 
 
 <!-- Quarta Seção -->
-<h2>5.4. Ligador</h2>
+<h2 id="secao5.4">5.4. Ligador</h2>
 
 <p>
 O ligador é o componente que lida com a fase final da compilação, isto é, ele atua no último estágio do processo de compilação. O ligador é responsável por incorporar bibliotecas ao código e gerar arquivos executáveis, combina os arquivos-objeto gerados, resolve símbolos que estão definidos em outros arquivos-fonte e pode eliminar códigos e dados não utilizados para reduzir o tamanho do executável. Enquanto que na fase anterior, os endereços dos dados e códigos são tratados de forma relativa, ou seja, não refletem a posição real que estarão localizados na memória, nesta fase os endereços são ajustados para serem carregados.

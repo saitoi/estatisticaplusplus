@@ -37,7 +37,7 @@
 <h1>2. Compilando Programas em C</h1>
 
 <!-- Primeira Seção -->
-<h2>2.1. Primeiros Passos</h2>
+<h2 id="secao2.1">2.1. Primeiros Passos</h2>
 
 <p>
 Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso <code class="hljs- c sembg">"Hello, World!"</code>. A seguir, mostraremos como compilar esse programa em C utilizando o compilador GCC:
@@ -67,7 +67,7 @@ Por fim, para executar o programa, basta digitar <code class="hljs- bash sembg">
 </p>
 
 <!-- Segunda Seção -->
-<h2>2.2. Trabalhando com Múltiplos Arquivos</h2>
+<h2 id="secao2.2">2.2. Trabalhando com Múltiplos Arquivos</h2>
 
 <p>
 Quando se está trabalhando em um projeto em C, é comum que esse seja dividido em múltiplos arquivos. Essa prática permite uma melhor organização e compartimentalização do projeto, além de economizar tempo de compilação. Por exemplo, digamos que queremos criar um programa que calcule o quadrado de um número. Podemos dividir o projeto em dois arquivos: um arquivo <b>main.c</b>, que contém a função principal do programa, e um arquivo <b>quadrado.h</b>, que contém a função que calcula o quadrado do número. Além disso, criaremos um arquivo <b>quadrado.h</b>, que contém somente a declaração da função que calcula o quadrado.
@@ -120,7 +120,7 @@ Com isso, podemos fazer alterações no arquivo <b>quadrado.c</b>, por exemplo, 
 
 
 <!-- Terceira Seção -->
-<h2>2.3. Utilizando Makefiles</h2>
+<h2 id="secao2.3">2.3. Utilizando Makefiles</h2>
 
 <p>
 Ao trabalhar em projetos grandes com muitos arquivos, é difícil gerenciar e entender as dependências entre esses arquivos. É comum que apenas alguns arquivos precisem ser recompilados após alterações, e recompilar todos os arquivos novamente pode ser demorado e desnecessário. Para lidar com esses problemas, é possível usar o <code class="hljs- bash sembg">make</code> e o <b>Makefile</b>. O <code class="hljs- bash sembg">make</code> é uma ferramenta que automatiza a compilação de programas a partir de arquivos-fonte. Ele trabalha a partir de um arquivo chamado <b>Makefile</b>, que especifica como os arquivos-fonte devem ser compilados em arquivos objeto e como esses objetos devem ser ligados para criar o programa final.
