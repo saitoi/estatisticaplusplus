@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Capítulo 1: Introdução</title>
+    <!-- Estilos pelo CSS -->
+    <link rel="stylesheet" type="text/css" href="css/codigo.css">
+    <link rel="stylesheet" type="text/css" href="css/texto.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+          // Selecione todos os elementos <code> que possuem múltiplas classes
+          document.querySelectorAll('code[class*="hljs-"]').forEach((codeElement) => {
+            // Separe as classes
+            const classes = codeElement.className.split(' ');
+      
+            // Crie uma expressão regular para combinar classes hljs-
+            const classRegex = /hljs-.*/;
+      
+            // Filtrar as classes que correspondem à expressão regular
+            const hljsClasses = classes.filter(className => classRegex.test(className));
+      
+            // Destacar o texto do elemento <code>
+            hljsClasses.forEach(hljsClass => {
+              const language = hljsClass.replace('hljs-', ''); // Remover o prefixo hljs-
+              hljs.highlightElement(codeElement, { language });
+            });
+          });
+        });
+      </script>
+    <!-- Fim dos estilos -->
+</head>
+<body>
+<div id="toc">
+<ul>
+    <!-- Capítulos e Seções -->
+    <li><a href="chapter1.html#chapter1" target="chapter1">Capítulo 1: Introdução</a>
+        <ul>
+            <li><a href="chapter1.html#secao1.1" target="chapter1">Seção 1.1: Características da Linguagem C</a></li>
+            <li><a href="chapter1.html#secao1.2" target="chapter1">Seção 1.2: O Que É Um Compilador?</a></li>
+            <li><a href="chapter1.html#secao1.3" target="chapter1">Seção 1.3: GNU Compiler Collection</a></li>
+        </ul>
+    </li>
+    <li><a href="chapter2.html#chapter2" target="chapter2">Capítulo 2: Compilando Programas em C</a>
+        <ul>
+            <li><a href="chapter2.html#secao2.1" target="chapter2">Seção 2.1: Primeiros Passos</a></li>
+            <li><a href="chapter2.html#secao2.2" target="chapter2">Seção 2.2: Trabalhando Com Múltiplos Arquivos</a></li>
+            <li><a href="chapter2.html#secao2.3" target="chapter2">Seção 2.3: Utilizando Makefile</a></li>
+        </ul>
+    </li>
+    <li><a href="chapter3.html#chapter3" target="chapter3">Capítulo 3: Bandeiras de Aviso do Compilador</a></li>
+    <li><a href="chapter4.html#chapter4" target="chapter4">Capítulo 4: Depuração</a>
+        <ul>
+            <li><a href="chapter4.html#secao4.1" target="chapter4">Seção 4.1: Compilando para Depuração</a></li>
+            <li><a href="chapter4.html#secao4.2" target="chapter4">Seção 4.2: Depurando Programas</a></li>
+        </ul>
+    </li>
+    <li><a href="chapter5.html#chapter5" target="chapter5">Capítulo 5: Componentes do Compilador</a>
+        <ul>
+            <li><a href="chapter5.html#secao5.1" target="chapter5">Seção 5.1: Pré-processador</a>
+                <ul>
+                    <li><a href="chapter5.html#subsecao5.1.1" target="chapter5">Subseção 5.1.1: Inclusão de Arquivos</a></li>
+                    <li><a href="chapter5.html#subsecao5.1.2" target="chapter5">Subseção 5.1.2: Definição de Macros</a></li>
+                </ul>
+            </li>
+            <li><a href="chapter5.html#secao5.2" target="chapter5">Seção 5.2: Compilador</a></li>
+            <li><a href="chapter5.html#secao5.3" target="chapter5">Seção 5.3: Montador</a></li>
+            <li><a href="chapter5.html#secao5.4" target="chapter5">Seção 5.4: Ligador</a></li>
+        </ul>
+    </li>
+    <li><a href="chapter6.html#chapter6" target="chapter6">Capítulo 6: Otimização</a>
+        <ul>
+            <li><a href="chapter6.html#secao6.1" target="chapter6">Seção 6.1: Otimização em Nível de Código-fonte</a>
+                <ul>
+                    <li><a href="chapter6.html#subsecao6.1.1" target="chapter6">Subseção 6.1.1: Eliminação de Subexpressões Comuns</a></li>
+                    <li><a href="chapter6.html#subsecao6.1.2" target="chapter6">Subseção 6.1.2: Inclusão de Função</a></li>
+                    <li><a href="chapter6.html#subsecao6.1.3" target="chapter6">Subseção 6.1.3: Trade-offs de Velocidade e Espaço</a></li>
+                    <li><a href="chapter6.html#subsecao6.1.4" target="chapter6">Subseção 6.1.4: Desenrolamento de Loops</a></li>
+                    <li><a href="chapter6.html#subsecao6.1.5" target="chapter6">Subseção 6.1.5: Agendamento</a></li>
+                </ul>
+            </li>
+            <li><a href="chapter6.html#secao6.2" target="chapter6">Seção 6.2: Níveis de Otimização</a></li>
+            <li><a href="chapter6.html#secao6.3" target="chapter6">Seção 6.3: Otimização e Depuração</a></li>
+            <li><a href="chapter6.html#secao6.4" target="chapter6">Seção 6.4: Otimização e Avisos do Compilador</a></li>
+        </ul>
+    </li>
+    <!-- Capítulos e Seções (FIM) -->
+    <li><a href="glossario.html#glossario" target="glossario">Glossário</a></li>
+</ul>
+</div>
+</body>

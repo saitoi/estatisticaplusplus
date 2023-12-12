@@ -6,12 +6,18 @@ body, html{
 }
 
 /********************************************************* TABELA DE CONTEÚDOSs À ESQUERDA *********************************************************/
-#toc{
-    width: 24%; /* 1% restante para não encostar no conteúdo à direita */
-    font-size: 0.95em;
-    background-color:aliceblue;
-    position: fixed;
+#common-toc{
     float: left;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 24%;
+    background-color: aliceblue;
+}
+
+#toc{
+    font-size: 0.95em;
 }
 
 #toc ul {

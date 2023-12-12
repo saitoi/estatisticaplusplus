@@ -14,7 +14,11 @@ code.bash {
 }
 
 code.c{
-    background-color:rgb(249, 252, 239);
+    background-color: beige;
+}
+
+code.makefile{
+    background-color: burlywood;
 }
 
 code.sembg{
