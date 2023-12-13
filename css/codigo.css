@@ -1,27 +1,53 @@
 code{
-    font-size: 18px;
-    border-radius: 0.3em;
+    font-family: monospace;
+    font-size: 15px;
 }
 
 pre{
-    margin-left: 40px;
+    border-left: 3px solid #ccc;
+    border-radius: 0.15em;
+    padding: 14px 40px 14px 14px;
+    margin: 0px 0px 32px;
+    background-color: #F2F1F1;
 }
+
 
 /* Estilo específico para a linguagem Bash */
 code.bash {
     color: rgba(255, 61, 255, 0.704);
     font-weight: normal;
-    background-color: black;
+    background-color: inherit;
+    /* Anterior: background-color: black; */
 }
 
+
 code.c{
-    background-color: beige;
+    background-color: inherit;
 }
 
 code.makefile{
-    background-color: burlywood;
+    background-color: inherit;
+    /* Anterior: background-color: burlywood; */
 }
+
 
 code.sembg{
     background-color: inherit;
+}
+
+/********************************************************* HEADER ENCIMA DO CÓDIGO *********************************************************/
+
+.exemplo-codigo{
+    background-color: #F9F9FB;
+    padding: 5px 16px;
+    margin: 0px;
+    width: 90%;
+    border: 1px solid #cdcdcd;
+    border-radius: 0.3em;
+    box-sizing: border-box;
+}
+
+.nome-linguagem {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
 }
