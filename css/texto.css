@@ -2,10 +2,10 @@
 body, html{
     font-family: Arial, sans-serif;
     height: 100%;
-    line-height: 1.35em;
+    line-height: 1.5em;
 }
 
-/********************************************************* TABELA DE CONTEÚDOSs À ESQUERDA *********************************************************/
+/********************************************************* TABELA DE CONTEÚDOS À ESQUERDA *********************************************************/
 #common-toc{
     float: left;
     position: fixed;
@@ -83,5 +83,5 @@ figcaption{
 
 figcaption.arq{
     font-weight: bold;
-    color: #0066cc;
+    color: #0068cfe4;
 }

@@ -1,139 +1,332 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Capítulo 1: Introdução</title>
-    <!-- Estilos pelo CSS -->
-    <link rel="stylesheet" type="text/css" href="css/codigo.css">
-    <link rel="stylesheet" type="text/css" href="css/texto.css">
+  <title>Capítulo 1: Introdução</title>
+  <!-- Estilos pelo CSS -->
+  <link rel="stylesheet" type="text/css" href="css/codigo.css">
+  <link rel="stylesheet" type="text/css" href="css/texto.css">
+  <link rel="stylesheet" type="text/css" href="css/tipos_c.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-light.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-          // Selecione todos os elementos <code> que possuem múltiplas classes
-          document.querySelectorAll('code[class*="hljs-"]').forEach((codeElement) => {
-            // Separe as classes
-            const classes = codeElement.className.split(' ');
-      
-            // Crie uma expressão regular para combinar classes hljs-
-            const classRegex = /hljs-.*/;
-      
-            // Filtrar as classes que correspondem à expressão regular
-            const hljsClasses = classes.filter(className => classRegex.test(className));
-      
-            // Destacar o texto do elemento <code>
-            hljsClasses.forEach(hljsClass => {
-              const language = hljsClass.replace('hljs-', ''); // Remover o prefixo hljs-
-              hljs.highlightElement(codeElement, { language });
-            });
-          });
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      // Selecione todos os elementos <code> que possuem múltiplas classes
+      document.querySelectorAll('code[class*="hljs-"]').forEach((codeElement) => {
+        // Separe as classes
+        const classes = codeElement.className.split(' ');
+
+        // Crie uma expressão regular para combinar classes hljs-
+        const classRegex = /hljs-.*/;
+
+        // Filtrar as classes que correspondem à expressão regular
+        const hljsClasses = classes.filter(className => classRegex.test(className));
+
+        // Destacar o texto do elemento <code>
+        hljsClasses.forEach(hljsClass => {
+          const language = hljsClass.replace('hljs-', ''); // Remover o prefixo hljs-
+          hljs.highlightElement(codeElement, { language });
         });
-      </script>
-    <!-- Fim dos estilos -->
+      });
+    });
+  </script>
+  <!-- Fim dos estilos -->
 </head>
+
 <body>
-<!-- Tabela de Conteúdo -->
-<div id="common-toc">
-  <object data="toc.html" type="text/html" width="100%" height="100%"></object>
-</div>
+  <!-- Tabela de Conteúdo -->
+  <div id="common-toc">
+    <object data="toc.html" type="text/html" width="100%" height="100%"></object>
+  </div>
 
-<!-- Conteúdo -->
-<div id="chapter1">
-<div id="content">
-<h1>1. Introdução</h1>
-<p>
-Esse capítulo visa estabelecer conceitos importantes que envolvem a linguagem C, compiladores e programação no geral.
-</p>
+  <!-- Conteúdo -->
+  <div id="chapter1">
+    <div id="content">
+      <h1>1. Introdução</h1>
+      <p>
+        Esse capítulo visa estabelecer conceitos importantes que envolvem a linguagem C, compiladores e programação no
+        geral.
+      </p>
 
-<!-- Primeira Seção -->
-<h2 id="secao1.1">1.1. Características da Linguagem C</h2>
+      <!-- Primeira Seção -->
+      <h2 id="secao1.1">1.1. Características da Linguagem C</h2>
 
-<p>
-C é uma <strong>linguagem de programação compilada</strong>, isto é, ao escrevermos o código fonte na própria linguagem, no caso em C, um programa chamado compilador reescreve esse código fonte para a linguagem de máquina. Sendo assim, o compilador tem como entrada um arquivo com código fonte da linguagem e que gera como saída um <strong>arquivo objeto</strong>, com <strong>código objeto</strong>, que é ligado à outros arquivos objeto, para gerar um <strong>arquivo executável</strong>. O arquivo executável é um arquivo que pode ser executado no computador alvo. Na próxima seção, serão dados mais detalhes sobre o processo de compilação de um arquivo em C. Abaixo seguem algumas características importantes da linguagem C:
-</p>
+      <p>
+        C é uma <strong>linguagem de programação compilada</strong>, isto é, ao escrevermos o código fonte na própria
+        linguagem, no caso em C, um programa chamado compilador reescreve esse código fonte para a linguagem de máquina.
+        Sendo assim, o compilador tem como entrada um arquivo com código fonte da linguagem e que gera como saída um
+        <strong>arquivo objeto</strong>, com <strong>código objeto</strong>, que é ligado à outros arquivos objeto, para
+        gerar um <strong>arquivo executável</strong>. O arquivo executável é um arquivo que pode ser executado no
+        computador alvo. Na próxima seção, serão dados mais detalhes sobre o processo de compilação de um arquivo em C.
+        Abaixo seguem algumas características importantes da linguagem C:
+      </p>
 
-<ul>
-	<li><strong>Estruturada:</strong> A programação estruturada (sucedida pela programação orientada a objeto) é um paradigma formado por três componentes:
-	<ul>
-		<li>Sequência: Uma tarefa é executada logo após a outra;</li>
-		<li>Decisão: A tarefa é executada logo após um teste lógico;</li>
-		<li>Iteração: A partir de um teste lógico, um trecho de código pode ser repetido finitas vezes.</li>
-	</ul>
-	</li>
-	<li><strong>Imperativa:</strong> Em contraste com a programação imperativa, o paradigma imperativo descreve ações/instruções que o programa deverá tomar/executar. Ou seja, linguagens imperativas são programadas com uma sequência de comandos ordenada pela programador;</li>
-	<li><strong>Procedural:</strong> O paradigma procedural permite a linguagem construir procedimentos que podem ser compartimentados e reutilizados de forma a tornar partes do códigos mais independentes entre si;</li>
-	<li><strong>Padronizada:</strong> A padronização é uma característica que dita a regularidade da linguagem, de modo que um mesmo código gere sempre o mesmo resultado, seja ele compilado e executado ou interpretado;</li>
-	<li><strong>Fortemente Tipada:</strong> Em C, o tipo das variáveis/funções precisam ser bem definidos e são mantidos durante toda a execução do programa. Porém, com ponteiros do tipo <code class="hljs- c sembg">void</code>, é possível driblar essa questão, sendo possível, mas não aconselhável, mudar implicitamente o tipo da variável que ponteiro está apontando.</li>
-</ul>
+      <ul>
+        <li><strong>Estruturada:</strong> A programação estruturada (sucedida pela programação orientada a objeto) é um
+          paradigma formado por três componentes:
+          <ul>
+            <li>Sequência: Uma tarefa é executada logo após a outra;</li>
+            <li>Decisão: A tarefa é executada logo após um teste lógico;</li>
+            <li>Iteração: A partir de um teste lógico, um trecho de código pode ser repetido finitas vezes.</li>
+          </ul>
+        </li>
+        <li><strong>Imperativa:</strong> Em contraste com a programação imperativa, o paradigma imperativo descreve
+          ações/instruções que o programa deverá tomar/executar. Ou seja, linguagens imperativas são programadas com uma
+          sequência de comandos ordenada pela programador;</li>
+        <li><strong>Procedural:</strong> O paradigma procedural permite a linguagem construir procedimentos que podem
+          ser compartimentados e reutilizados de forma a tornar partes do códigos mais independentes entre si;</li>
+        <li><strong>Padronizada:</strong> A padronização é uma característica que dita a regularidade da linguagem, de
+          modo que um mesmo código gere sempre o mesmo resultado, seja ele compilado e executado ou interpretado;</li>
+        <li><strong>Fortemente Tipada:</strong> Em C, o tipo das variáveis/funções precisam ser bem definidos e são
+          mantidos durante toda a execução do programa. Porém, com ponteiros do tipo <code
+            class="hljs- c sembg">void</code>, é possível driblar essa questão, sendo possível, mas não aconselhável,
+          mudar implicitamente o tipo da variável que ponteiro está apontando.</li>
+      </ul>
 
-<p>
-Abaixo segue uma tabela com tipos de dados básicos da linguagem, onde a palavra-chave é usada para definir as variáveis e o formato indica a forma de capturar (por meio de uma função como <code class="hljs- c sembg">scanf</code>) ou de imprimir (por exemplo, com a função <code class="hljs- c sembg">printf</code>):
-</p>
+      <p>
+        Abaixo segue uma tabela com tipos de dados básicos da linguagem, onde a palavra-chave é usada para definir as
+        variáveis e o formato indica a forma de capturar (por meio de uma função como <code
+          class="hljs- c sembg">scanf</code>) ou de imprimir (por exemplo, com a função <code
+          class="hljs- c sembg">printf</code>):
+      </p>
 
-<figcaption>Tabela de Dados Básicos C</figcaption>
-<figcaption><img src="img/tipos_c.png" alt="Tabela de Dados Básicos C"></figcaption>
+      <p style="text-align: center;">Tabela de Dados Básicos C</p>
+      <table class="styled-table">
+        <tr>
+            <th>PALAVRA-CHAVE</th>
+            <th>TIPO</th>
+            <th>BYTES</th>
+            <th>INTERVALO</th>
+            <th>FORMATO</th>
+        </tr>
+        <tr>
+            <td>char / signed char</td>
+            <td>Caracter</td>
+            <td>1</td>
+            <td>-128 a 127</td>
+            <td>%c</td>
+        </tr>
+        <tr>
+            <td>unsigned char</td>
+            <td>Caracter sem sinal</td>
+            <td>1</td>
+            <td>0 a 255</td>
+            <td>%c</td>
+        </tr>
+        <tr>
+            <td>short / short int / signed short / signed short int</td>
+            <td>Inteiro curto com sinal</td>
+            <td>2</td>
+            <td>−32768 a 32767</td>
+            <td>%hi ou %hd</td>
+        </tr>
+        <tr>
+            <td>unsigned short / unsigned short int</td>
+            <td>Inteiro curto sem sinal</td>
+            <td>2</td>
+            <td>0 a 65535</td>
+            <td>%hu</td>
+        </tr>
+        <tr>
+            <td>signed int / signed</td>
+            <td>Inteiro com sinal</td>
+            <td>2</td>
+            <td>-32768 a 32767</td>
+            <td>%i ou %d</td>
+        </tr>
+        <tr>
+            <td>unsigned / unsigned int</td>
+            <td>Inteiro sem sinal</td>
+            <td>2</td>
+            <td>0 a 65535</td>
+            <td>%u</td>
+        </tr>
+        <tr>
+            <td>long / long int / signed long / signed long int</td>
+            <td>Inteiro com sinal</td>
+            <td>4</td>
+            <td>−2147483648 a 2147483647</td>
+            <td>%li ou %ld</td>
+        </tr>
+        <tr>
+            <td>unsigned long / unsigned long int</td>
+            <td>Inteiro sem sinal</td>
+            <td>4</td>
+            <td>0 a 4294967295</td>
+            <td>%lu</td>
+        </tr>
+        <tr>
+            <td>long long / signed long long / long long int / signed long long int</td>
+            <td>Inteiro muito longo com sinal</td>
+            <td>8</td>
+            <td>−2<sup>+63</sup> a 2<sup>+63</sup> −1</td>
+            <td>%lli ou %lld</td>
+        </tr>
+        <tr>
+            <td>unsigned long long / unsigned long long int</td>
+            <td>Inteiro muito longo sem sinal</td>
+            <td>8</td>
+            <td>0 a 2<sup>+64</sup> −1</td>
+            <td>%llu</td>
+        </tr>
+        <tr>
+            <td>float</td>
+            <td>Ponto flutuante simples</td>
+            <td>4</td>
+            <td>3.4 &times; 10<sup>-38</sup> a 3.4 &times; 10<sup>+38</sup></td>
+            <td>%f ou %F</td>
+        </tr>
+        <tr>
+            <td>double</td>
+            <td>Ponto flutuante em precisao dupla</td>
+            <td>8</td>
+            <td>1.7 &times; 10<sup>-308</sup> a 1.7 &times; 10<sup>+308</sup></td>
+            <td>%lf ou %lF</td>
+        </tr>
+        <tr>
+          <td>long double</td>
+          <td>Ponto flutuante em precisão estendida</td>
+          <td>16</td>
+          <td>3.4 &times; 10<sup>-4932</sup> a 3.4 &times; 10<sup>+4932</sup></td>
+          <td>%Lf ou %LF</td>
+        </tr>
+    </table>
+    
+      <!-- <figcaption>Tabela de Dados Básicos C</figcaption> -->
+      <!-- <figcaption><img src="img/tipos_c.png" alt="Tabela de Dados Básicos C"></figcaption> -->
 
-<p>
-Vale notar que esses tipos podem variar de máquina para máquina, sendo interessante imprimir os limites dos tipos que estão no cabeçalho <b>limits.h</b>. Além disso, as padronizações (como ANSI e ISO, por exemplo) da linguagem também podem afetar certos tipos e, consequentemente, o funcionamento do código. Além disso, como C é muito popular, e por isso muitos compiladores foram construídos, com diferentes características. As próximas seções introduzirão o processo de compilação.
-</p>
+      <p>
+        Vale notar que esses tipos podem variar de máquina para máquina, sendo interessante imprimir os limites dos
+        tipos que estão no cabeçalho <b>limits.h</b>. Além disso, as padronizações (como ANSI e ISO, por exemplo) da
+        linguagem também podem afetar certos tipos e, consequentemente, o funcionamento do código. Além disso, como C é
+        muito popular, e por isso muitos compiladores foram construídos, com diferentes características. As próximas
+        seções introduzirão o processo de compilação.
+      </p>
 
-<!-- Segunda Seção -->
-<h2 id="secao1.2">1.2. O Que É Um Compilador?</h2>
+      <!-- Segunda Seção -->
+      <h2 id="secao1.2">1.2. O Que É Um Compilador?</h2>
 
-<p>
-O compilador é um programa de computador responsável por reescrever o código fonte em código de máquina que poderá ser executado no computador. Sendo assim, o compilador recebe como entrada um arquivo com o código fonte e gera na saída um arquivo que pode ser executado no computador.
-</p>
+      <p>
+        O compilador é um programa de computador responsável por reescrever o código fonte em código de máquina que
+        poderá ser executado no computador. Sendo assim, o compilador recebe como entrada um arquivo com o código fonte
+        e gera na saída um arquivo que pode ser executado no computador.
+      </p>
 
-<p>
-Em outras palavras, o compilador traduz o código fonte de uma linguagem da qual os seres humanos entendem melhor para outra, que o computador consiga entender. Vale notar que hoje em dia, o compilador possui muito mais funcionalidades além de traduzir códigos. Ele permite enclausurar diversas instruções de máquina em uma única linha do código fonte, otimizar o código fonte, gerar arquivos intermediários, tratar erros na programação e dispor de ferramentas de depuração. Os primeiros compiladores eram focados em traduzir o código fonte e reunir as bibliotecas e rotinas necessárias para a execução do código objeto num processo chamado de ligação. Esses primeiros compiladores foram escritos inicialmente em <strong>Assembly</strong>, e atualmente existem diversas ferramentas para a construção de compiladores, o que facilitou a proliferação de novas linguagens.
-</p>
+      <p>
+        Em outras palavras, o compilador traduz o código fonte de uma linguagem da qual os seres humanos entendem melhor
+        para outra, que o computador consiga entender. Vale notar que hoje em dia, o compilador possui muito mais
+        funcionalidades além de traduzir códigos. Ele permite enclausurar diversas instruções de máquina em uma única
+        linha do código fonte, otimizar o código fonte, gerar arquivos intermediários, tratar erros na programação e
+        dispor de ferramentas de depuração. Os primeiros compiladores eram focados em traduzir o código fonte e reunir
+        as bibliotecas e rotinas necessárias para a execução do código objeto num processo chamado de ligação. Esses
+        primeiros compiladores foram escritos inicialmente em <strong>Assembly</strong>, e atualmente existem diversas
+        ferramentas para a construção de compiladores, o que facilitou a proliferação de novas linguagens.
+      </p>
 
-<p>
-Com a evolução das linguagens de programação e a necessidade de novas funcionalidades, os compiladores passaram a ter mais características e a funcionar de maneiras diferentes, e com isso foram desenvolvidos diversos tipos de compiladores. Abaixo seguem os principais tipos de compiladores:
-</p>
+      <p>
+        Com a evolução das linguagens de programação e a necessidade de novas funcionalidades, os compiladores passaram
+        a ter mais características e a funcionar de maneiras diferentes, e com isso foram desenvolvidos diversos tipos
+        de compiladores. Abaixo seguem os principais tipos de compiladores:
+      </p>
 
-<ul>
-	<li><strong>Compilador <i>Ahead-of-time</i>:</strong> Compilador padrão que compila o código fonte antes da execução do programa. A saída do compilador é uma arquivo objeto com instruções de máquina nativas;</li>
-	<li><strong>Compilador <i>Just-in-time</i>:</strong> A compilação aqui ocorre durante o tempo de execução do programa. Na primeira vez, compilador passa por cada linha do código fonte e traduz para instruções de máquina (ou para uma linguagem intermediária que depois será traduzida para linguagem de máquina) que serão executadas imediatamente após a tradução, geralmente em uma máquina virtual. Na segunda vez que o programa será executado, ele já estará compilado (ou em uma linguagem intermediária de fácil tradução) tendo uma execução mais rápida. Diferente do caso anterior, onde o programa sempre será executado após a geração do arquivo objeto;</li>
-	<li><strong>Compilador Cruzado:</strong> Esse tipo de compilador gera um arquivo executável, através do código fonte, capaz de ser executado em outras máquinas. É interessante para aplicações como sistemas embutidos ou para uso em múltiplas máquinas;</li>
-	<li><strong>Compilador <i>Source-to-source</i>:</strong> Esse compilador tem como saída um arquivo contendo um código fonte de alto nível, ao invés de um arquivo com instruções de máquina. Isso permite que uma linguagem possua extensões sintáticas de interesse ao programador que podem ser escritas de maneira mais flexível, e que serão reescritas equivalentemente para o código fonte alvo. TypeScript é uma linguagem que utiliza esse tipo de compilação.</li>
-</ul>
+      <ul>
+        <li><strong>Compilador <i>Ahead-of-time</i>:</strong> Compilador padrão que compila o código fonte antes da
+          execução do programa. A saída do compilador é uma arquivo objeto com instruções de máquina nativas;</li>
+        <li><strong>Compilador <i>Just-in-time</i>:</strong> A compilação aqui ocorre durante o tempo de execução do
+          programa. Na primeira vez, compilador passa por cada linha do código fonte e traduz para instruções de máquina
+          (ou para uma linguagem intermediária que depois será traduzida para linguagem de máquina) que serão executadas
+          imediatamente após a tradução, geralmente em uma máquina virtual. Na segunda vez que o programa será
+          executado, ele já estará compilado (ou em uma linguagem intermediária de fácil tradução) tendo uma execução
+          mais rápida. Diferente do caso anterior, onde o programa sempre será executado após a geração do arquivo
+          objeto;</li>
+        <li><strong>Compilador Cruzado:</strong> Esse tipo de compilador gera um arquivo executável, através do código
+          fonte, capaz de ser executado em outras máquinas. É interessante para aplicações como sistemas embutidos ou
+          para uso em múltiplas máquinas;</li>
+        <li><strong>Compilador <i>Source-to-source</i>:</strong> Esse compilador tem como saída um arquivo contendo um
+          código fonte de alto nível, ao invés de um arquivo com instruções de máquina. Isso permite que uma linguagem
+          possua extensões sintáticas de interesse ao programador que podem ser escritas de maneira mais flexível, e que
+          serão reescritas equivalentemente para o código fonte alvo. TypeScript é uma linguagem que utiliza esse tipo
+          de compilação.</li>
+      </ul>
 
-<p>
-Existe um outro programa bastante comum que permite a execução do código fonte ou do <srong>bytecode</strong> diretamente: o interpretador. Ao contrário do compilador, que gera um arquivo objeto com instruções de máquina, o interpretador traduz cada linha do código fonte em uma linguagem intermediária ou a executa diretamente, em uma máquina virtual. Isso torna o processo de execução de uma linguagem interpretada (Python, R, JavaScript, PHP, etc) mais lento pois cada linha do código precisa ser interpretada, para depois ser executada. Porém, a linguagem interpretada não precisa ser recompilada por inteiro por conta de algumas alterações no código.
-</p>
+      <p>
+        Existe um outro programa bastante comum que permite a execução do código fonte ou do <srong>bytecode</strong>
+          diretamente: o interpretador. Ao contrário do compilador, que gera um arquivo objeto com instruções de
+          máquina, o interpretador traduz cada linha do código fonte em uma linguagem intermediária ou a executa
+          diretamente, em uma máquina virtual. Isso torna o processo de execução de uma linguagem interpretada (Python,
+          R, JavaScript, PHP, etc) mais lento pois cada linha do código precisa ser interpretada, para depois ser
+          executada. Porém, a linguagem interpretada não precisa ser recompilada por inteiro por conta de algumas
+          alterações no código.
+      </p>
 
-<p>
-Por fim, os programas que traduzem código em Assembly para linguagem de máquina e vice-versa são chamados de montador (<i>assembler</i>) e desmontador (<i>disassembler</i>), respectivamente. O mesmo vale para o processo de construção de um código de alto nível a partir da linguagem de máquina, chamado de descompilação. Esse último possui aplicações em segurança, já que, com acesso ao código objeto, é possível identificar vulnerabilidades mais facilmente nas linguagens de alto nível geradas a partir da descompilação.
-</p>
+      <p>
+        Por fim, os programas que traduzem código em Assembly para linguagem de máquina e vice-versa são chamados de
+        montador (<i>assembler</i>) e desmontador (<i>disassembler</i>), respectivamente. O mesmo vale para o processo
+        de construção de um código de alto nível a partir da linguagem de máquina, chamado de descompilação. Esse último
+        possui aplicações em segurança, já que, com acesso ao código objeto, é possível identificar vulnerabilidades
+        mais facilmente nas linguagens de alto nível geradas a partir da descompilação.
+      </p>
 
-<!-- Terceira Seção -->
-<h2 id="secao1.3">1.3. GNU Compiler Collection</h2>
+      <!-- Terceira Seção -->
+      <h2 id="secao1.3">1.3. GNU Compiler Collection</h2>
 
-<p>
-O GNU Compiler Collection é uma coleção de compiladores do tipo <i>Ahead-of-time</i> do projeto GNU criada em 1987. Essa coleção possui compiladores para linguagens como: ADA, C++, Fortran, Java, Objective-C e Pascal. Além disso, possui compatibilidade com muitas arquiteturas, como ARM, x86 e AMD64 (x86-64), sendo considerado favorito pelos desenvolvedores. Essa ferramenta vem como padrão na maioria dos sistemas Linux e é o compilador principal para o MAC OS, mas também pode ser utilizado em sistemas Windows partir de ferramentas como MSYS2 e MinGW. A grande parte desses compiladores, atualmente, está escrita em C, inclusive o próprio compilador C, num processo chamado de <strong><i>bootstrapping</i></strong>. O foco será em um dos compiladores da GNU, o GNU C Compiler (GCC).
-</p>
+      <p>
+        O GNU Compiler Collection é uma coleção de compiladores do tipo <i>Ahead-of-time</i> do projeto GNU criada em
+        1987. Essa coleção possui compiladores para linguagens como: ADA, C++, Fortran, Java, Objective-C e Pascal. Além
+        disso, possui compatibilidade com muitas arquiteturas, como ARM, x86 e AMD64 (x86-64), sendo considerado
+        favorito pelos desenvolvedores. Essa ferramenta vem como padrão na maioria dos sistemas Linux e é o compilador
+        principal para o MAC OS, mas também pode ser utilizado em sistemas Windows partir de ferramentas como MSYS2 e
+        MinGW. A grande parte desses compiladores, atualmente, está escrita em C, inclusive o próprio compilador C, num
+        processo chamado de <strong><i>bootstrapping</i></strong>. O foco será em um dos compiladores da GNU, o GNU C
+        Compiler (GCC).
+      </p>
 
-<ul>
-	<li><strong>Pré-processamento:</strong> Tarefa realizada pelo pré-processador que trata de todas as linhas que começam com <code class="hljs-meta c sembg">#</code>. Duas diretivas principais são tratadas nessa fase: <code class="hljs- c sembg">#include</code> e <code class="hljs- c sembg">#define</code>. A primeira diretiva envolve a inclusão de arquivos de cabeçalho (.h) que possuem as definições e declarações de protótipos, enquanto que a segunda diretiva é utilizada para definir macros e constantes simbólicas. Ainda existem outras diretivas, como a diretiva para compilação condicional <code class="hljs- c sembg">#if...#else...#endif</code> e <code class="hljs- c sembg">#error</code>, que pausa a compilação imprimindo uma mensagem de erro;</li>
-	<li><strong>Compilação:</strong> Nessa fase que efetivamente começa, onde o código gerado é traduzido para assembly. A compilação do código feita em três níveis:
-	<ol>
-		<li><strong>Análise léxica:</strong> O compilador analisa os símbolos verificando se os nomes das variáveis, funções e palavras reservadas foram escritas corretamente, além de retirar os espaços em branco e comentários. Variáveis não definidas, nome de variável escrito de maneira incorreta, operadores inexistentes, strings e valores mal formados geram erros de compilação nesse nível;</li>
-		<li><strong>Análise sintática:</strong> Essa análise é feita em cima das expressões do C, que devem seguir a gramática formal. Uma expressão é formada por um ou mais símbolos, e, passada a fase anterior, todos esses símbolos foram escritos corretamente, porém podem estar organizados da maneira incorreta dentro de uma expressão em C. Como, por exemplo, utilizar operadores binários com um dos símbolos faltando ou abrir um parêntese/colchete/chave mas não fechar;</li>
-		<li><strong>Análise semântica:</strong> No nível final, o compilador analisa o sentido das expressões a partir de uma validação lógica. Uma das tarefas dessa análise consiste na checagem da consistência dos tipos nas expressões, regras de visibilidade e de contexto;</li>
-		<li><strong>Otimização de alto nível:</strong> Aqui, o compilador buscará otimizar o código fonte, geralmente, excluindo código redundante ou desnecessário.</li>
-	</ol></li>
-	<li><strong>Montagem:</strong> tradução de cada linha de Assembly em código de máquina;</li>
-	<li><strong>Ligação:</strong> A fase final da compilação ocorre na ligação, onde as bibliotecas e todo o código necessário para a execução do programa serão carregados e incluídos ao código objeto gerado na fase anterior.</li>
-</ul>
+      <ul>
+        <li><strong>Pré-processamento:</strong> Tarefa realizada pelo pré-processador que trata de todas as linhas que
+          começam com <code class="hljs-meta c sembg">#</code>. Duas diretivas principais são tratadas nessa fase: <code
+            class="hljs- c sembg">#include</code> e <code class="hljs- c sembg">#define</code>. A primeira diretiva
+          envolve a inclusão de arquivos de cabeçalho (.h) que possuem as definições e declarações de protótipos,
+          enquanto que a segunda diretiva é utilizada para definir macros e constantes simbólicas. Ainda existem outras
+          diretivas, como a diretiva para compilação condicional <code class="hljs- c sembg">#if...#else...#endif</code>
+          e <code class="hljs- c sembg">#error</code>, que pausa a compilação imprimindo uma mensagem de erro;</li>
+        <li><strong>Compilação:</strong> Nessa fase que efetivamente começa, onde o código gerado é traduzido para
+          assembly. A compilação do código feita em três níveis:
+          <ol>
+            <li><strong>Análise léxica:</strong> O compilador analisa os símbolos verificando se os nomes das variáveis,
+              funções e palavras reservadas foram escritas corretamente, além de retirar os espaços em branco e
+              comentários. Variáveis não definidas, nome de variável escrito de maneira incorreta, operadores
+              inexistentes, strings e valores mal formados geram erros de compilação nesse nível;</li>
+            <li><strong>Análise sintática:</strong> Essa análise é feita em cima das expressões do C, que devem seguir a
+              gramática formal. Uma expressão é formada por um ou mais símbolos, e, passada a fase anterior, todos esses
+              símbolos foram escritos corretamente, porém podem estar organizados da maneira incorreta dentro de uma
+              expressão em C. Como, por exemplo, utilizar operadores binários com um dos símbolos faltando ou abrir um
+              parêntese/colchete/chave mas não fechar;</li>
+            <li><strong>Análise semântica:</strong> No nível final, o compilador analisa o sentido das expressões a
+              partir de uma validação lógica. Uma das tarefas dessa análise consiste na checagem da consistência dos
+              tipos nas expressões, regras de visibilidade e de contexto;</li>
+            <li><strong>Otimização de alto nível:</strong> Aqui, o compilador buscará otimizar o código fonte,
+              geralmente, excluindo código redundante ou desnecessário.</li>
+          </ol>
+        </li>
+        <li><strong>Montagem:</strong> tradução de cada linha de Assembly em código de máquina;</li>
+        <li><strong>Ligação:</strong> A fase final da compilação ocorre na ligação, onde as bibliotecas e todo o código
+          necessário para a execução do programa serão carregados e incluídos ao código objeto gerado na fase anterior.
+        </li>
+      </ul>
 
 
-<p>
-Vale ressaltar que grande parte das otimizações estão desabilitadas por padrão, sendo necessário o uso de <i>flags</i> para habilitar essas otimizações. Depois dessa introdução aos conceitos iniciais acerca da linguagem C e do GCC, os próximos capítulos discutirão as formas de utilização desse compilador e as ferramentas que ele disponibiliza.
-</p>
-</div>
-</div>
+      <p>
+        Vale ressaltar que grande parte das otimizações estão desabilitadas por padrão, sendo necessário o uso de
+        <i>flags</i> para habilitar essas otimizações. Depois dessa introdução aos conceitos iniciais acerca da
+        linguagem C e do GCC, os próximos capítulos discutirão as formas de utilização desse compilador e as ferramentas
+        que ele disponibiliza.
+      </p>
+    </div>
+  </div>
 
 </body>
+
 </html>

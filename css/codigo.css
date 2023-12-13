@@ -1,5 +1,6 @@
 code{
     font-size: 18px;
+    border-radius: 0.3em;
 }
 
 pre{
@@ -8,7 +9,7 @@ pre{
 
 /* Estilo específico para a linguagem Bash */
 code.bash {
-    color: rgb(255, 3, 255);
+    color: rgba(255, 61, 255, 0.704);
     font-weight: normal;
     background-color: black;
 }
