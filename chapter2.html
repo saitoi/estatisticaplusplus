@@ -4,6 +4,8 @@
 <head>
   <title>Capítulo 2: Compilação de Programas em C</title>
   <!-- Estilos pelo CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/codigo.css">
   <link rel="stylesheet" type="text/css" href="css/texto.css">
 
@@ -48,101 +50,107 @@
   </div>
 
   <!-- Conteúdo -->
-  <div id="chapter2">
-    <div id="content">
-      <h1>2. Compilando Programas em C</h1>
+  <div class="container">
+    <div id="chapter2">
+      <div id="content">
+        <h1>2. Compilando Programas em C</h1>
 
-      <!-- Primeira Seção -->
-      <h2 id="secao2.1">2.1. Primeiros Passos</h2>
+        <!-- Primeira Seção -->
+        <h2 id="secao2.1">2.1. Primeiros Passos</h2>
 
-      <p>
-        Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso <code
-          class="hljs- c sembg">"Hello, World!"</code>. A seguir, mostraremos como compilar esse programa em C
-        utilizando o compilador GCC:
-      </p>
+        <p>
+          Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso <code
+            class="hljs- c sembg">"Hello, World!"</code>. A seguir, mostraremos como compilar esse programa em C
+          utilizando o compilador GCC:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          helloworld.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#include&lt;stdio.h&gt;
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            helloworld.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#include&lt;stdio.h&gt;
 
 int main() {
   printf("Hello, World!");
   return 0;
 }</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        No entanto, o código-fonte ainda não pode ser entendido pelo computador, sendo necessário realizar a compilação
-        do código para gerar um arquivo executável que possa ser executado. Para isso, usamos um compilador de C, como o
-        GCC. O processo de compilação do código em C é realizado pelo compilador, que transforma o código-fonte em um
-        arquivo executável contendo as instruções que o computador deve seguir para executar o programa. Para compilar o
-        programa, é necessário informar o nome do arquivo que contém o código fonte e o nome do arquivo executável que
-        será gerado. No caso deste exemplo, o arquivo com o código fonte tem o nome <b>helloworld.c</b> e o arquivo
-        executável terá o nome <b>hello</b>. A compilação será feita pelo terminal:
-      </p>
+        <p>
+          No entanto, o código-fonte ainda não pode ser entendido pelo computador, sendo necessário realizar a
+          compilação
+          do código para gerar um arquivo executável que possa ser executado. Para isso, usamos um compilador de C, como
+          o
+          GCC. O processo de compilação do código em C é realizado pelo compilador, que transforma o código-fonte em um
+          arquivo executável contendo as instruções que o computador deve seguir para executar o programa. Para compilar
+          o
+          programa, é necessário informar o nome do arquivo que contém o código fonte e o nome do arquivo executável que
+          será gerado. No caso deste exemplo, o arquivo com o código fonte tem o nome <b>helloworld.c</b> e o arquivo
+          executável terá o nome <b>hello</b>. A compilação será feita pelo terminal:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">$ gcc helloworld.c -o hello</code></pre>
-      </figure>
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">$ gcc helloworld.c -o hello</code></pre>
+        </figure>
 
-      <p>
-        O parâmetro <code class="hljs- bash sembg">-o</code> indica que queremos criar um arquivo executável com o nome
-        <b>hello</b>, enquanto <b>helloworld.c</b> é o nome do arquivo que contém o código-fonte. Além disso, é
-        recomendável utilizar a <i>flag</i> <code class="hljs- bash sembg">-Wall</code> durante a compilação de
-        programas em C. Essa opção habilita uma checagem mais rigorosa do código-fonte e gera avisos adicionais caso
-        detecte possíveis problemas no código, como variáveis não inicializadas ou operações com ponteiros inválidos.
-        Para utilizar a <i>flag</i> <code class="hljs- bash sembg">-Wall</code>, basta incluí-la no comando de
-        compilação:
-      </p>
+        <p>
+          O parâmetro <code class="hljs- bash sembg">-o</code> indica que queremos criar um arquivo executável com o
+          nome
+          <b>hello</b>, enquanto <b>helloworld.c</b> é o nome do arquivo que contém o código-fonte. Além disso, é
+          recomendável utilizar a <i>flag</i> <code class="hljs- bash sembg">-Wall</code> durante a compilação de
+          programas em C. Essa opção habilita uma checagem mais rigorosa do código-fonte e gera avisos adicionais caso
+          detecte possíveis problemas no código, como variáveis não inicializadas ou operações com ponteiros inválidos.
+          Para utilizar a <i>flag</i> <code class="hljs- bash sembg">-Wall</code>, basta incluí-la no comando de
+          compilação:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">$ gcc -Wall helloworld.c -o hello</code></pre>
-      </figure>
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">$ gcc -Wall helloworld.c -o hello</code></pre>
+        </figure>
 
-      <p>
-        Por fim, para executar o programa, basta digitar <code class="hljs- bash sembg">./hello</code> no terminal. Esse
-        comando informa ao sistema operacional que desejamos executar o arquivo <b>hello</b> que foi gerado pela
-        compilação do programa <b>helloworld.c</b>. Se tudo ocorrer bem, o programa exibirá a mensagem <code
-          class="hljs- bash sembg">Hello, World!</code> no terminal.
-      </p>
+        <p>
+          Por fim, para executar o programa, basta digitar <code class="hljs- bash sembg">./hello</code> no terminal.
+          Esse
+          comando informa ao sistema operacional que desejamos executar o arquivo <b>hello</b> que foi gerado pela
+          compilação do programa <b>helloworld.c</b>. Se tudo ocorrer bem, o programa exibirá a mensagem <code
+            class="hljs- bash sembg">Hello, World!</code> no terminal.
+        </p>
 
-      <!-- Segunda Seção -->
-      <h2 id="secao2.2">2.2. Trabalhando com Múltiplos Arquivos</h2>
+        <!-- Segunda Seção -->
+        <h2 id="secao2.2">2.2. Trabalhando com Múltiplos Arquivos</h2>
 
-      <p>
-        Quando se está trabalhando em um projeto em C, é comum que esse seja dividido em múltiplos arquivos. Essa
-        prática permite uma melhor organização e compartimentalização do projeto, além de economizar tempo de
-        compilação. Por exemplo, digamos que queremos criar um programa que calcule o quadrado de um número. Podemos
-        dividir o projeto em dois arquivos: um arquivo <b>main.c</b>, que contém a função principal do programa, e um
-        arquivo <b>quadrado.h</b>, que contém a função que calcula o quadrado do número. Além disso, criaremos um
-        arquivo <b>quadrado.h</b>, que contém somente a declaração da função que calcula o quadrado.
-      </p>
+        <p>
+          Quando se está trabalhando em um projeto em C, é comum que esse seja dividido em múltiplos arquivos. Essa
+          prática permite uma melhor organização e compartimentalização do projeto, além de economizar tempo de
+          compilação. Por exemplo, digamos que queremos criar um programa que calcule o quadrado de um número. Podemos
+          dividir o projeto em dois arquivos: um arquivo <b>main.c</b>, que contém a função principal do programa, e um
+          arquivo <b>quadrado.h</b>, que contém a função que calcula o quadrado do número. Além disso, criaremos um
+          arquivo <b>quadrado.h</b>, que contém somente a declaração da função que calcula o quadrado.
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          main.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#include&lt;stdio.h&gt;
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            main.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#include&lt;stdio.h&gt;
 #include"quadrado.h"
 
 int main() {
@@ -152,223 +160,234 @@ int main() {
   printf("O quadrado de %d é %d\n", x, calc_quadrado(x));
   return 0;
 }</code></pre>
-      </figure>
+        </figure>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          quadrado.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">int calc_quadrado(int x) {
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            quadrado.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">int calc_quadrado(int x) {
   return x * x;
 }</code></pre>
-      </figure>
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          quadrado.h
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">int calc_quadrado(int x)</pre></code>
-      </figure>
+        </figure>
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            quadrado.h
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">int calc_quadrado(int x)</pre></code>
+        </figure>
 
-      <p>
-        É importante notar que, se incluíssemos diretamente o arquivo <b>quadrado.c</b> em <b>main.c</b>, haveriam duas
-        definições da função <code class="hljs- c sembg">int calc_quadrado(int x)</code>, uma em cada arquivo, o que
-        causaria um erro. Por isso, incluímos o arquivo de cabeçalho <b>quadrado.h</b>, que contém apenas a declaração
-        da função, sem sua definição. Podemos compilar o programa de uma vez só, escrevendo no terminal do Linux:
-      </p>
+        <p>
+          É importante notar que, se incluíssemos diretamente o arquivo <b>quadrado.c</b> em <b>main.c</b>, haveriam
+          duas
+          definições da função <code class="hljs- c sembg">int calc_quadrado(int x)</code>, uma em cada arquivo, o que
+          causaria um erro. Por isso, incluímos o arquivo de cabeçalho <b>quadrado.h</b>, que contém apenas a declaração
+          da função, sem sua definição. Podemos compilar o programa de uma vez só, escrevendo no terminal do Linux:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">$ gcc -Wall main.c quadrado.c -o programa</code></pre>
-      </figure>
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">$ gcc -Wall main.c quadrado.c -o programa</code></pre>
+        </figure>
 
-      <p>
-        E roda o programa com:
-      </p>
+        <p>
+          E roda o programa com:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">$ ./programa</code></pre>
-      </figure>
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">$ ./programa</code></pre>
+        </figure>
 
-      <p>
-        Para evitar a necessidade de compilar o programa inteiro sempre que houver uma alteração, podemos primeiro
-        compilar cada arquivo em um arquivo objeto. Isso pode ser feito através dos seguintes comandos:
-      </p>
+        <p>
+          Para evitar a necessidade de compilar o programa inteiro sempre que houver uma alteração, podemos primeiro
+          compilar cada arquivo em um arquivo objeto. Isso pode ser feito através dos seguintes comandos:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">$ gcc -Wall main.c -c
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">$ gcc -Wall main.c -c
 $ gcc -Wall quadrado.c -c</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        Isso irá gerar dois arquivos objetos: <b>main.o</b> e <b>quadrado.o</b>. Agora, podemos ligar os dois arquivos
-        em um executável, sem precisarmos compilar o programa inteiro novamente:
-      </p>
+        <p>
+          Isso irá gerar dois arquivos objetos: <b>main.o</b> e <b>quadrado.o</b>. Agora, podemos ligar os dois arquivos
+          em um executável, sem precisarmos compilar o programa inteiro novamente:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">$ gcc main.o quadrado.o -o programa</code></pre>
-      </figure>
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">$ gcc main.o quadrado.o -o programa</code></pre>
+        </figure>
 
-      <p>
-        Com isso, podemos fazer alterações no arquivo <b>quadrado.c</b>, por exemplo, e compilar apenas esse arquivo,
-        ligando-o depois aos demais arquivos já pré-compilados, sem a necessidade de recompilar o arquivo <b>main.c</b>.
-      </p>
+        <p>
+          Com isso, podemos fazer alterações no arquivo <b>quadrado.c</b>, por exemplo, e compilar apenas esse arquivo,
+          ligando-o depois aos demais arquivos já pré-compilados, sem a necessidade de recompilar o arquivo
+          <b>main.c</b>.
+        </p>
 
 
-      <!-- Terceira Seção -->
-      <h2 id="secao2.3">2.3. Utilizando Makefiles</h2>
+        <!-- Terceira Seção -->
+        <h2 id="secao2.3">2.3. Utilizando Makefiles</h2>
 
-      <p>
-        Ao trabalhar em projetos grandes com muitos arquivos, é difícil gerenciar e entender as dependências entre esses
-        arquivos. É comum que apenas alguns arquivos precisem ser recompilados após alterações, e recompilar todos os
-        arquivos novamente pode ser demorado e desnecessário. Para lidar com esses problemas, é possível usar o <code
-          class="hljs- bash sembg">make</code> e o <b>Makefile</b>. O <code class="hljs- bash sembg">make</code> é uma
-        ferramenta que automatiza a compilação de programas a partir de arquivos-fonte. Ele trabalha a partir de um
-        arquivo chamado <b>Makefile</b>, que especifica como os arquivos-fonte devem ser compilados em arquivos objeto e
-        como esses objetos devem ser ligados para criar o programa final.
-      </p>
+        <p>
+          Ao trabalhar em projetos grandes com muitos arquivos, é difícil gerenciar e entender as dependências entre
+          esses
+          arquivos. É comum que apenas alguns arquivos precisem ser recompilados após alterações, e recompilar todos os
+          arquivos novamente pode ser demorado e desnecessário. Para lidar com esses problemas, é possível usar o <code
+            class="hljs- bash sembg">make</code> e o <b>Makefile</b>. O <code class="hljs- bash sembg">make</code> é uma
+          ferramenta que automatiza a compilação de programas a partir de arquivos-fonte. Ele trabalha a partir de um
+          arquivo chamado <b>Makefile</b>, que especifica como os arquivos-fonte devem ser compilados em arquivos objeto
+          e
+          como esses objetos devem ser ligados para criar o programa final.
+        </p>
 
-      <p>
-        O <b>Makefile</b> é composto por regras. Cada regra especifica um alvo e suas dependências, ou pré-requisitos,
-        seguido por comandos para criar o alvo. Quando um alvo é requisitado, o <code
-          class="hljs- bash sembg">make</code> verifica se ele já existe e se é mais antigo que seus pré-requisitos. Se
-        o alvo não existe ou é mais antigo que seus pré-requisitos, o <code class="hljs- bash sembg">make</code> executa
-        a regra dos pré-requisitos primeiro, em ordem de dependência, e depois a regra do alvo para criar o alvo. Se o
-        alvo já existe e não é mais antigo que seus pré-requisitos, o <code class="hljs- bash sembg">make</code> não
-        executa a regra. A estrutura básica de um <b>Makefile</b> é a seguinte:
-      </p>
+        <p>
+          O <b>Makefile</b> é composto por regras. Cada regra especifica um alvo e suas dependências, ou pré-requisitos,
+          seguido por comandos para criar o alvo. Quando um alvo é requisitado, o <code
+            class="hljs- bash sembg">make</code> verifica se ele já existe e se é mais antigo que seus pré-requisitos.
+          Se
+          o alvo não existe ou é mais antigo que seus pré-requisitos, o <code class="hljs- bash sembg">make</code>
+          executa
+          a regra dos pré-requisitos primeiro, em ordem de dependência, e depois a regra do alvo para criar o alvo. Se o
+          alvo já existe e não é mais antigo que seus pré-requisitos, o <code class="hljs- bash sembg">make</code> não
+          executa a regra. A estrutura básica de um <b>Makefile</b> é a seguinte:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Makefile
-        </span>
-      </p>
-      <figure>
-        <pre><code class="makefile">alvo: dependencia
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Makefile
+          </span>
+        </p>
+        <figure>
+          <pre><code class="makefile">alvo: dependencia
   comando
 
 dependencia:
   comando</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        O alvo é o nome do arquivo que queremos criar ou atualizar, e a dependência é o nome do arquivo ou arquivos que
-        precisam estar atualizados antes de criarmos o alvo. O comando é uma linha de código executada na linha de
-        comando que compila os arquivos. Segue um exemplo abaixo:
-      </p>
+        <p>
+          O alvo é o nome do arquivo que queremos criar ou atualizar, e a dependência é o nome do arquivo ou arquivos
+          que
+          precisam estar atualizados antes de criarmos o alvo. O comando é uma linha de código executada na linha de
+          comando que compila os arquivos. Segue um exemplo abaixo:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Makefile
-        </span>
-      </p>
-      <figure>
-        <pre><code class="makefile">saudacao:
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Makefile
+          </span>
+        </p>
+        <figure>
+          <pre><code class="makefile">saudacao:
 	echo "Ola, mundo!"</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        Se o arquivo <b>saudacao</b> não existe, o comando <code class="hljs- makefile sembg">echo "Olá, mundo!"</code>
-        será executado. Caso contrário, nada será feito. Mas se quisermos executar novamente o comando, podemos
-        simplesmente chamar <code class="hljs- bash sembg">make saudacao</code> na linha de comando. Mais em cima,
-        escrevemos que o comando deve criar o arquivo alvo. No entanto, o comando do arquivo <b>saudacao</b> somente
-        escreve uma frase no terminal. Assim, como nenhum arquivo será criado, toda vez que <code
-          class="hljs- bash sembg">make</code> for chamado, o mesmo comando será executado. Agora, vejamos um exemplo
-        mais complexo:
-      </p>
+        <p>
+          Se o arquivo <b>saudacao</b> não existe, o comando <code
+            class="hljs- makefile sembg">echo "Olá, mundo!"</code>
+          será executado. Caso contrário, nada será feito. Mas se quisermos executar novamente o comando, podemos
+          simplesmente chamar <code class="hljs- bash sembg">make saudacao</code> na linha de comando. Mais em cima,
+          escrevemos que o comando deve criar o arquivo alvo. No entanto, o comando do arquivo <b>saudacao</b> somente
+          escreve uma frase no terminal. Assim, como nenhum arquivo será criado, toda vez que <code
+            class="hljs- bash sembg">make</code> for chamado, o mesmo comando será executado. Agora, vejamos um exemplo
+          mais complexo:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Makefile
-        </span>
-      </p>
-      <figure>
-        <pre><code class="makefile">hello: hello.o
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Makefile
+          </span>
+        </p>
+        <figure>
+          <pre><code class="makefile">hello: hello.o
   gcc hello.o -o hello
 
 hello.o: hello.c
   gcc -Wall hello.c -c</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        O arquivo <b>hello.c</b> possui o seguinte código:
-      </p>
+        <p>
+          O arquivo <b>hello.c</b> possui o seguinte código:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          hello.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#include &lt;stdio.h&gt;
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            hello.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#include &lt;stdio.h&gt;
 
 int main()
 {
   printf("Hello, World!\n");
   return 0;
 }</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        Nesse exemplo, o objetivo é criar o arquivo executável <b>hello</b>. Ele depende do arquivo objeto
-        <b>hello.o</b>, que por sua vez depende do arquivo fonte <b>hello.c</b>. Quando chamamos <code
-          class="hljs- bash sembg">make</code> na linha de comando, o <b>Makefile</b> verificará o arquivo <b>hello</b>
-        para ver se ele precisa ser recompilado. Se ele não existir ou for mais antigo que <b>hello.o</b>, o <code
-          class="hljs- bash sembg">make</code> executará o comando <code
-          class="hljs- bash sembg">gcc hello.o -o hello</code>. Antes de executar esse comando, o <code
-          class="hljs- bash sembg">make</code> verificará o arquivo <b>hello.o</b> para ver se ele precisa ser
-        recompilado. Se ele não existir ou for mais antigo que <b>hello.c</b>, o <code
-          class="hljs- bash sembg">make</code> executará o comando <code
-          class="hljs- bash sembg">gcc -Wall hello.c -c</code> para gerar o objeto <b>hello.o</b>. Portanto, o
-        passo-a-passo seguido pelo <code class="hljs- bash sembg">make</code> é:
-      </p>
+        <p>
+          Nesse exemplo, o objetivo é criar o arquivo executável <b>hello</b>. Ele depende do arquivo objeto
+          <b>hello.o</b>, que por sua vez depende do arquivo fonte <b>hello.c</b>. Quando chamamos <code
+            class="hljs- bash sembg">make</code> na linha de comando, o <b>Makefile</b> verificará o arquivo
+          <b>hello</b>
+          para ver se ele precisa ser recompilado. Se ele não existir ou for mais antigo que <b>hello.o</b>, o <code
+            class="hljs- bash sembg">make</code> executará o comando <code
+            class="hljs- bash sembg">gcc hello.o -o hello</code>. Antes de executar esse comando, o <code
+            class="hljs- bash sembg">make</code> verificará o arquivo <b>hello.o</b> para ver se ele precisa ser
+          recompilado. Se ele não existir ou for mais antigo que <b>hello.c</b>, o <code
+            class="hljs- bash sembg">make</code> executará o comando <code
+            class="hljs- bash sembg">gcc -Wall hello.c -c</code> para gerar o objeto <b>hello.o</b>. Portanto, o
+          passo-a-passo seguido pelo <code class="hljs- bash sembg">make</code> é:
+        </p>
 
-      <ol>
-        <li>Verificar se <b>hello</b> precisa ser recompilado.</li>
-        <li>Verificar se <b>hello.o</b> precisa ser recompilado.</li>
-        <li>Executar o comando <code class="hljs- bash sembg">gcc -Wall hello.c -c</code> se necessário.</li>
-        <li>Executar o comando <code class="hljs- bash sembg">gcc hello.o -o hello</code> para gerar o executável.</li>
-      </ol>
+        <ol>
+          <li>Verificar se <b>hello</b> precisa ser recompilado.</li>
+          <li>Verificar se <b>hello.o</b> precisa ser recompilado.</li>
+          <li>Executar o comando <code class="hljs- bash sembg">gcc -Wall hello.c -c</code> se necessário.</li>
+          <li>Executar o comando <code class="hljs- bash sembg">gcc hello.o -o hello</code> para gerar o executável.
+          </li>
+        </ol>
 
-      <p>
-        Ao usar um <b>Makefile</b>, podemos garantir que apenas os arquivos que precisam ser recompilados serão
-        atualizados, economizando tempo e esforço. Além disso, a estrutura do <b>Makefile</b> ajuda a gerenciar as
-        dependências de forma mais clara e organizada.
-      </p>
-      <!-- Escrever sobre o make clean -->
+        <p>
+          Ao usar um <b>Makefile</b>, podemos garantir que apenas os arquivos que precisam ser recompilados serão
+          atualizados, economizando tempo e esforço. Além disso, a estrutura do <b>Makefile</b> ajuda a gerenciar as
+          dependências de forma mais clara e organizada.
+        </p>
+        <!-- Escrever sobre o make clean -->
 
+      </div>
     </div>
   </div>
 </body>

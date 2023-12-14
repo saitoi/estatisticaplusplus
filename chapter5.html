@@ -4,6 +4,8 @@
 <head>
   <title>Capítulo 5: Componentes do Compilador</title>
   <!-- Estilos pelo CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/codigo.css">
   <link rel="stylesheet" type="text/css" href="css/texto.css">
 
@@ -42,47 +44,52 @@
   </div>
 
   <!-- Conteúdo -->
-  <div id="chapter5">
-    <div id="content">
-      <h1>5. Componentes do Compilador</h1>
+  <div class="container">
+    <div id="chapter5">
+      <div id="content">
+        <h1>5. Componentes do Compilador</h1>
 
-      <!-- Primeira Seção -->
-      <h2 id="secao5.1">5.1. Pré-processador</h2>
+        <!-- Primeira Seção -->
+        <h2 id="secao5.1">5.1. Pré-processador</h2>
 
-      <p>
-        Como dito no capítulo inicial, pré-processador é o componente do GCC responsável por processar e manipular o
-        código-fonte antes da compilação começar. Ele lê o código-fonte e realiza um conjunto de operações, incluindo
-        substituição de macros, inclusão de arquivos e compilação condicional. Essas operações são definidas por um
-        conjunto de diretivas, que são comandos especiais com o símbolo <code class="hljs-meta c sembg">#</code> em seu
-        início.
-      </p>
+        <p>
+          Como dito no capítulo inicial, pré-processador é o componente do GCC responsável por processar e manipular o
+          código-fonte antes da compilação começar. Ele lê o código-fonte e realiza um conjunto de operações, incluindo
+          substituição de macros, inclusão de arquivos e compilação condicional. Essas operações são definidas por um
+          conjunto de diretivas, que são comandos especiais com o símbolo <code class="hljs-meta c sembg">#</code> em
+          seu
+          início.
+        </p>
 
-      <h3 id="subsecao5.1.1">5.1.1. Inclusão de Arquivos</h3>
+        <h3 id="subsecao5.1.1">5.1.1. Inclusão de Arquivos</h3>
 
-      <p>
-        A diretiva de pré-processamento <code class="hljs- c sembg">#include</code> é utilizada para incluir ao código o
-        conteúdo de um arquivo especificado. Existem duas notações: é possível incluir um arquivo utilizando <code
-          class="hljs- c sembg">#include&lt;arquivo&gt;</code> ou<code class="hljs- c sembg">#include"arquivo"</code>.
-        No primeiro caso, o pré-processador buscará o arquivo em algum diretório do sistema (geralmente o /usr/include,
-        em um sistema Unix) e, no segundo caso, o arquivo será buscado no diretório onde se localiza o código.
-      </p>
+        <p>
+          A diretiva de pré-processamento <code class="hljs- c sembg">#include</code> é utilizada para incluir ao código
+          o
+          conteúdo de um arquivo especificado. Existem duas notações: é possível incluir um arquivo utilizando <code
+            class="hljs- c sembg">#include&lt;arquivo&gt;</code> ou<code class="hljs- c sembg">#include"arquivo"</code>.
+          No primeiro caso, o pré-processador buscará o arquivo em algum diretório do sistema (geralmente o
+          /usr/include,
+          em um sistema Unix) e, no segundo caso, o arquivo será buscado no diretório onde se localiza o código.
+        </p>
 
-      <p>
-        Geralmente, os arquivos incluídos possuem a extensão .h (de <i>header</i>), que são arquivos cabeçalhos contendo
-        definições de macros e declarações de protótipos de funções padrões do C. Porém, é possível fazer arquivos de
-        cabeçalho personalizados e adicionar outros programas em C contendo outros <code
-          class="hljs- c sembg">#include</code>, que serão tratados de maneira recursiva pelo pré-processador. Abaixo
-        segue um exemplo:
-      </p>
+        <p>
+          Geralmente, os arquivos incluídos possuem a extensão .h (de <i>header</i>), que são arquivos cabeçalhos
+          contendo
+          definições de macros e declarações de protótipos de funções padrões do C. Porém, é possível fazer arquivos de
+          cabeçalho personalizados e adicionar outros programas em C contendo outros <code
+            class="hljs- c sembg">#include</code>, que serão tratados de maneira recursiva pelo pré-processador. Abaixo
+          segue um exemplo:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          main.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#include "preproc.c"
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            main.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#include "preproc.c"
 
 int main(){
   say_hello();
@@ -93,16 +100,16 @@ int main(){
   printf("O valor da raiz quadrada desse número é: %lf\n", raiz);
   return 0;
 }</code></pre>
-      </figure>
+        </figure>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          preproc.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#pragma once
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            preproc.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#pragma once
 #include &lt;stdio.h&gt;
 #include &lt;math.h&gt;
 
@@ -115,38 +122,41 @@ void say_hello(){
 double raiz_quadrada(double x){
   return sqrt(x);
 }</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        Ao compilar o programa <b>main.c</b>, o pré-processador acoplará à esse arquivo o código que está no arquivo
-        <b>preproc.c</b>. Note que só foi preciso utilizar apenas o <code
-          class="hljs- c sembg">#include"preproc.c"</code> no arquivo principal, pois esse arquivo já possui as outras
-        diretivas necessárias para a execução do código. Devido o tratamento recursivo do compilador, pode ser que
-        ocorra múltiplos <code class="hljs- c sembg">#include</code> acidentais, que podem ser resolvidos com a diretiva
-        <code class="hljs- c sembg">#pragma once</code>. Essa diretiva indica que o respectivo arquivo deve ser lido
-        apenas uma vez durante o processo de compilação. Com o comando <code
-          class="hljs- bash sembg">gcc main.c -E -o main_preproc.c</code> é possível gerar um arquivo com o código fonte
-        do C pré-processado. No final desse arquivo gerado, está o código dos dois arquivos <b>preproc.c</b> e
-        <b>main.c</b>.
-      </p>
+        <p>
+          Ao compilar o programa <b>main.c</b>, o pré-processador acoplará à esse arquivo o código que está no arquivo
+          <b>preproc.c</b>. Note que só foi preciso utilizar apenas o <code
+            class="hljs- c sembg">#include"preproc.c"</code> no arquivo principal, pois esse arquivo já possui as outras
+          diretivas necessárias para a execução do código. Devido o tratamento recursivo do compilador, pode ser que
+          ocorra múltiplos <code class="hljs- c sembg">#include</code> acidentais, que podem ser resolvidos com a
+          diretiva
+          <code class="hljs- c sembg">#pragma once</code>. Essa diretiva indica que o respectivo arquivo deve ser lido
+          apenas uma vez durante o processo de compilação. Com o comando <code
+            class="hljs- bash sembg">gcc main.c -E -o main_preproc.c</code> é possível gerar um arquivo com o código
+          fonte
+          do C pré-processado. No final desse arquivo gerado, está o código dos dois arquivos <b>preproc.c</b> e
+          <b>main.c</b>.
+        </p>
 
-      <h3 id="subsecao5.1.2">5.1.2. Definição de Macros</h3>
+        <h3 id="subsecao5.1.2">5.1.2. Definição de Macros</h3>
 
-      <p>
-        Uma macro é um pedaço de código ao qual é dado um nome e é definida por meio do uso da diretiva <code
-          class="hljs- c sembg">#define</code>. Essa diretiva permite que você atribua um nome à um valor, uma expressão
-        ou até mesmo a um bloco de código, tornando mais fácil e conveniente usar esse nome ao invés de repetir o
-        código. Abaixo está um exemplo de código que utiliza macros:
-      </p>
+        <p>
+          Uma macro é um pedaço de código ao qual é dado um nome e é definida por meio do uso da diretiva <code
+            class="hljs- c sembg">#define</code>. Essa diretiva permite que você atribua um nome à um valor, uma
+          expressão
+          ou até mesmo a um bloco de código, tornando mais fácil e conveniente usar esse nome ao invés de repetir o
+          código. Abaixo está um exemplo de código que utiliza macros:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          main.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#include &lt;stdio.h&gt;
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            main.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#include &lt;stdio.h&gt;
 
 #define SQUARE(x) ((x) * (x))
 #define NUM 10
@@ -158,47 +168,50 @@ int main()
   return 0;
 }</code></pre>
 
-      </figure>
+        </figure>
 
-      <p>
-        O pré-processador substitui as ocorrências das macros pelo seu conteúdo correspondente. Porém, não foi
-        especificado o tipo do retorno da função <code class="hljs-meta c sembg">SQUARE(x)</code> e nem o tipo do seu
-        argumento. Isso acontece porque as macros não possuem escopo ou tipo explícito, são apenas substituições simples
-        que podem ser poderosas, mas que precisam ser usadas com cuidado. Nesse caso, a macro <code
-          class="hljs-meta c sembg">NUM</code> é interpretada como um inteiro em tempo de compilação, pois 10 é um
-        inteiro. Para a macro <code class="hljs-meta c sembg">SQUARE</code>, todos os argumentos são tratados em tempo
-        de compilação e os tipos aceitos para a operação de multiplicação serão compilados. Caso a multiplicação não
-        seja definido para um tipo (ex.: strings), o pré-processador retorna um erro. Quando compilarmos e executarmos o
-        arquivo acima, será exibida a mensagem:
-      </p>
+        <p>
+          O pré-processador substitui as ocorrências das macros pelo seu conteúdo correspondente. Porém, não foi
+          especificado o tipo do retorno da função <code class="hljs-meta c sembg">SQUARE(x)</code> e nem o tipo do seu
+          argumento. Isso acontece porque as macros não possuem escopo ou tipo explícito, são apenas substituições
+          simples
+          que podem ser poderosas, mas que precisam ser usadas com cuidado. Nesse caso, a macro <code
+            class="hljs-meta c sembg">NUM</code> é interpretada como um inteiro em tempo de compilação, pois 10 é um
+          inteiro. Para a macro <code class="hljs-meta c sembg">SQUARE</code>, todos os argumentos são tratados em tempo
+          de compilação e os tipos aceitos para a operação de multiplicação serão compilados. Caso a multiplicação não
+          seja definido para um tipo (ex.: strings), o pré-processador retorna um erro. Quando compilarmos e executarmos
+          o
+          arquivo acima, será exibida a mensagem:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">The value of NUM is: 10
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">The value of NUM is: 10
 The value of SQUARE(NUM) is: 100</code></pre>
-      </figure>
+        </figure>
 
-      <h3 id="subsecao5.1.3">5.1.3. Compilação Condicional</h3>
+        <h3 id="subsecao5.1.3">5.1.3. Compilação Condicional</h3>
 
-      <p>
-        Podemos querer executar uma parte do programa somente quando certa macro estiver definida, denominada compilação
-        condicional. Para isso, delimitamos tal seção do código com as diretivas <code
-          class="hljs- c sembg">#ifdef</code> e <code class="hljs- c sembg">#endif</code>:
-      </p>
+        <p>
+          Podemos querer executar uma parte do programa somente quando certa macro estiver definida, denominada
+          compilação
+          condicional. Para isso, delimitamos tal seção do código com as diretivas <code
+            class="hljs- c sembg">#ifdef</code> e <code class="hljs- c sembg">#endif</code>:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          main.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#include &lt;stdio.h&gt;
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            main.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#include &lt;stdio.h&gt;
 
 int main()
 {
@@ -209,47 +222,50 @@ int main()
 #endif
   return 0;
 }</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        Nesse caso, como a macro <code class="hljs-meta c sembg">NUM</code> não está definida no código fonte, a
-        mensagem de erro <code class="hljs- bash sembg">A macro NUM não foi definida!</code> será exibida e a compilação
-        se encerrará. No entanto, podemos definir a macro <code class="hljs-meta c sembg">NUM</code> quando compilarmos
-        o programa. Para isso, usamos a opção <code class="hljs- bash sembg">-DNAME</code> para definirmos a macro com
-        nome <code class="hljs-meta c sembg">NAME</code> e, se quisermos designar um valor a ela, escrevemos <code
-          class="hljs- bash sembg">-DNAME=valor</code>:
-      </p>
+        <p>
+          Nesse caso, como a macro <code class="hljs-meta c sembg">NUM</code> não está definida no código fonte, a
+          mensagem de erro <code class="hljs- bash sembg">A macro NUM não foi definida!</code> será exibida e a
+          compilação
+          se encerrará. No entanto, podemos definir a macro <code class="hljs-meta c sembg">NUM</code> quando
+          compilarmos
+          o programa. Para isso, usamos a opção <code class="hljs- bash sembg">-DNAME</code> para definirmos a macro com
+          nome <code class="hljs-meta c sembg">NAME</code> e, se quisermos designar um valor a ela, escrevemos <code
+            class="hljs- bash sembg">-DNAME=valor</code>:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">$ gcc -Wall -DNUM=5 main.c -o main
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">$ gcc -Wall -DNUM=5 main.c -o main
 $ ./main
 The value of NUM is: 5</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        As definições de macros na linha de comando (ex.: <code
-          class="hljs- bash sembg">gcc -Wall -DNUM=5 programa.c -o programa</code>) possuem maior ordem de precedência,
-        isto é, ocorrem antes das definições no arquivo com o código fonte. Um código similar pode ser feito com <code
-          class="hljs- c sembg">#ifndef</code>, em que a diretiva <code class="hljs- c sembg">#undef</code> exclui as
-        definições de uma macro anteriormente definida. Porém, com a diferença de que a definição na linha de comando
-        não será mais considerada, pois é feita antes da diretiva <code class="hljs- c sembg">#undef</code>. Abaixo
-        segue esse código:
-      </p>
+        <p>
+          As definições de macros na linha de comando (ex.: <code
+            class="hljs- bash sembg">gcc -Wall -DNUM=5 programa.c -o programa</code>) possuem maior ordem de
+          precedência,
+          isto é, ocorrem antes das definições no arquivo com o código fonte. Um código similar pode ser feito com <code
+            class="hljs- c sembg">#ifndef</code>, em que a diretiva <code class="hljs- c sembg">#undef</code> exclui as
+          definições de uma macro anteriormente definida. Porém, com a diferença de que a definição na linha de comando
+          não será mais considerada, pois é feita antes da diretiva <code class="hljs- c sembg">#undef</code>. Abaixo
+          segue esse código:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          main.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#include &lt;stdio.h&gt;
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            main.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#include &lt;stdio.h&gt;
 #undef NUM
 
 int main(){
@@ -260,23 +276,25 @@ int main(){
 #endif
     return 0;
 }</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        Também é possível utilizar a diretiva <code class="hljs- c sembg">#elif</code> em conjunto com <code
-          class="hljs- c sembg">#ifdef</code> para simplificar o código. Abaixo segue um exemplo em que somente a macro
-        <code class="hljs-meta c sembg">Z</code> foi definida, significando que a linha de código que estará presente no
-        executável será aquela que imprime o valor da macro <code class="hljs-meta c sembg">Z</code>:
-      </p>
+        <p>
+          Também é possível utilizar a diretiva <code class="hljs- c sembg">#elif</code> em conjunto com <code
+            class="hljs- c sembg">#ifdef</code> para simplificar o código. Abaixo segue um exemplo em que somente a
+          macro
+          <code class="hljs-meta c sembg">Z</code> foi definida, significando que a linha de código que estará presente
+          no
+          executável será aquela que imprime o valor da macro <code class="hljs-meta c sembg">Z</code>:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          main.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#include &lt;stdio.h&gt;
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            main.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#include &lt;stdio.h&gt;
 //#define X 'x'
 //#define Y 'y'
 #define Z 'z'
@@ -290,64 +308,67 @@ int main(){
 #endif
   return 0;
 }</code></pre>
-      </figure>
+        </figure>
 
-      <h3 id="subsecao5.1.4">5.1.4. Fornecendo Instruções</h3>
+        <h3 id="subsecao5.1.4">5.1.4. Fornecendo Instruções</h3>
 
-      <p>
-        A diretiva <code class="hljs- c sembg">#pragma</code> é utilizada para fornecer instruções ao compilador. Essa
-        diretiva é muito dependente do compilador que está sendo utilizado pois não é do padrão C, podendo sofrer certas
-        mudanças em seu funcionamento de acordo com a plataforma em que está sendo executada. Ela é principalmente
-        utilizada para indicar como o compilador deve agir em certos casos. Por exemplo, pode ser utilizada para forçar
-        que uma função seja <i>inline</i>, como segue no trecho de código abaixo:
-      </p>
+        <p>
+          A diretiva <code class="hljs- c sembg">#pragma</code> é utilizada para fornecer instruções ao compilador. Essa
+          diretiva é muito dependente do compilador que está sendo utilizado pois não é do padrão C, podendo sofrer
+          certas
+          mudanças em seu funcionamento de acordo com a plataforma em que está sendo executada. Ela é principalmente
+          utilizada para indicar como o compilador deve agir em certos casos. Por exemplo, pode ser utilizada para
+          forçar
+          que uma função seja <i>inline</i>, como segue no trecho de código abaixo:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Exemplo
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#pragma inline
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Exemplo
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#pragma inline
 int add(int a, int b){
   return a + b;
 }</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        Sendo assim, a função <code class="hljs- c sembg">int add()</code> não terá uma chamada de rotina pois será
-        substituída diretamente na sua chamada. Além disso, é possível determinar quais trechos do código serão
-        otimizados ou não. Segue abaixo o trecho de código:
-      </p>
+        <p>
+          Sendo assim, a função <code class="hljs- c sembg">int add()</code> não terá uma chamada de rotina pois será
+          substituída diretamente na sua chamada. Além disso, é possível determinar quais trechos do código serão
+          otimizados ou não. Segue abaixo o trecho de código:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Exemplo
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#pragma optimize("", off) // Desliga a otimização
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Exemplo
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#pragma optimize("", off) // Desliga a otimização
 int add(int a, int b){
   return a + b;
 }
 #pragma optimize("", on) // Liga a otimização novamente</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        Por fim, a diretiva <code class="hljs- c sembg">#pragma</code> pode ser utilizada para determinar o alinhamento
-        de estruturas de dados em memória. O código abaixo mostra um exemplo:
-      </p>
+        <p>
+          Por fim, a diretiva <code class="hljs- c sembg">#pragma</code> pode ser utilizada para determinar o
+          alinhamento
+          de estruturas de dados em memória. O código abaixo mostra um exemplo:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          main.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#include &lt;stdio.h&gt;
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            main.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#include &lt;stdio.h&gt;
 
 struct{
   char c; // 1 byte
@@ -367,123 +388,128 @@ int main(){
   printf("The size of struct 2 is: %ld\n", sizeof(s2));
   return 0;
 }</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        O alinhamento de 1 byte é o mínimo possível e otimiza o espaço de armazenamento em troca de uma possível
-        ineficiência no acesso das variáveis da estrutura. As arquiteturas modernas possuem recursos de acesso
-        otimizado, de acordo com o alinhamento. Sendo assim, o compilador busca alocar as variáveis em endereços de
-        memória múltiplos do tamanho das variáveis envolvidas, por padrão. Abaixo está a execução do código anterior:
-      </p>
+        <p>
+          O alinhamento de 1 byte é o mínimo possível e otimiza o espaço de armazenamento em troca de uma possível
+          ineficiência no acesso das variáveis da estrutura. As arquiteturas modernas possuem recursos de acesso
+          otimizado, de acordo com o alinhamento. Sendo assim, o compilador busca alocar as variáveis em endereços de
+          memória múltiplos do tamanho das variáveis envolvidas, por padrão. Abaixo está a execução do código anterior:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">$ gcc -Wall main.c -o main
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">$ gcc -Wall main.c -o main
 $ ./main
 The size of struct 1 is: 16
 The size of struct 2 is: 13</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        É possível ver que a primeira estrutura consome 3 bytes a mais, pois é feito um preenchimento entre as variáveis
-        <code class="hljs- c sembg">char</code> e <code class="hljs- c sembg">int</code> (representação em
-        memória:|c---|&emsp;i&emsp;|&emsp;&emsp;d&emsp;&emsp;|) para garantir que a variável inteira esteja alinhada à
-        um endereço múltiplo de 4 e a variável <code class="hljs- c sembg">double</code> esteja alinhada à um endereço
-        múltiplo de 8.
-      </p>
+        <p>
+          É possível ver que a primeira estrutura consome 3 bytes a mais, pois é feito um preenchimento entre as
+          variáveis
+          <code class="hljs- c sembg">char</code> e <code class="hljs- c sembg">int</code> (representação em
+          memória:|c---|&emsp;i&emsp;|&emsp;&emsp;d&emsp;&emsp;|) para garantir que a variável inteira esteja alinhada à
+          um endereço múltiplo de 4 e a variável <code class="hljs- c sembg">double</code> esteja alinhada à um endereço
+          múltiplo de 8.
+        </p>
 
 
 
-      <!-- Segunda Seção -->
-      <h2 id="secao5.2">5.2. Compilador</h2>
+        <!-- Segunda Seção -->
+        <h2 id="secao5.2">5.2. Compilador</h2>
 
-      <p>
-        Falar sobre Árvore de Derivação, resumir o processo de compilação e técnicas, comentar sobre otimização
-        (otimização já foi falada no capítulo seguinte, então é só comentar informações relevantes)...
-      </p>
+        <p>
+          Falar sobre Árvore de Derivação, resumir o processo de compilação e técnicas, comentar sobre otimização
+          (otimização já foi falada no capítulo seguinte, então é só comentar informações relevantes)...
+        </p>
 
-      <!-- Terceira Seção -->
-      <h2 id="secao5.3">5.3. Montador</h2>
+        <!-- Terceira Seção -->
+        <h2 id="secao5.3">5.3. Montador</h2>
 
-      <p>
-        O montador é o componente responsável por traduzir um código de montagem em código de máquina, como dito na
-        introdução. Além disso, esse componente irá lidar com os símbolos, as diretivas de montagem e os dados, que
-        serão organizados de maneira executável. Como o GCC é compatível com diversas arquiteturas, ele dá suporte a
-        diretivas específicas dessas arquiteturas que tratam de alinhamentos dos dados, definição de constantes e
-        strings, determinam seções de código, dados e endereços de memória onde as instruções e/ou os dados serão
-        posicionados, entre outras. É durante a montagem que o GCC lida com resolução de endereços, <i>offsets</i>
-        (deslocamentos) que indica a distância entre partes do código, alinhamento na memória, manipulação de macros e
-        gera a tabela de símbolos e de realocação. Para ilustrar o processo de montagem, considere o seguinte exemplo
-        simples de código em C:
-      </p>
+        <p>
+          O montador é o componente responsável por traduzir um código de montagem em código de máquina, como dito na
+          introdução. Além disso, esse componente irá lidar com os símbolos, as diretivas de montagem e os dados, que
+          serão organizados de maneira executável. Como o GCC é compatível com diversas arquiteturas, ele dá suporte a
+          diretivas específicas dessas arquiteturas que tratam de alinhamentos dos dados, definição de constantes e
+          strings, determinam seções de código, dados e endereços de memória onde as instruções e/ou os dados serão
+          posicionados, entre outras. É durante a montagem que o GCC lida com resolução de endereços, <i>offsets</i>
+          (deslocamentos) que indica a distância entre partes do código, alinhamento na memória, manipulação de macros e
+          gera a tabela de símbolos e de realocação. Para ilustrar o processo de montagem, considere o seguinte exemplo
+          simples de código em C:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          main.c
-        </span>
-      </p>
-      <figure>
-        <pre><code class="c">#include &lt;stdio.h&gt;
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            main.c
+          </span>
+        </p>
+        <figure>
+          <pre><code class="c">#include &lt;stdio.h&gt;
 
 int main() {
   printf("Olá, mundo!\n");
   return 0;
 }</code></pre>
-      </figure>
+        </figure>
 
-      <p>
-        Ao compilar esse programa com o GCC, o compilador gera código intermediário, que é então convertido em código de
-        montagem. Esse arquivo de montagem pode ser explicitamente gerado com um comando como:
-      </p>
+        <p>
+          Ao compilar esse programa com o GCC, o compilador gera código intermediário, que é então convertido em código
+          de
+          montagem. Esse arquivo de montagem pode ser explicitamente gerado com um comando como:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">gcc -S hello_world.c</code></pre>
-      </figure>
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">gcc -S hello_world.c</code></pre>
+        </figure>
 
-      <p>
-        Isso irá gerar um arquivo de montagem chamado <b>hello_world.s</b>. Para compilar esse arquivo de montagem e
-        gerar um objeto, você pode usar o seguinte comando:
-      </p>
+        <p>
+          Isso irá gerar um arquivo de montagem chamado <b>hello_world.s</b>. Para compilar esse arquivo de montagem e
+          gerar um objeto, você pode usar o seguinte comando:
+        </p>
 
-      <!-- Codigo -->
-      <p class="exemplo-codigo">
-        <span class="nome-linguagem">
-          Bash
-        </span>
-      </p>
-      <figure>
-        <pre><code class="bash">gcc -c hello_world.s -o hello_world.o</code></pre>
-      </figure>
+        <!-- Codigo -->
+        <p class="exemplo-codigo">
+          <span class="nome-linguagem">
+            Bash
+          </span>
+        </p>
+        <figure>
+          <pre><code class="bash">gcc -c hello_world.s -o hello_world.o</code></pre>
+        </figure>
 
-      <p>Continuar...</p>
+        <p>Continuar...</p>
 
 
-      <!-- Quarta Seção -->
-      <h2 id="secao5.4">5.4. Ligador</h2>
+        <!-- Quarta Seção -->
+        <h2 id="secao5.4">5.4. Ligador</h2>
 
-      <p>
-        O ligador é o componente que lida com a fase final da compilação, isto é, ele atua no último estágio do processo
-        de compilação. O ligador é responsável por incorporar bibliotecas ao código e gerar arquivos executáveis,
-        combina os arquivos-objeto gerados, resolve símbolos que estão definidos em outros arquivos-fonte e pode
-        eliminar códigos e dados não utilizados para reduzir o tamanho do executável. Enquanto que na fase anterior, os
-        endereços dos dados e códigos são tratados de forma relativa, ou seja, não refletem a posição real que estarão
-        localizados na memória, nesta fase os endereços são ajustados para serem carregados.
-      </p>
+        <p>
+          O ligador é o componente que lida com a fase final da compilação, isto é, ele atua no último estágio do
+          processo
+          de compilação. O ligador é responsável por incorporar bibliotecas ao código e gerar arquivos executáveis,
+          combina os arquivos-objeto gerados, resolve símbolos que estão definidos em outros arquivos-fonte e pode
+          eliminar códigos e dados não utilizados para reduzir o tamanho do executável. Enquanto que na fase anterior,
+          os
+          endereços dos dados e códigos são tratados de forma relativa, ou seja, não refletem a posição real que estarão
+          localizados na memória, nesta fase os endereços são ajustados para serem carregados.
+        </p>
 
-      <p>Continuar...</p>
+        <p>Continuar...</p>
 
+      </div>
     </div>
   </div>
 </body>

@@ -54,15 +54,25 @@ body, html{
 
 /********************************************************* CONTEÚDO À DIREITA *********************************************************/
 #content{
-    width: 71%;
+    width: 75%;
     height: 100%;
     float: right;
-    margin: auto 2% auto 13%;
+    margin: auto 1% auto 13%;
+}
+
+.container {
+    margin-right: 10%;
+    margin-left: 18%;
 }
 
 /********************************************************* TEXTO *********************************************************/
-h1, h2{
+h1, h2, h3{
     color: #333;
+    margin: 0px 0px 10px;
+}
+
+h1 {
+    margin-top: 10px;
 }
 
 b{
@@ -71,6 +81,10 @@ b{
 
 p{
     text-indent: 20px;
+}
+
+p:last-of-type {
+    margin-bottom: 20px;
 }
 
 figure{

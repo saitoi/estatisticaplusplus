@@ -40,11 +40,12 @@ code.sembg{
 .exemplo-codigo{
     background-color: #F9F9FB;
     padding: 5px 16px;
-    margin: 0px;
+    margin: 10px 0px 0px;
     width: 90%;
     border: 1px solid #cdcdcd;
     border-radius: 0.3em;
     box-sizing: border-box;
+    display: inline-block;
 }
 
 .nome-linguagem {
