@@ -1,4 +1,4 @@
-# Documentação para o Projeto de C 
+# An Introduction to GCC - Projeto de Extensão Estatística++
 
 ## Tabela de Conteúdo
 
