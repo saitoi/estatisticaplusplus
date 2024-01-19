@@ -13,11 +13,14 @@ body, html{
     left: 0px;
     height: 100%;
     width: 24%;
-    background-color: aliceblue;
 }
 
 #toc{
-    font-size: 0.95em;
+    background-color: aliceblue;
+    font-size: 0.9em;
+    padding: 3%;
+    overflow-y: auto;
+    /* width: 40%; */
 }
 
 #toc ul {
@@ -57,12 +60,12 @@ body, html{
     width: 75%;
     height: 100%;
     float: right;
-    margin: auto 1% auto 13%;
+    margin: auto 5% auto 10%;
 }
 
 .container {
     margin-right: 10%;
-    margin-left: 18%;
+    margin-left: 15%;
 }
 
 /********************************************************* TEXTO *********************************************************/
