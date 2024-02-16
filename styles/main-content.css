@@ -1,0 +1,37 @@
+
+.flex-container {
+    display: flex;
+    height: 90vh;
+    width: 100%;
+}
+
+.content {
+    box-sizing: border-box;
+    flex-grow: 1;
+    display: inline;
+    float: right;
+    width: 50%;
+    height: inherit;
+    transition: margin-left 0.3s ease;
+    padding: 0 20px;
+    margin: 1% 10% 1% 40%;
+}
+
+/*************** HTML ELEMENTS ***************/
+
+body, html {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6em;
+    background-color: #FFFFFF;
+}
+
+p {
+    margin: 0 0 16px;
+    text-indent: 30px;
+}
+
+ul {
+    list-style-type: disc;
+}

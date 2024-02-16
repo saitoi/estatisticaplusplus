@@ -1,0 +1,137 @@
+
+.sidebar {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 350px;
+    height: calc(100vh - 20px);
+    margin: 10px;
+    padding: 20px 40px 20px 20px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background: rgba(241, 242, 241, 0.8);
+    color: #000000;
+    padding: 20px 20px 20px 0;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 1em;
+    transition: all 0.3s ease-in-out, left 0.3s ease-in-out;
+
+}
+
+/*************** SIDEBAR BUTTON ***************/
+
+.toggle-sidebar {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    cursor: pointer;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s ease;
+    margin-left: 3%;
+    width: 40px;
+    height: 40px;
+}
+
+
+.toggle-sidebar:hover {
+    border-radius: 5px;
+    background-color: #bbb; /* Darker color on hover */
+    color: #fff; /* White text on hover */
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+.outside-sidebar {
+    background-color: rgba(239, 239, 239, 0.8);
+    margin: 0px;
+    border-radius: 5px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.outside-sidebar.toggle-sidebar:hover {
+    border-radius: 20px;
+}
+
+/*************** LINK ***************/
+
+.link {
+    display: block;
+}
+
+.link.active {
+    color: red;
+}
+
+/*************** EXPANDER ***************/
+
+.expander {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 330px;
+    height: auto;
+    margin: 2px 1px;
+    border-radius: 5px; /* Make corners round */
+    padding: 5px 8px; /* Add some space around the text */
+}
+
+.expander:hover {
+    background-color: rgba(229, 229, 229, 0.8); /* 50% transparent white */
+}
+
+.expander-title {
+    /*position: absolute;*/
+    width: 100%;
+    height: auto;
+    margin: 0;
+    color: #212529; /* Change the text color */
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+}
+
+/* VISIBLE/NOT VISIBLE */
+
+.expander-content {
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    max-height: 0px;
+    text-indent: 5%;
+    /*border-left: 1px solid rgba(0, 0, 0, 0.1);*/
+    margin: 5px 0px;
+}
+
+.expander-content a {
+    background-color: whitesmoke;
+    border-radius: 20px;
+    padding: 2px 1px;
+    text-decoration: none;
+}
+
+.expander-content.expanded {
+    transition: 0.5s ease-out;
+    max-height: 500px;
+    opacity: 1;
+}
