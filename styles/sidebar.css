@@ -77,10 +77,12 @@
 
 .link {
     display: block;
+    width: 290px;
 }
 
 .link.active {
-    color: red;
+    background-color: #ffffff; /* Cor de fundo mais suave */
+    transform: translateY(-2px); /* Leve elevação ao passar o mouse ou focar */
 }
 
 /*************** EXPANDER ***************/
@@ -90,7 +92,7 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    width: 330px;
+    width: 340px;
     height: auto;
     margin: 2px 1px;
     border-radius: 5px; /* Make corners round */
@@ -124,10 +126,20 @@
 }
 
 .expander-content a {
-    background-color: whitesmoke;
-    border-radius: 20px;
-    padding: 2px 1px;
-    text-decoration: none;
+    background-color: #f0f0f0; /* Cor de fundo mais suave */
+    border-radius: 20px; /* Bordas arredondadas */
+    padding: 8px 16px; /* Mais espaço interno para um visual mais amplo */
+    margin: 5px; /* Ajuste na margem para mais espaço */
+    text-decoration: none; /* Remover sublinhado */
+    color: #333; /* Cor do texto mais escura para melhor leitura */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave para profundidade */
+    transition: background-color 0.3s, box-shadow 0.1s, transform 0.1s; /* Transições suaves */
+}
+
+.expander-content a:hover, .expander-content a:focus {
+    /* background-color: #e9e9e9; Cor de fundo ao passar o mouse ou focar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra mais proeminente para efeito elevado */
+    transform: translateY(-2px); /* Leve elevação ao passar o mouse ou focar */
 }
 
 .expander-content.expanded {
