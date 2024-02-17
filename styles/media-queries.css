@@ -1,0 +1,31 @@
+@media (max-width: 800px) {
+
+    .flex-container {
+        display: flex;
+        justify-content: center;
+    }   
+
+    .content {
+        font-size: 14px;
+        padding: 0 10%;
+    }
+
+    /*************** SIDEBAR ***************/
+
+    .sidebar {
+        width: 50%;
+        height: calc(100vh - 20px);
+        margin-left: 25%;
+
+        display: flex;
+        align-items: center;
+        position: fixed;
+        align-items: center;
+        background: rgba(246, 246, 246, 0.961);
+        overflow-y: auto;
+    }
+
+    .toogle-sidebar {
+        position: fixed;
+    }
+}

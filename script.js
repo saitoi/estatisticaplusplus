@@ -1,28 +1,72 @@
+function loadContent(url) {
+    fetch(url)
+        .then(response => response.text())
+        .then(html => {
+            document.querySelector('.content').innerHTML = html;
+            // Aplica o realce de sintaxe ao novo conteúdo
+            hljs.highlightAll();
+        })
+        .catch(error => console.error('Erro ao carregar o conteúdo:', error));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.sidebar .link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Impede o comportamento padrão do link
+            const contentUrl = this.getAttribute('data-content'); // Obtém o URL do atributo data-content do link
+            loadContent(contentUrl); // Carrega o conteúdo
+        });
+    });
+});
+
 document.querySelector('.toggle-sidebar').addEventListener('click', function() {
     const sidebar = document.querySelector('.sidebar');
     const content = document.querySelector('.content');
     const toggleSidebarButton = this;
 
-    // VISIVEL
-    if (sidebar.style.left === '0px' || sidebar.style.left === '') {
-        sidebar.style.left = '-360px'; // Hide sidebar
-        content.style.width = '55%'
-        content.style.marginLeft = '22.5%'; // Expand content to full width
-        content.style.marginRight = '22.5%'; // Expand content to full width
+    // Verifica se a tela tem 600px de largura ou menos
+    const isPhoneSize = window.matchMedia('(max-width: 800px)').matches;
 
-        document.body.appendChild(toggleSidebarButton);
+    if (isPhoneSize) {
+        // Comportamento para telas de telefone
+        if (sidebar.style.left === '0%' || sidebar.style.left === '') {
+            sidebar.style.left = '-100%'; // Esconde completamente a sidebar para telas pequenas
+            content.style.width = '80%'; // Expande o conteúdo para a largura total
 
-        toggleSidebarButton.classList.add('outside-sidebar');
+            document.body.appendChild(toggleSidebarButton);
+            toggleSidebarButton.classList.add('outside-sidebar');
+            sidebar.classList.add('closed');
+        } else {
+            sidebar.style.left = '0%'; // Mostra a sidebar
+            sidebar.style.width = '50%';
+            sidebar.style.transition = 'left 0.3s ease-in-out'; // Add transition property
+            content.style.marginLeft = '0'; // Ajusta a margem para telas de telefone
+            content.style.marginRight = '0'; // Ajusta a margem para telas de telefone
+
+            sidebar.appendChild(toggleSidebarButton);
+            toggleSidebarButton.classList.remove('outside-sidebar');
+            sidebar.classList.add('open');
+        }
     } else {
-        sidebar.style.left = '0px'; // Show sidebar
-        content.style.marginLeft = '35%'; // Reduce content width to make space for the sidebar
-        content.style.marginRight = '15%'; // Reduce content width to make space for the sidebar
+        // Comportamento para telas maiores
+        if (sidebar.style.left === '0px' || sidebar.style.left === '') {
+            sidebar.style.left = '-360px';
+            content.style.width = '55%';
+            content.style.marginLeft = '22.5%';
+            content.style.marginRight = '22.5%';
 
-        // Move the toggle-sidebar button back inside the sidebar
-        sidebar.appendChild(toggleSidebarButton);
+            document.body.appendChild(toggleSidebarButton);
+            toggleSidebarButton.classList.add('outside-sidebar');
+            sidebar.classList.add('open');
+        } else {
+            sidebar.style.left = '0px';
+            content.style.marginLeft = '35%';
+            content.style.marginRight = '15%';
 
-        // Remove the class that styles the button differently
-        toggleSidebarButton.classList.remove('outside-sidebar');
+            sidebar.appendChild(toggleSidebarButton);
+            toggleSidebarButton.classList.remove('outside-sidebar');
+            sidebar.classList.remove('closed');
+        }
     }
 });
 
@@ -39,26 +83,6 @@ document.querySelectorAll('.expander-title').forEach(item => {
             content.classList.add('expanded');
 
         }
-    });
-});
-
-document.querySelectorAll('.link').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const contentPath = this.getAttribute('data-content');
-
-        // Remove active class from all links
-        document.querySelectorAll('.link').forEach(l => l.classList.remove('active'));
-
-        // Add active class to clicked link
-        this.classList.add('active');
-
-        // Load the content
-        fetch(contentPath).then(response => response.text()).then(html => {
-            document.querySelector('.content').innerHTML = html;
-        }).catch(err => {
-            console.error('Error loading the content', err);
-        });
     });
 });
 
@@ -90,15 +114,25 @@ document.querySelectorAll('.link').forEach(link => {
 document.addEventListener('DOMContentLoaded', (event) => {
     const toggleSidebar = document.querySelector('.toggle-sidebar');
 
-    toggleSidebar.addEventListener('mouseover', function() {
-        if (this.classList.contains('outside-sidebar')) {
-            this.textContent = '>';
-        } else {
-            this.textContent = '<';
-        }
-    });
+    if (window.matchMedia('(min-width: 800px)').matches) {
+        toggleSidebar.addEventListener('mouseover', function() {
+            if (this.classList.contains('outside-sidebar')) {
+                this.textContent = '>';
+            } else {
+                this.textContent = '<';
+            }
+        });
 
-    toggleSidebar.addEventListener('mouseout', function() {
-        this.textContent = '☰';
-    });
+        toggleSidebar.addEventListener('mouseout', function() {
+            this.textContent = '☰';
+        });
+    } else {
+        toggleSidebar.addEventListener('click', function() {
+            if (this.classList.contains('outside-sidebar')) {
+                this.textContent = '>';
+            } else {
+                this.textContent = '<';
+            }
+        });
+    }
 });
