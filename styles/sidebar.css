@@ -74,7 +74,8 @@
 
 /*************** EXPANDER ***************/
 
-.expander {
+.expander,
+#glossario {
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -134,17 +135,20 @@
     transition: background-color 0.1s, box-shadow 0.1s, transform 0.2s ease;
 }
 
+#glossario {
+    background-color: #F8F8F8;
+}
 
 .link:active {
     transform: translateY(2px);
 }
 
+#glossario.active,
 .link.active {
-    background-color: #ffffff; /* Cor de fundo mais suave */
-    /* transform: translateY(2px); Leve elevação ao passar o mouse ou focar */
+    background-color: #ffffff;
 }
 
 .link:hover,
 .link:focus {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais proeminente para efeito elevado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
