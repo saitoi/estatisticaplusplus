@@ -54,7 +54,7 @@ function handleSidebarForPhone(sidebar, content, button) {
         button.classList.add('outside-sidebar');
         sidebar.classList.add('closed');
     } else {
-        sidebar.style.left = '0%';
+        sidebar.style.left = '-100%';
         sidebar.style.width = '50%';
         sidebar.style.transition = 'left 0.3s ease-in-out';
         content.style.marginLeft = '0';

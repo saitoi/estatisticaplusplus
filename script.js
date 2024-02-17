@@ -77,11 +77,8 @@ document.querySelectorAll('.expander-title').forEach(item => {
         // Toggle expanded class to trigger transition
         if (content.classList.contains('expanded')) {
             content.classList.remove('expanded');
-            // content.style.display = 'none';
         } else {
-            // Expand the clicked one
             content.classList.add('expanded');
-
         }
     });
 });
