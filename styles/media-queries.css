@@ -1,20 +1,41 @@
+@media (max-width: 1000px) {
+    body {
+        font-size: 14px;
+    }
+
+    .content {
+        width: 70%;
+        margin-right: 2%;
+    }
+
+    .sidebar {
+        width: 40%;
+        height: 100vh;
+    }
+}
+
 @media (max-width: 800px) {
 
     .flex-container {
         display: flex;
         justify-content: center;
-    }   
+    }
 
-    .content {
-        font-size: 14px;
+    .content {        
+        width: 80%;
+        margin: 0;
         padding: 0 10%;
+    }
+
+    .sidebar {
+        background: rgba(246, 246, 246, 0.961);
     }
 
     /*************** SIDEBAR ***************/
 
     .sidebar {
         width: 50%;
-        height: calc(100vh - 20px);
+        height: 100vh;
 
         display: flex;
         align-items: center;
