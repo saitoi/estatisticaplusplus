@@ -39,6 +39,7 @@ function initializeSidebarToggle() {
 function toggleSidebar(sidebar, content, button) {
     const isPhoneSize = window.matchMedia('(max-width: 800px)').matches;
     const isIntermediate = window.matchMedia('(max-width: 1000px)').matches;
+    
     if (isPhoneSize) {
         handleSidebarForPhone(sidebar, content, button);
     } else if (isIntermediate) {
@@ -49,10 +50,11 @@ function toggleSidebar(sidebar, content, button) {
 }
 
 function handleSidebarForPhone(sidebar, content, button) {
-    if (sidebar.style.left === '0%' || sidebar.style.left === '') {
+    const isSidebarOpen = sidebar.style.left === '0%' || sidebar.style.left === '';
+    
+    if (isSidebarOpen) {
         sidebar.style.left = '-100%';
         content.style.width = '80%';
-
         document.body.appendChild(button);
         button.classList.add('outside-sidebar');
     } else {
@@ -61,19 +63,19 @@ function handleSidebarForPhone(sidebar, content, button) {
         sidebar.style.transition = 'left 0.3s ease-in-out';
         content.style.marginLeft = '0';
         content.style.marginRight = '0';
-
         sidebar.appendChild(button);
         button.classList.remove('outside-sidebar');
     }
 }
 
 function handleSidebarForIntermediate(sidebar, content, button) {
-    if (sidebar.style.left === '0%' || sidebar.style.left === '') {
+    const isSidebarOpen = sidebar.style.left === '0%' || sidebar.style.left === '';
+    
+    if (isSidebarOpen) {
         sidebar.style.left = '-100%';
         content.style.width = '70%';
         content.style.marginLeft = '5%';
         content.style.marginRight = '3%';
-
         document.body.appendChild(button);
         button.classList.add('outside-sidebar');
     } else {
@@ -82,27 +84,25 @@ function handleSidebarForIntermediate(sidebar, content, button) {
         sidebar.style.transition = 'left 0.3s ease-in-out';
         content.style.marginLeft = '40%';
         content.style.marginRight = '2%';
-
-
         sidebar.appendChild(button);
         button.classList.remove('outside-sidebar');
     }
 }
 
 function handleSidebarForDesktop(sidebar, content, button) {
-    if (sidebar.style.left === '0px' || sidebar.style.left === '') {
+    const isSidebarOpen = sidebar.style.left === '0px' || sidebar.style.left === '';
+    
+    if (isSidebarOpen) {
         sidebar.style.left = '-390px';
         content.style.width = '55%';
         content.style.marginLeft = '22.5%';
         content.style.marginRight = '22.5%';
-
         document.body.appendChild(button);
         button.classList.add('outside-sidebar');
     } else {
         sidebar.style.left = '0px';
         content.style.marginLeft = '35%';
         content.style.marginRight = '15%';
-
         sidebar.appendChild(button);
         button.classList.remove('outside-sidebar');
         sidebar.classList.remove('closed');
