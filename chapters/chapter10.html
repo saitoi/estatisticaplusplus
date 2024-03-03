@@ -19,6 +19,11 @@
         A compilação utilizando o Clang é muito parecida à realizada com o GCC. Em casos simples, a sintaxe para ambos é praticamente a mesma, mudando apenas o comando de gcc para clang. Por exemplo, para compilar o programa codigo.c, utilizamos o comando:    
     </p>
 
+    <p class="exemplo-codigo">
+        <span class="nome-linguagem">
+            Bash
+        </span>
+    </p>
     <figure>
         <pre><code class="bash">$ clang codigo.c -o codigo</code></pre>
     </figure>
@@ -27,6 +32,11 @@
         O Clang também possui muitas das bandeiras de aviso do compilador presentes no GCC. Por exemplo, bandeiras como -W e -Wall estão disponíveis nos dois compiladores. Assim, se quisermos compilar um programa com todas essas bandeiras, podemos escrever:    </p>
     </p>
 
+    <p class="exemplo-codigo">
+        <span class="nome-linguagem">
+            Bash
+        </span>
+    </p>
     <figure>
         <pre><code class="bash">$ clang codigo.c -o codigo -Wall -Wextra</code></pre>
     </figure>
@@ -53,13 +63,18 @@
         As mensagens de erro e diagnósticos do Clang são diferentes das do GCC, e podem ser preferidas por alguns usuários. Aqui está um exemplo comum de erros para destacar essa diferença entre os dois compiladores:
     </p>
 
+    <p class="exemplo-codigo">
+        <span class="nome-linguagem">
+            Exemplo.c
+        </span>
+    </p>
     <figure>
         <pre><code class="language-c">#include <stdio.h>
-            int main() {
-                int num = "10";
-                printf("%d\n", num)
-                return 0;
-                }
+int main() {
+    int num = "10";
+    printf("%d\n", num)
+    return 0;
+    }
         </code></pre>
     </figure>
                 
@@ -67,6 +82,11 @@
         Nesse código, há dois problemas principais: primeiro, a variável num é inicializada com uma string ("10") em vez de um valor inteiro, causando um erro de tipo incompatível; segundo, falta um ponto e vírgula (;) após a chamada da função printf, o que resulta em um erro de sintaxe. Aqui estão as mensagens de erro do GCC e do Clang:
     </p>
     
+    <p class="exemplo-codigo">
+        <span class="nome-linguagem">
+            Bash
+        </span>
+    </p>
     <figure>
         <pre><code class="bash">
 $ gcc code.c -o code -W -Wall
@@ -84,9 +104,13 @@ code.c:5:28: error: expected ‘;’ before ‘return’
         </code></pre>
     </figure>
 
+    <p class="exemplo-codigo">
+        <span class="nome-linguagem">
+            Bash
+        </span>
+    </p>
     <figure>
-        <pre><code class="bash">
-$ clang code.c -o code -W -Wall
+        <pre><code class="bash">$ clang code.c -o code -W -Wall
 
 code.c:4:6: warning: incompatible pointer to integer conversion initializing 'int' with an expression of type 'char[3]' [-Wint-conversion]
         int num = "10";
@@ -98,6 +122,6 @@ code.c:5:21: error: expected ';' after expression
 1 warning and 1 error generated.
         </code></pre>
     </figure>
-
+    <p></p>
     </div>
 </div>

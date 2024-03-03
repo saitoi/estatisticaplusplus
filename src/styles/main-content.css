@@ -34,6 +34,7 @@ p {
 }
 
 #content p:last-of-type {
+    display: inline-block;
     margin-bottom: 40px;
 }
 
