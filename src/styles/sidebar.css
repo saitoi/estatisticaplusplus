@@ -75,17 +75,18 @@
 /*************** EXPANDER ***************/
 
 .expander,
-#glossario {
+.ind-link {
     display: flex;
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    width: 340px;
+    width: 340px !important;
     height: auto;
     margin: 2px 1px;
     border-radius: 5px; /* Make corners round */
     padding: 5px 8px; /* Add some space around the text */
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Add a very light box-shadow */
+    background-color: #F8F8F8;
 }
 
 .expander:hover {
@@ -135,15 +136,11 @@
     transition: background-color 0.1s, box-shadow 0.1s, transform 0.2s ease;
 }
 
-#glossario {
-    background-color: #F8F8F8;
-}
-
 .link:active {
     transform: translateY(2px);
 }
 
-#glossario.active,
+.ind-link.active,
 .link.active {
     background-color: #ffffff;
 }

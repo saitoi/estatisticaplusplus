@@ -1,0 +1,103 @@
+<div id="chapter10">
+    <div id="content">
+        <h1>10. Clang</h1>
+    <!-- Primeira Seção -->
+    <h2 id="secao10.1">10.1. Introdução ao Clang</h2>
+
+    <p>
+        O Clang é um compilador open-source de C que pode ser usado no lugar do GCC. Ele é um front-end do LLVM (Low Level Virtual Machine, que é uma coleção de ferramentas de compilação modulares e reutilizáveis. O Clang também compila as linguagens de programação C++, Objective-C e Objective-C++.
+    </p>
+
+    <p>
+        Algumas das vantagens do Clang sobre o GCC incluem tempos de compilação mais rápidos, menor uso de memória e mensagens de erro detalhadas. Entretanto, os programas compilados pelo GCC  tendem a ser mais eficientes que aqueles compilados pelo Clang.
+    </p>
+
+    <!-- Segunda Seção -->
+    <h2 id="secao10.2">10.2. Compilando com Clang</h2>
+
+    <p>
+        A compilação utilizando o Clang é muito parecida à realizada com o GCC. Em casos simples, a sintaxe para ambos é praticamente a mesma, mudando apenas o comando de gcc para clang. Por exemplo, para compilar o programa codigo.c, utilizamos o comando:    
+    </p>
+
+    <figure>
+        <pre><code class="bash">$ clang codigo.c -o codigo</code></pre>
+    </figure>
+
+    <p>
+        O Clang também possui muitas das bandeiras de aviso do compilador presentes no GCC. Por exemplo, bandeiras como -W e -Wall estão disponíveis nos dois compiladores. Assim, se quisermos compilar um programa com todas essas bandeiras, podemos escrever:    </p>
+    </p>
+
+    <figure>
+        <pre><code class="bash">$ clang codigo.c -o codigo -Wall -Wextra</code></pre>
+    </figure>
+
+    <!-- Terceira Seção -->
+    <h2 id="secao10.3">10.3. Eficiência de Compilação</h2>
+
+    <p>
+        Um exemplo ilustrativo da eficiência do Clang é a compilação do arquivo "Carbon.h" no macOS, que é 2,5 vezes mais rápida do que a do GCC. "Carbon.h" é extremamente grande e complexo, incluindo 558 arquivos, com 12,3 milhões de linhas de código, declarando 10.000 funções, 2.000 definições de estrutura, 8.000 campos e 20.000 constantes de enumeração.
+    </p>
+
+    <p>
+        O Clang também usa menos memória na hora de compilar do que o GCC. As suas AAS (Árvore Abstrata de Sintaxe) usam 5 vezes menos espaço para compilar o “Carbon.h” do que as AAS do GCC.
+    </p>
+
+    <p>
+        Esse exemplo destaca a eficiência do Clang em compilar grandes volumes de código, demonstrando tanto velocidade quanto economia de memória significativas em comparação ao GCC. Essa performance otimizada pode ser importante para desenvolvedores trabalhando em projetos de grande escala.
+    </p>
+
+    <!-- Quarta Seção -->
+    <h2 id="secao10.4">10.4. Mensagens de Erro</h2>
+
+    <p>
+        As mensagens de erro e diagnósticos do Clang são diferentes das do GCC, e podem ser preferidas por alguns usuários. Aqui está um exemplo comum de erros para destacar essa diferença entre os dois compiladores:
+    </p>
+
+    <figure>
+        <pre><code class="language-c">#include <stdio.h>
+            int main() {
+                int num = "10";
+                printf("%d\n", num)
+                return 0;
+                }
+        </code></pre>
+    </figure>
+                
+    <p>
+        Nesse código, há dois problemas principais: primeiro, a variável num é inicializada com uma string ("10") em vez de um valor inteiro, causando um erro de tipo incompatível; segundo, falta um ponto e vírgula (;) após a chamada da função printf, o que resulta em um erro de sintaxe. Aqui estão as mensagens de erro do GCC e do Clang:
+    </p>
+    
+    <figure>
+        <pre><code class="bash">
+$ gcc code.c -o code -W -Wall
+
+code.c: In function ‘main’:
+code.c:4:19: warning: initialization of ‘int’ from ‘char *’ makes integer from pointer without a cast [-Wint-conversion]
+	4 |     	int num = "10";
+  	|               	^~~~
+code.c:5:28: error: expected ‘;’ before ‘return’
+	5 |     	printf("%d\n", num)
+  	|                        	^
+  	|                        	;
+	6 |     	return 0;
+  	|     	~~~~~~         	 
+        </code></pre>
+    </figure>
+
+    <figure>
+        <pre><code class="bash">
+$ clang code.c -o code -W -Wall
+
+code.c:4:6: warning: incompatible pointer to integer conversion initializing 'int' with an expression of type 'char[3]' [-Wint-conversion]
+        int num = "10";
+            ^ 	~~~~
+code.c:5:21: error: expected ';' after expression
+        printf("%d\n", num)
+                            ^
+                            ;
+1 warning and 1 error generated.
+        </code></pre>
+    </figure>
+
+    </div>
+</div>
