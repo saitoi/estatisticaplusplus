@@ -12,7 +12,7 @@ O projeto de extensão visa criar materiais educacionais sobre as linguagens de 
 
 ## Prévia
 
-
+![Gif preview](src/assets/website_preview.gif)
 
 ## Conteúdo
 
