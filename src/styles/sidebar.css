@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 .sidebar {
     font-family: 'Arial', sans-serif;
@@ -14,7 +15,7 @@
     width: 380px;
     height: calc(100vh - 20px);
     margin: 10px;
-    padding: 20px 40px 20px 20px;
+    padding: 0px 40px 20px 0px !important;
 
     overflow-x: hidden;
     overflow-y: auto;
@@ -25,6 +26,43 @@
     box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
     border-radius: 1em;
     transition: all 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+/*************** TABS ***************/
+
+.tabs {
+    font-family: 'Roboto Mono', monospace;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.individual-tab {
+    padding: 10px 20px;
+    border-radius: 0rem 0.1rem 0.1rem 0;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    color: white;
+    transition: all 0.1s ease-in-out;
+}
+
+#tab-c {
+    border-radius: 1rem 0.2rem 0.2rem 0;
+    background-color: #4A6FA5;
+}
+
+#tab-r {
+    border-radius: ;
+    background-color: #74C476;
+}
+
+#tab-julia {
+    background-color: #A569BD;
+}
+
+.individual-tab:active {
+    transform: translateY(2px);
+    background-color: #333333; /* Darker background color when active */
 }
 
 /*************** SIDEBAR BUTTON ***************/

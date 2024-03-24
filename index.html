@@ -20,7 +20,6 @@
         <link rel="stylesheet" href="src/styles/codigo.css" />
         <link rel="stylesheet" href="src/styles/sidebar.css" />
         <link rel="stylesheet" href="src/styles/main-content.css" />
-        <link rel="stylesheet" href="src/styles/style.css" />
         <link rel="stylesheet" href="src/styles/media-queries.css" />
 
         <!-- Highlight.js Styles and Script -->
@@ -30,209 +29,228 @@
     <body>
         <div class="flex-container">
             <div class="sidebar">
+                <div class="tabs">
+                    <div class="individual-tab" id="tab-c">
+                        C
+                    </div>
+                    <div class="individual-tab" id="tab-r">
+                        R
+                    </div>
+                    <div class="individual-tab" id="tab-julia">
+                        Julia
+                    </div>
+                </div>
                 <button class="toggle-sidebar">
                     <span class="navbar-toggler-icon">☰</span>
                 </button>
-                <!-- Capítulo 1: Introdução -->
-                <div class="expander">
-                    <div class="expander-title">Capítulo 1: Introdução</div>
-                    <div class="expander-content">
-                        <a
-                            href="chapters/chapter1.html#secao1.1"
-                            class="link"
-                            data-content="chapters/chapter1.html#secao1.1"
-                            >1.1: Características da Linguagem C</a
-                        >
-                        <a
-                            href="chapters/chapter1.html#secao1.2"
-                            class="link"
-                            data-content="chapters/chapter1.html#secao1.2"
-                            >1.2: O Que É Um Compilador?</a
-                        >
-                        <a
-                            href="chapters/chapter1.html#secao1.3"
-                            class="link"
-                            data-content="chapters/chapter1.html#secao1.3"
-                            >1.3: GNU Compiler Collection</a
-                        >
+                <div class="sidebar-content content-c">
+                    <!-- Capítulo 1: Introdução -->
+                    <div class="expander">
+                        <div class="expander-title">Capítulo 1: Introdução</div>
+                        <div class="expander-content">
+                            <a
+                                href="chapters/chapter1.html#secao1.1"
+                                class="link"
+                                data-content="chapters/chapter1.html#secao1.1"
+                                >1.1: Características da Linguagem C</a
+                            >
+                            <a
+                                href="chapters/chapter1.html#secao1.2"
+                                class="link"
+                                data-content="chapters/chapter1.html#secao1.2"
+                                >1.2: O Que É Um Compilador?</a
+                            >
+                            <a
+                                href="chapters/chapter1.html#secao1.3"
+                                class="link"
+                                data-content="chapters/chapter1.html#secao1.3"
+                                >1.3: GNU Compiler Collection</a
+                            >
+                        </div>
                     </div>
+    
+                    <!-- Capítulo 2: Compilando Programas em C -->
+                    <div class="expander">
+                        <div class="expander-title">
+                            Capítulo 2: Compilando Programas em C
+                        </div>
+                        <div class="expander-content">
+                            <a
+                                href="chapters/chapter2.html#secao2.1"
+                                class="link"
+                                data-content="chapters/chapter2.html#secao2.1"
+                                >2.1: Primeiros Passos</a
+                            >
+                            <a
+                                href="chapters/chapter2.html#secao2.2"
+                                class="link"
+                                data-content="chapters/chapter2.html#secao2.2"
+                                >2.2: Múltiplos Arquivos</a
+                            >
+                            <a
+                                href="chapters/chapter2.html#secao2.3"
+                                class="link"
+                                data-content="chapters/chapter2.html#secao2.3"
+                                >2.3: Makefile</a
+                            >
+                        </div>
+                    </div>
+    
+                    <!-- Capítulo 3: Bandeiras de Aviso do Compilador -->
+                    <div class="expander">
+                        <div class="expander-title">
+                            Capítulo 3: Avisos do Compilador
+                        </div>
+                        <div class="expander-content">
+                            <a
+                                href="chapters/chapter3.html#chapter3"
+                                class="link"
+                                data-content="chapters/chapter3.html#chapter3"
+                                >Capítulo 3: Bandeiras de Aviso</a
+                            >
+                        </div>
+                    </div>
+    
+                    <!-- Capítulo 4: Depuração -->
+                    <div class="expander">
+                        <div class="expander-title">Capítulo 4: Depuração</div>
+                        <div class="expander-content">
+                            <a
+                                href="chapters/chapter4.html#secao4.1"
+                                class="link"
+                                data-content="chapters/chapter4.html#secao4.1"
+                                >4.1: Compilando para Depuração</a
+                            >
+                            <a
+                                href="chapters/chapter4.html#secao4.2"
+                                class="link"
+                                data-content="chapters/chapter4.html#secao4.2"
+                                >4.2: Depuração</a
+                            >
+                        </div>
+                    </div>
+    
+                    <!-- Capítulo 5: Componentes do Compilador -->
+                    <div class="expander">
+                        <div class="expander-title">
+                            Capítulo 5: Componentes do Compilador
+                        </div>
+                        <div class="expander-content">
+                            <a
+                                href="chapters/chapter5.html#secao5.1"
+                                class="link"
+                                data-content="chapters/chapter5.html#secao5.1"
+                                >5.1: Pré-processador</a
+                            >
+                            <a
+                                href="chapters/chapter5.html#subsecao5.1.1"
+                                class="link"
+                                data-content="chapters/chapter5.html#subsecao5.1.1"
+                                >5.1.1: Inclusão de Arquivos</a
+                            >
+                            <a
+                                href="chapters/chapter5.html#subsecao5.1.2"
+                                class="link"
+                                data-content="chapters/chapter5.html#subsecao5.1.2"
+                                >5.1.2: Definição de Macros</a
+                            >
+                            <a
+                                href="chapters/chapter5.html#secao5.2"
+                                class="link"
+                                data-content="chapters/chapter5.html#secao5.2"
+                                >5.2: Compilador</a
+                            >
+                            <a
+                                href="chapters/chapter5.html#secao5.3"
+                                class="link"
+                                data-content="chapters/chapter5.html#secao5.3"
+                                >5.3: Montador</a
+                            >
+                            <a
+                                href="chapters/chapter5.html#secao5.4"
+                                class="link"
+                                data-content="chapters/chapter5.html#secao5.4"
+                                >5.4: Ligador</a
+                            >
+                        </div>
+                    </div>
+    
+                    <!-- Capítulo 6: Otimização -->
+                    <div class="expander">
+                        <div class="expander-title">Capítulo 6: Otimização</div>
+                        <div class="expander-content">
+                            <a
+                                href="chapters/chapter6.html#secao6.1"
+                                class="link"
+                                data-content="chapters/chapter6.html#secao6.1"
+                                >6.1: Otimização</a
+                            >
+                            <a
+                                href="chapters/chapter6.html#subsecao6.1.1"
+                                class="link"
+                                data-content="chapters/chapter6.html#subsecao6.1.1"
+                                >6.1.1: Eliminando Subexpressões</a
+                            >
+                            <a
+                                href="chapters/chapter6.html#subsecao6.1.2"
+                                class="link"
+                                data-content="chapters/chapter6.html#subsecao6.1.2"
+                                >6.1.2: Inclusão de Função</a
+                            >
+                            <a
+                                href="chapters/chapter6.html#subsecao6.1.3"
+                                class="link"
+                                data-content="chapters/chapter6.html#subsecao6.1.3"
+                                >6.1.3: Velocidade &times; Espaço</a
+                            >
+                            <a
+                                href="chapters/chapter6.html#subsecao6.1.4"
+                                class="link"
+                                data-content="chapters/chapter6.html#subsecao6.1.4"
+                                >6.1.4: Desenrolar Loops</a
+                            >
+                            <a
+                                href="chapters/chapter6.html#subsecao6.1.5"
+                                class="link"
+                                data-content="chapters/chapter6.html#subsecao6.1.5"
+                                >6.1.5: Agendamento</a
+                            >
+                            <a
+                                href="chapters/chapter6.html#secao6.2"
+                                class="link"
+                                data-content="chapters/chapter6.html#secao6.2"
+                                >6.2: Níveis de Otimização</a
+                            >
+                            <a
+                                href="chapters/chapter6.html#secao6.3"
+                                class="link"
+                                data-content="chapters/chapter6.html#secao6.3"
+                                >6.3: Otimização e Debug</a
+                            >
+                            <a
+                                href="chapters/chapter6.html#secao6.4"
+                                class="link"
+                                data-content="chapters/chapter6.html#secao6.4"
+                                >6.4: Otimização e Avisos</a
+                            >
+                        </div>
+                    </div>
+    
+                    <!-- Clang Chapter -->
+                    <a
+                        href="chapters/chapter10.html"
+                        id="clang"
+                        class="link ind-link"
+                        data-content="chapters/chapter10.html"
+                        >Clang</a
+                    >
                 </div>
-
-                <!-- Capítulo 2: Compilando Programas em C -->
-                <div class="expander">
-                    <div class="expander-title">
-                        Capítulo 2: Compilando Programas em C
-                    </div>
-                    <div class="expander-content">
-                        <a
-                            href="chapters/chapter2.html#secao2.1"
-                            class="link"
-                            data-content="chapters/chapter2.html#secao2.1"
-                            >2.1: Primeiros Passos</a
-                        >
-                        <a
-                            href="chapters/chapter2.html#secao2.2"
-                            class="link"
-                            data-content="chapters/chapter2.html#secao2.2"
-                            >2.2: Múltiplos Arquivos</a
-                        >
-                        <a
-                            href="chapters/chapter2.html#secao2.3"
-                            class="link"
-                            data-content="chapters/chapter2.html#secao2.3"
-                            >2.3: Makefile</a
-                        >
-                    </div>
+                <div class="sidebar-content content-r">
+                    
                 </div>
+                <div class="sidebar-content content-julia">
 
-                <!-- Capítulo 3: Bandeiras de Aviso do Compilador -->
-                <div class="expander">
-                    <div class="expander-title">
-                        Capítulo 3: Avisos do Compilador
-                    </div>
-                    <div class="expander-content">
-                        <a
-                            href="chapters/chapter3.html#chapter3"
-                            class="link"
-                            data-content="chapters/chapter3.html#chapter3"
-                            >Capítulo 3: Bandeiras de Aviso</a
-                        >
-                    </div>
                 </div>
-
-                <!-- Capítulo 4: Depuração -->
-                <div class="expander">
-                    <div class="expander-title">Capítulo 4: Depuração</div>
-                    <div class="expander-content">
-                        <a
-                            href="chapters/chapter4.html#secao4.1"
-                            class="link"
-                            data-content="chapters/chapter4.html#secao4.1"
-                            >4.1: Compilando para Depuração</a
-                        >
-                        <a
-                            href="chapters/chapter4.html#secao4.2"
-                            class="link"
-                            data-content="chapters/chapter4.html#secao4.2"
-                            >4.2: Depuração</a
-                        >
-                    </div>
-                </div>
-
-                <!-- Capítulo 5: Componentes do Compilador -->
-                <div class="expander">
-                    <div class="expander-title">
-                        Capítulo 5: Componentes do Compilador
-                    </div>
-                    <div class="expander-content">
-                        <a
-                            href="chapters/chapter5.html#secao5.1"
-                            class="link"
-                            data-content="chapters/chapter5.html#secao5.1"
-                            >5.1: Pré-processador</a
-                        >
-                        <a
-                            href="chapters/chapter5.html#subsecao5.1.1"
-                            class="link"
-                            data-content="chapters/chapter5.html#subsecao5.1.1"
-                            >5.1.1: Inclusão de Arquivos</a
-                        >
-                        <a
-                            href="chapters/chapter5.html#subsecao5.1.2"
-                            class="link"
-                            data-content="chapters/chapter5.html#subsecao5.1.2"
-                            >5.1.2: Definição de Macros</a
-                        >
-                        <a
-                            href="chapters/chapter5.html#secao5.2"
-                            class="link"
-                            data-content="chapters/chapter5.html#secao5.2"
-                            >5.2: Compilador</a
-                        >
-                        <a
-                            href="chapters/chapter5.html#secao5.3"
-                            class="link"
-                            data-content="chapters/chapter5.html#secao5.3"
-                            >5.3: Montador</a
-                        >
-                        <a
-                            href="chapters/chapter5.html#secao5.4"
-                            class="link"
-                            data-content="chapters/chapter5.html#secao5.4"
-                            >5.4: Ligador</a
-                        >
-                    </div>
-                </div>
-
-                <!-- Capítulo 6: Otimização -->
-                <div class="expander">
-                    <div class="expander-title">Capítulo 6: Otimização</div>
-                    <div class="expander-content">
-                        <a
-                            href="chapters/chapter6.html#secao6.1"
-                            class="link"
-                            data-content="chapters/chapter6.html#secao6.1"
-                            >6.1: Otimização</a
-                        >
-                        <a
-                            href="chapters/chapter6.html#subsecao6.1.1"
-                            class="link"
-                            data-content="chapters/chapter6.html#subsecao6.1.1"
-                            >6.1.1: Eliminando Subexpressões</a
-                        >
-                        <a
-                            href="chapters/chapter6.html#subsecao6.1.2"
-                            class="link"
-                            data-content="chapters/chapter6.html#subsecao6.1.2"
-                            >6.1.2: Inclusão de Função</a
-                        >
-                        <a
-                            href="chapters/chapter6.html#subsecao6.1.3"
-                            class="link"
-                            data-content="chapters/chapter6.html#subsecao6.1.3"
-                            >6.1.3: Velocidade &times; Espaço</a
-                        >
-                        <a
-                            href="chapters/chapter6.html#subsecao6.1.4"
-                            class="link"
-                            data-content="chapters/chapter6.html#subsecao6.1.4"
-                            >6.1.4: Desenrolar Loops</a
-                        >
-                        <a
-                            href="chapters/chapter6.html#subsecao6.1.5"
-                            class="link"
-                            data-content="chapters/chapter6.html#subsecao6.1.5"
-                            >6.1.5: Agendamento</a
-                        >
-                        <a
-                            href="chapters/chapter6.html#secao6.2"
-                            class="link"
-                            data-content="chapters/chapter6.html#secao6.2"
-                            >6.2: Níveis de Otimização</a
-                        >
-                        <a
-                            href="chapters/chapter6.html#secao6.3"
-                            class="link"
-                            data-content="chapters/chapter6.html#secao6.3"
-                            >6.3: Otimização e Debug</a
-                        >
-                        <a
-                            href="chapters/chapter6.html#secao6.4"
-                            class="link"
-                            data-content="chapters/chapter6.html#secao6.4"
-                            >6.4: Otimização e Avisos</a
-                        >
-                    </div>
-                </div>
-
-                <!-- Clang Chapter -->
-                <a
-                    href="chapters/chapter10.html"
-                    id="clang"
-                    class="link ind-link"
-                    data-content="chapters/chapter10.html"
-                    >Clang</a
-                >
                 <!-- Glossário-->
                 <a
                     href="chapters/glossario.html"
@@ -243,6 +261,7 @@
                 >
             </div>
 
+            <!-- Content of the page loaded -->
             <div class="content"></div>
         </div>
         <script
