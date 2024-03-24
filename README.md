@@ -1,4 +1,4 @@
-# An Introduction to GCC - Projeto de Extensão Estatística++
+# An Introduction to GCC - Laboratório Estatística++
 
 ## Tabela de Conteúdo
 
