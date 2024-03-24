@@ -52,7 +52,6 @@
 }
 
 #tab-r {
-    border-radius: ;
     background-color: #74C476;
 }
 
@@ -60,9 +59,13 @@
     background-color: #A569BD;
 }
 
-.individual-tab:active {
+.individual-tab:hover:active {
     transform: translateY(2px);
+}
+
+.individual-tab.active {
     background-color: #333333; /* Darker background color when active */
+    transform: translateY(-1px);
 }
 
 /*************** SIDEBAR BUTTON ***************/

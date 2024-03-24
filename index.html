@@ -43,7 +43,7 @@
                 <button class="toggle-sidebar">
                     <span class="navbar-toggler-icon">☰</span>
                 </button>
-                <div class="sidebar-content content-c">
+                <div class="sidebar-content" id="content-c">
                     <!-- Capítulo 1: Introdução -->
                     <div class="expander">
                         <div class="expander-title">Capítulo 1: Introdução</div>
@@ -245,10 +245,10 @@
                         >Clang</a
                     >
                 </div>
-                <div class="sidebar-content content-r">
+                <div class="sidebar-content content-r" style="display: none;">
                     
                 </div>
-                <div class="sidebar-content content-julia">
+                <div class="sidebar-content content-julia" style="display: none;">
 
                 </div>
                 <!-- Glossário-->
@@ -271,6 +271,7 @@
         </script>
         <script src="src/js/sidebar.js"></script>
         <script src="src/js/contentLoader.js"></script>
+        <script src="src/js/tabSwitcher.js"></script>
         <script src="src/js/main.js"></script>
     </body>
 </html>
