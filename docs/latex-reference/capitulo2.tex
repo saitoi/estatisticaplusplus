@@ -1,0 +1,212 @@
+\chapter{Capítulo 2}
+
+\section{Compilando um Programa em C}
+
+Um dos primeiros programas que muitos programadores aprendem a escrever é o famoso "Hello, World!". A seguir, mostraremos como compilar esse programa em C usando o compilador gcc.
+
+\begin{scriptsize}
+\estiloC
+\begin{lstlisting}[title=helloworld.c]
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello, World!");
+    return 0;
+}
+\end{lstlisting}
+\end{scriptsize}
+
+No entanto, o código-fonte ainda não pode ser entendido pelo computador, sendo necessário realizar a compilação do código para gerar um arquivo executável que possa ser executado. Para isso, usamos um compilador de C, como o gcc.
+
+O processo de compilação do código em C é realizado pelo compilador, que transforma o código-fonte em um arquivo executável contendo as instruções que o computador deve seguir para executar o programa.
+
+Para compilar o programa, é necessário informar o nome do arquivo que contém o código-fonte e o nome do arquivo executável que será gerado. No caso deste exemplo, o arquivo com o código-fonte tem o nome "helloworld.c"\ e o arquivo executável terá o nome "hello". A compilação será feita pelo terminal:
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+$ gcc helloworld.c -o hello
+\end{lstlisting}
+\end{scriptsize}
+
+O parâmetro "-o"\ indica que queremos criar um arquivo executável com o nome "hello", enquanto "helloworld.c"\ é o nome do arquivo que contém o código-fonte.
+
+Além disso, é recomendável utilizar a flag "-Wall"\ durante a compilação de programas em C. Essa opção habilita uma checagem mais rigorosa do código-fonte e gera avisos adicionais caso detecte possíveis problemas no código, como variáveis não inicializadas ou operações com ponteiros inválidos. Para utilizar a flag "-Wall", basta incluí-la no comando de compilação:
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+$ gcc -Wall helloworld.c -o hello
+\end{lstlisting}
+\end{scriptsize}
+
+Por fim, para executar o programa, basta digitar "./hello"\ no terminal. Esse comando informa ao sistema operacional que desejamos executar o arquivo "hello"\ que foi gerado pela compilação do programa "helloworld.c". Se tudo ocorrer bem, o programa exibirá a mensagem "Hello, World!"\ no terminal.
+
+
+
+\section{Trabalhando com Múltiplos Arquivos}
+Quando se está trabalhando em um projeto em C, é comum que este seja dividido em múltiplos arquivos. Essa prática permite uma melhor organização e compartimentalização do projeto, além de economizar tempo de compilação.
+
+Por exemplo, digamos que queremos criar um programa que calcule o quadrado de um número. Podemos dividir o projeto em dois arquivos: um arquivo main.c, que contém a função principal do programa, e um arquivo quadrado.c, que contém a função que calcula o quadrado do número. Além disso, criaremos um arquivo quadrado.h, que contém somente a declaração da função que calcula o quadrado.
+\begin{scriptsize}
+\estiloC
+\begin{lstlisting}[title=main.c]
+#include <stdio.h>
+#include "quadrado.h"
+
+int main() {
+    double x;
+    printf("Digite um númeroç: ");
+    scanf("%lf", &x);
+    printf("O quadrado de %lf é %lf\n", x, quadrado(x));
+    return 0;
+}
+\end{lstlisting}
+\end{scriptsize}
+\begin{scriptsize}
+\estiloC
+\begin{lstlisting}[title=quadrado.c]
+int calc_quadrado(int x) {
+    return x * x;
+}
+\end{lstlisting}
+\end{scriptsize}
+\begin{scriptsize}
+\estiloC
+\begin{lstlisting}[title=quadrado.h]
+int calc_quadrado(int x);
+\end{lstlisting}
+\end{scriptsize}
+
+É importante notar que, se incluíssemos diretamente o arquivo quadrado.c em main.c, haveria duas definições da função quadrado(double x), uma em cada arquivo, o que causaria um erro. Por isso, incluímos o arquivo de cabeçalho quadrado.h, que contém apenas a declaração da função, sem sua definição. 
+
+Podemos compilar o programa de uma vez só, escrevendo no terminal do Linux:
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+$ gcc -Wall main.c quadrado.c -o programa
+\end{lstlisting}
+\end{scriptsize}
+
+E rodar o programa com:
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+$ ./programa
+\end{lstlisting}
+\end{scriptsize}
+
+Para evitar a necessidade de compilar o programa inteiro sempre que houver uma alteração, podemos primeiro compilar cada arquivo em um arquivo de objeto. Isso pode ser feito através dos seguintes comandos:
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+$ gcc -Wall main.c -c
+$ gcc -Wall quadrado.c -c
+\end{lstlisting}
+\end{scriptsize}
+
+Isso irá gerar dois arquivos .o, main.o e quadrado.o.
+
+Agora, podemos ligar os dois arquivos em um executável, sem precisarmos compilar o programa inteiro novamente:
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+$ gcc main.o quadrado.o -o programa
+\end{lstlisting}
+\end{scriptsize}
+
+Com isso, podemos fazer alterações no arquivo quadrado.c, por exemplo, e compilar apenas esse arquivo, ligando-o depois aos demais arquivos já pré-compilados, sem a necessidade de recompilar o arquivo main.c.
+
+
+\section{Trabalhando com Bibliotecas Externas}
+explicar mais sobre o \#include, por que preciso escrever -lm quando uso a <math.h>, etc
+
+\section{Usando Makefile}
+
+Ao trabalhar em projetos grandes com muitos arquivos, é difícil gerenciar e entender as dependências entre esses arquivos. É comum que apenas alguns arquivos precisem ser recompilados após alterações, e recompilar todos os arquivos novamente pode ser demorado e desnecessário. Para lidar com esses problemas, é possível usar o Make e o Makefile.
+
+O Make é uma ferramenta que automatiza a compilação de programas a partir de arquivos-fonte. Ele trabalha a partir de um arquivo chamado Makefile, que especifica como os arquivos-fonte devem ser compilados em arquivos objeto e como esses objetos devem ser ligados para criar o programa final.
+
+O Makefile é composto por regras. Cada regra especifica um alvo e suas dependências, ou pré-requisitos, seguido por comandos para criar o alvo. Quando um alvo é requisitado, o Make verifica se ele já existe e se é mais antigo que seus pré-requisitos. Se o alvo não existe ou é mais antigo que seus pré-requisitos, o Make executa a regra dos pré-requisitos primeiro, em ordem de dependência, e depois a regra do alvo para criar o alvo. Se o alvo já existe e não é mais antigo que seus pré-requisitos, o Make não executa a regra.
+
+A estrutura básica de um Makefile é a seguinte:
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+alvo: dependencia
+    comando
+
+dependencia:
+    comando
+\end{lstlisting}
+\end{scriptsize}
+
+O alvo é o nome do arquivo que queremos criar ou atualizar, e a dependência é o nome do arquivo ou arquivos que precisam estar atualizados antes de criarmos o alvo. O comando é uma linha de código executada na linha de comando que compila os arquivos.
+
+Vamos dar um exemplo simples:
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+saudacao:
+    echo "Ola, mundo!"
+\end{lstlisting}
+\end{scriptsize}
+
+
+Se o arquivo saudacao não existe, o comando echo "Olá, mundo!" será executado. Caso contrário, nada será feito. Mas se quisermos executar novamente o comando, podemos simplesmente chamar make saudacao na linha de comando. Mais em cima, escrevemos que o comando deve criar o arquivo alvo. No entando, o comando do arquivo saudacao somente escreve uma frase no terminal. Assim, como nenhum arquivo será criado, toda vez que Make for chamado, o mesmo comando será executado.
+
+Agora, vamos dar um exemplo mais complexo:
+
+makefile
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+hello: hello.o
+    gcc hello.o -o hello
+
+hello.o: hello.c
+    gcc -Wall hello.c -c
+\end{lstlisting}
+\end{scriptsize}
+
+O arquivo hello.c possui o seguinte código:
+
+\begin{scriptsize}
+\estiloC
+\begin{lstlisting}[title=hello.c]
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello, World!\\n");
+    return 0;
+}
+\end{lstlisting}
+\end{scriptsize}
+
+
+
+Nesse exemplo, o objetivo é criar o arquivo executável hello. Ele depende do arquivo objeto hello.o, que por sua vez depende do arquivo fonte hello.c.
+
+Quando chamamos make na linha de comando, o Makefile verificará o arquivo hello para ver se ele precisa ser recompilado. Se ele não existir ou for mais antigo que hello.o, o Make executará o comando gcc hello.o -o hello.
+
+Antes de executar esse comando, o Make verificará o arquivo hello.o para ver se ele precisa ser recompilado. Se ele não existir ou for mais antigo que hello.c, o Make executará o comando gcc -Wall hello.c -c para gerar o objeto hello.o.
+
+Portanto, o passo-a-passo seguido pelo Make é:
+
+% Isoo precisa ser formatado. Várias outras partes do texto também.
+
+    Verificar se hello precisa ser recompilado.
+    Verificar se hello.o precisa ser recompilado.
+    Executar o comando gcc -Wall hello.c -c se necessário.
+    Executar o comando gcc hello.o -o hello para gerar o executável.
+
+% Escrever sobre o make clean
+
+Ao usar um Makefile, podemos garantir que apenas os arquivos que precisam ser recompilados serão atualizados, economizando tempo e esforço. Além disso, a estrutura do Makefile ajuda a gerenciar as dependências de forma mais clara e organizada.
+
+Assim, o uso de Makefiles é uma prática recomendada para projetos grandes e complexos em que a gestão de dependências e a eficiência na compilação são essenciais.

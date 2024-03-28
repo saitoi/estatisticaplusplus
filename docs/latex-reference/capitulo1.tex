@@ -1,0 +1,95 @@
+\chapter{Capítulo 1}
+Esse capítulo visa estabelecer conceitos importantes que envolvem a linguagem C, compiladores e programação no geral.
+
+\section{Características da Linguagem C}
+C é uma \gls{linguagem_de_programacao} compilada, isto é, ao escrevermos o \gls{codigo_fonte} na própria linguagem, no caso em C, um programa chamado compilador, que tem como entrada um arquivo com \gls{codigo_fonte} da linguagem e que gera como saída um \gls{arquivo_objeto}, com \gls{codigo_objeto}, que é ligado à outros arquivos objeto, para gerar um \gls{arquivo_executavel}. Sendo assim, o compilador da linguagem C é um programa que recebe um arquivo com \gls{codigo_fonte} escrito em C, e, gera a partir disso, um arquivo que pode ser executado no computador alvo. Na próxima seção, serão dados mais detalhes sobre o processo de compilação de um arquivo em C. Abaixo seguem algumas características importantes da linguagem C:
+\begin{itemize}
+    \item \textbf{Estruturada} $\rightarrow$ A programação estruturada (sucedida pela programação orientada a objeto) é um paradigma formado por três componentes:
+    \begin{itemize}
+        \item Sequência: Uma tarefa é executada logo após a outra;
+        \item Decisão: A tarefa é executada logo após um teste lógico;
+        \item Iteração: A partir de um teste lógico, um trecho de código pode ser repetido finitas vezes.
+    \end{itemize}
+    \item \textbf{Imperativa} $\rightarrow$ Em contraste com a programação imperativa, o paradigma imperativo descreve ações/instruções que o programa deverá tomar/executar. Ou seja, linguagens imperativas são programadas com uma sequência de comandos ordenada pela programador;
+    \item \textbf{Procedural} $\rightarrow$ O paradigma procedural permite a linguagem construir procedimentos que podem ser compartimentados e reutilizados de forma a tornar partes do códigos mais independentes entre si;
+    \item \textbf{Padronizada} $\rightarrow$ A padronização é uma característica que dita a regularidade da linguagem, de modo que um mesmo código gere sempre o mesmo resultado, seja ele compilado e executado ou interpretado;
+    \item \textbf{Fortemente e estaticamente Tipada} $\rightarrow$ Em C, o tipo das variáveis/funções precisam ser bem definidos e são mantidos durante toda a execução do programa. Porém, com ponteiros do tipo \textit{void}, é possível driblar essa questão, sendo possível, mas não aconselhável, mudar implicitamente o tipo da variável que ponteiro está apontando.
+\end{itemize}
+
+Abaixo segue uma tabela com tipos de dados básicos da linguagem, onde a palavra-chave é usada para definir as variáveis e o formato indica a forma de capturar (por meio de uma função como \textit{scanf}) ou de imprimir (por exemplo, com a função \textit{printf}):
+\begin{table}[!htbp]
+\centering
+\label{tab1}{
+\begin{tabular}{|m{4.5cm}|m{2cm}|c|m{3cm}|m{2.6cm}|}
+\hline
+\multicolumn{1}{|c|}{\textbf{PALAVRA-CHAVE}} & \multicolumn{1}{c|}{\textbf{TIPO}} & \multicolumn{1}{c|}{\textbf{BYTES}} & \multicolumn{1}{c|}{\textbf{INTERVALO}} & \multicolumn{1}{c|}{\textbf{FORMATO}} \\\hline
+\textbf{char} / \textbf{signed char} & Caracter & 1 & $-128$ a $127$ & \%c \\\hline
+\textbf{unsigned char} & Caracter sem sinal & 1 & $0$ a $255$ & \%c \\\hline
+\textbf{short} / \textbf{short int} / \textbf{signed short} / \textbf{signed short int} & Inteiro curto com sinal & 2 & $-32768$ a $32767$ & \%hi ou \%hd \\\hline
+\textbf{unsigned short} / \textbf{unsigned short int} & Inteiro curto sem sinal & 2 & $0$ a $65535$ & \%hu \\\hline
+\textbf{signed} / \textbf{int} / \textbf{signed int} & Inteiro com sinal & 2 & $-32768$ a $32767$ & \%i ou \%d \\\hline
+\textbf{unsigned} / \textbf{unsigned int} & Inteiro sem sinal & 2 & $0$ a $65535$ & \%u \\\hline
+\textbf{long} / \textbf{long int} / \textbf{signed long} / \textbf{signed long int} & Inteiro longo com sinal & 4 & $-2147483648$ a $2147483647$ & \%li ou \%ld \\\hline
+\textbf{unsigned long} / \textbf{unsigned long int} & Inteiro longo sem sinal & 4 & $0$ a $4294967295$ & \%lu \\\hline
+\textbf{long long} / \textbf{signed long long} / \textbf{long long int} / \textbf{signed long long int} & Inteiro muito longo com sinal & 8 & $-2^{63}$ a $2^{63}-1$ & \%lli ou \%lld \\\hline
+\textbf{unsigned long long} / \textbf{unsigned long long int} & Inteiro longo sem sinal & 8 & $0$ a $2^{64}-1$ & \%llu \\\hline
+\textbf{float} & Ponto flutuante simples & 4 & $3.4\times10^{-38}$ a $3.4\times10^{+38}$ & \%f ou \%F \\\hline
+\textbf{double} & Ponto flutuante em precisão dupla & 8 & $1.7\times10^{-308}$ a $1.7\times10^{+308}$ & \%lf ou \%lF \\\hline
+\textbf{long double} & Ponto flutuante em precisão estendida & 16 & $3.4\times10^{-4932}$ a $3.4\times10^{+4932}$ & \%Lf ou \%LF \\\hline
+\end{tabular}}
+\caption{Tipos de dados básicos do C.}
+\end{table}
+
+Vale notar que esses tipos podem variar de máquina para máquina, sendo interessante imprimir os limites dos tipos que estão no cabeçalho \textit{limits.h}. Além disso, as padronizações (como ANSI e ISO, por exemplo) da linguagem também podem afetar certos tipos e, consequentemente, o funcionamento do código. Além disso, como C é muito popular, e por isso muitos compiladores foram construídos, com diferentes características. As próximas seções introduzirão o processo de compilação.
+
+\section{O Que é Um Compilador}
+O compilador é um programa de computador responsável por reescrever o código fonte em código de máquina que poderá ser executado no computador. Sendo assim, o compilador recebe como entrada um arquivo com o código fonte e gera na saída um arquivo que pode ser executado no computador, como mostra a seguinte imagem:
+\begin{figure}[!htbp]\label{fig1_1}
+    \centering
+    \caption{Diagrama de funcionamento do compilador}
+    %\includegraphics[height=5.0cm, width=12cm]{imagens/compilando.png}
+    \legend{Fonte: https://blog.betrybe.com/tecnologia/compilador-o-que-e/}
+\end{figure}
+
+Em outras palavras, o compilador traduz o código fonte de uma linguagem da qual os seres humanos entendem melhor para outra, que o computador consiga entender. Vale notar que hoje em dia, o compilador possui muito mais funcionalidades além de traduzir códigos. Ele permite enclausurar diversas instruções de máquina em uma única linha do código fonte, otimizar o código fonte, gerar arquivos intermediários, tratar erros na programação e dispor de ferramentas de depuração. Os primeiros compiladores eram focados em traduzir o código fonte e reunir as bibliotecas e rotinas necessárias para a execução do código objeto num processo chamado de ligação. Esses primeiros compiladores foram escritos inicialmente em \gls{assembly}, e, atualmente, existem diversas ferramentas para a construção de compiladores, o que facilitou a proliferação de novas linguagens.
+
+Com a evolução das linguagens de programação e a necessidade de novas funcionalidades, os compiladores passaram a ter mais características e a funcionar de maneiras diferentes, e com isso foram desenvolvidos diversos tipos de compiladores. Abaixo seguem os principais tipos de compiladores:
+\begin{itemize}
+    \item \textbf{Compilador \textit{Ahead-of-time}} $\rightarrow$ Compilador padrão que compila o código fonte antes da execução do programa. A saída do compilador é uma arquivo objeto com instruções de máquina nativas;
+    \item \textbf{Compilador \textit{Just-in-time}} $\rightarrow$ A compilação aqui ocorre durante o tempo de execução do programa. Na primeira vez, compilador passa por cada linha do código fonte e traduz para instruções de máquina (ou para uma linguagem intermediária que depois será traduzida para linguagem de máquina) que serão executadas imediatamente após a tradução, geralmente em uma máquina virtual. Na segunda vez que o programa será executado, ele já estará compilado (ou em uma linguagem intermediária de fácil tradução) tendo uma execução mais rápida. Diferente do caso anterior, onde o programa sempre será executado após a geração do arquivo objeto;
+    \item \textbf{Compilador Cruzado} $\rightarrow$ Esse tipo de compilador gera um arquivo executável, através do código fonte, capaz de ser executado em outras máquinas. É interessante para aplicações como sistemas embutidos ou para uso em múltiplas máquinas;
+    \item \textbf{Compilador \textit{Source-to-source}} $\rightarrow$ Esse compilador tem como saída um arquivo contendo um código fonte de alto nível, ao invés de um arquivo com instruções de máquina. Isso permite que uma linguagem possua extensões sintáticas de interesse ao programador que podem ser escritas de maneira mais flexível, e que serão reescritas equivalentemente para o código fonte alvo. TypeScript é uma linguagem que utiliza esse tipo de compilação.
+\end{itemize}
+
+Existe um outro programa bastante comum que permite a execução do código fonte ou do \textit{\gls{bytecode}} diretamente: o interpretador. Ao contrário do compilador, que gera um arquivo objeto com instruções de máquina, o interpretador traduz cada linha do código fonte em uma linguagem intermediária ou a executa diretamente, em uma máquina virtual. Isso torna o processo de execução de uma linguagem interpretada (Python, R, JavaScript, PHP, etc) mais lento pois cada linha do código precisa ser interpretada, para depois ser executada. Porém, a linguagem interpretada não precisa ser recompilada por inteiro por conta de algumas alterações no código.
+
+Por fim, os programas que traduzem código em assembly para linguagem de máquina e vice-versa são chamados de montador (\textit{assembler}) e desmontador (\textit{disassembler}), respectivamente. O mesmo vale para o processo de construção de um código de alto nível a partir da linguagem de máquina, chamado de descompilação. Esse último possui aplicações em segurança, já que, com acesso ao código objeto, é possível identificar vulnerabilidades mais facilmente nas linguagens de alto nível geradas a partir da descompilação.
+
+\section{GNU Compiler Collection}
+O GNU Compiler Collection é uma coleção de compiladores do tipo \textit{Ahead-of-time} do projeto GNU criada em 1987. Essa coleção possui compiladores para linguaguens como: ADA, C++, Fortran, Java, Objective-C e Pascal. Além disso, possui compatibilidade com muitas arquiteturas, como ARM, x86 e AMD64 (x86-64), sendo considerado favorito pelos desenvolvedores. Essa ferramenta vem como padrão na maioria dos sistemas Linux e é o compilador principal para o MAC OS, mas também pode ser utilizado em sistemas Windows partir de ferramentas como MSYS2 e MinGW. A grande parte desses compiladores, atualmente, está escrita em C, inclusive o próprio compilador C, num processo chamado de \textit{\gls{bootstrapping}}. 
+
+O foco se dará em um dos compiladores da GNU, o GNU C Compiler (gcc). Abaixo segue as etapas de compilação do gcc:
+\begin{figure}[!htbp]\label{fig1_2}
+    \centering
+    \caption{Etapas da compilação}
+    %\includegraphics[height=11cm, width=7cm]{imagens/etapas_da_compilacao.png}
+    \legend{Fonte: https://guialinux.uniriotec.br/gcc/}
+\end{figure}
+
+\begin{enumerate}
+    \item \textbf{Pré-processamento} $\rightarrow$ Tarefa realizada pelo pré-processador que trata de todas as linhas que começam com "\#". Duas diretivas principais são tratadas nessa fase: \textit{include} e \textit{define}. A primeira diretiva envolve a inclusão de arquivos de cabeçalho (.h) que possuem as definições e declarações de protótipos, enquanto que a segunda diretiva é utilizada para definir macros e constantes simbólicas. Ainda existem outras diretivas, como a diretiva para compilação condicional "\#if...\#else...\#endif" e "\#error", que pausa a compilação imprimindo uma mensagem de erro;
+    \item \textbf{Compilação} $\rightarrow$ Nessa fase que efetivamente começa, onde o código gerado é traduzido para assembly. A compilação do código feita em três níveis:
+    \begin{enumerate}
+        \item Análise léxica: O compilador analisa os símbolos verificando se os nomes das variáveis, funções e palavras reservadas foram escritas corretamente, além de retirar os espaços em branco e comentários. Variáveis não definidas, nome de variável escrito de maneira incorreta, operadores inexistentes, strings e valores mal formados geram erros de compilação nesse nível;
+        \item Análise sintática: Essa análise é feita em cima das expressões do C, que devem seguir a gramática formal. Uma expressão é formada por um ou mais símbolos, e, passada a fase anterior, todos esses símbolos foram escritos corretamente, porém podem estar organizados da maneira incorreta dentro de uma expressão em C. Como, por exemplo, utilizar operadores binários (var1 op var2) com um dos símbolos faltando ou abrir um parêntese/colchete/chave mas não fechar;
+        \item Análise semântica: No nível final, o compilador analisa o sentido das expressões a partir de uma validação lógica. Uma das tarefas dessa análise consiste na checagem da consistência dos tipos nas expressões, regras de visibilidade e de contexto;
+        \item Otimização de alto nível: Aqui, o compilador buscará otimizar o código fonte, geralmente, excluindo código redundante ou desnecessário.
+    \end{enumerate}
+    \item \textbf{Montagem} $\rightarrow$ tradução de cada linha de assembly em código de máquina;
+    \begin{enumerate}
+        \item Otimização de baixo nível: Essa otimização é feita considerando o código objeto. Geralmente, se considera propriedades das operações envolvidas, deslocamento de código nos laços de repetição, substituição de chamadas de funções, que podem ser muito repetitivas, para o código \textit{inline} (ou seja, substitui a chamada da rotina pelo próprio código), entre outros.
+    \end{enumerate}
+    \item \textbf{Ligação} $\rightarrow$ A fase final da compilação ocorre na ligação, onde as bibliotecas e todo o código necessário para a execução do programa serão carregados e incluídos ao código objeto gerado na fase anterior.
+\end{enumerate}
+
+Vale ressaltar que grande parte das otimizações estão desabilitadas por padrão, sendo necessário o uso de \textit{flags} para habilitar essas otimizações. Depois dessa introdução aos conceitos iniciais acerca da linguagem C e do gcc, os próximos capítulos discutirão as formas de utilização desse compilador e as ferramentas que ele disponibiliza.

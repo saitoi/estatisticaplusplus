@@ -1,0 +1,44 @@
+OBS: As entradas começam com "_".
+
+Títulos e subtítulos:
+    <h1>
+        _TÍTULO
+    </h1>
+    <h2>
+        _SUBTÍTULO
+    </h2>
+
+Códigos:
+    <figure>
+        <pre>
+            <code class="_LINGUAGEM">
+                _CÓDIGO
+            </code>
+        </pre>
+        <figcaption class="arq">
+            _NOME_DO_ARQUIVO
+        </figcaption>
+    </figure>
+OBS: _LINGUAGEM pode ser: c, makefile, bash (terminal).
+
+Trechos de código:
+    <p>
+        <code class="hljs- _LINGUAGEM sembg">
+            _CÓDIGO
+        </code>
+    </p>
+
+Nome de arquivo: 
+    <b>
+        _NOME_DO_ARQUIVO
+    </b>
+
+Expressões em outras línguas (Não vale para nomes): 
+    <i>
+        _EXPRESSÃO
+    </i>
+
+Conceitos importantes:
+    <strong>
+        _CONCEITO
+    </strong>

@@ -1,0 +1,26 @@
+\chapter{Compilando para a Depuração}
+
+Geralmente, os arquivos executáveis não incluem informações ou referências ao código-fonte original do programa. Isso pode ser inadequado para fins de depuração, já que não teremos meios de identificar a causa de um erro caso o programa pare de funcionar inesperadamente (crash).
+
+O GCC fornece a flag de compilação `-g' responsável por armazenar informações adicionais sobre a depuração do programa em arquivos executáveis e de objeto. Desse modo, podemos retornar à linha do programa que originouno erro.
+
+\section{Examinando Arquivos Centrais}
+
+Além de permitir que programas sejam executados sob o depurador, um benefício importante da opção '-g' é a capacidade de examinar a causa de uma falha de programa a partir de um 'despejo de núcleo'. Quando um programa termina de forma anormal (ou seja, falha), o sistema operacional pode criar um arquivo de núcleo (geralmente chamado de 'core'), que contém o estado na memória do programa no momento da falha. Esse arquivo é frequentemente chamado de despejo de núcleo. Combinado com informações da tabela de símbolos produzida pelo '-g', o despejo de núcleo pode ser usado para encontrar a linha onde o programa parou e os valores de suas variáveis nesse ponto.
+
+Isso é útil tanto durante o desenvolvimento de software quanto após a implantação, pois permite investigar problemas quando um programa falha 'no campo'.
+
+\section{Exibindo uma pilha de chamadas}
+
+O depurador também pode mostrar as chamadas de função e os argumentos até o ponto atual de execução, isso é chamado de pilha de chamadas e é exibido com o comando backtrace:
+
+\begin{scriptsize}
+\estiloC
+\begin{lstlisting}[title=(gdb) backtrace]
+#0 0x080483ed em foo (p=0x0) em null.c:13
+#1 0x080483d9 em main () em null.c:7
+\end{lstlisting}
+\end{scriptsize}
+
+
+Neste caso, a pilha de chamadas mostra que a falha ocorreu na linha 13 após a chamada da função foo a partir de main com um argumento de p=0x0 na linha 7 em 'null.c'. É possível mover-se para diferentes níveis na pilha de chamadas e examinar suas variáveis usando os comandos up e down do depurador.

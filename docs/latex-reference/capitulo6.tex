@@ -1,0 +1,127 @@
+\chapter{Compilando com Otimização}
+
+O GCC é um compilador otimizador que pode gerar arquivos executáveis mais rápidos e/ou menores, levando em consideração as características do processador alvo e a ordem das instruções.
+
+A otimização é um processo complexo que envolve a escolha da melhor combinação de instruções de máquina para cada comando de alto nível no código-fonte. Diferentes códigos devem ser gerados para processadores distintos, devido ao uso de linguagens de montagem e máquina incompatíveis. Além disso, cada tipo de processador possui características próprias, como o número de registradores disponíveis, que afetam a forma como o código é gerado. Ao compilar com otimização, o GCC leva em consideração todos esses fatores.
+
+Aqui estão alguns dos fatores considerados pelo GCC durante a otimização do código:
+
+- O tipo de processador no qual o código será executado.
+
+- O número de registradores disponíveis no processador alvo.
+
+- A velocidade das diferentes instruções no processador alvo.
+
+- A ordem de execução das instruções.
+
+Ao levar em conta esses fatores, o GCC é capaz de gerar código otimizado para um processador específico, visando uma execução mais rápida.
+
+\section{Otimização em nível de código-fonte}
+
+A otimização em nível de código-fonte melhora o desempenho de um programa por meio de alterações no código-fonte. Duas otimizações comuns são a eliminação de subexpressões repetidas e o inline de funções.
+
+\section{Eliminação de Subexpressões Comuns}
+
+A eliminação de subexpressões repetidas evita a reavaliação de uma mesma expressão várias vezes. Por exemplo, a expressão $x = \cos(v).(1+\sin(u/2)) + \sin(w).(1-\sin(u/2))$ pode ser reescrita como $t = \sin(u/2); x = \cos(v).(1+t) + \sin(w).(1-t)$, evitando a avaliação duplicada de $\sin(u/2)$.
+
+\section{Inclusão de Função}
+
+O inline de funções substitui uma chamada de função pelo seu próprio corpo, reduzindo a sobrecarga das chamadas de função. Por exemplo, a função sq(x) pode ser inlineada neste loop:
+
+\begin{scriptsize}
+\estiloC
+\begin{lstlisting}[title=função sq(x)]
+for (i = 0; i < 1000000; i++)
+  sum += sq(i + 0.5);
+\end{lstlisting}
+\end{scriptsize}
+
+Isso substitui o loop interno pelo corpo da função sq(x), melhorando o desempenho ao evitar chamadas de função.
+
+O GCC utiliza heurísticas para decidir quais funções devem ser inlineadas. A palavra-chave "inline" pode ser usada para solicitar explicitamente a inlineação de uma função específica.
+
+\section{Trade-offs de velocidade e espaço}
+
+Algumas formas de otimização podem aumentar a velocidade e reduzir o tamanho do programa simultaneamente, enquanto outras produzem código mais rápido em troca de um executável maior. Isso é conhecido como trade-off de velocidade e espaço. Essas otimizações também podem ser usadas ao contrário, diminuindo o tamanho do executável em detrimento da velocidade de execução.
+
+\section{Desenrolamento de loops}
+
+O desenrolamento de loops é uma otimização que aumenta a velocidade dos loops eliminando a condição de "fim do loop" em cada iteração. Ele permite atribuições diretas, sem a necessidade de testes, resultando em uma execução mais rápida. O desenrolamento de loops pode aumentar o tamanho do executável, exceto em loops muito curtos.
+
+\section{Agendamento}
+
+O agendamento é o nível mais baixo de otimização, onde o compilador determina a melhor ordem de execução das instruções individuais. Ele melhora a velocidade do executável sem aumentar seu tamanho, mas requer memória adicional e tempo durante o processo de compilação.
+
+
+\section{Níveis de Otimização no GCC:}
+
+O GCC oferece diferentes níveis de otimização (0 a 3) para controlar o tempo de compilação, uso de memória do compilador e o trade-off entre velocidade e espaço no executável resultante. Os níveis de otimização são:
+
+- '-O0' (padrão): Sem otimização, compilando de forma direta para depuração.
+
+- '-O1': Otimizações comuns sem trade-offs de velocidade e espaço.
+
+- '-O2': Otimizações adicionais sem aumentar o tamanho do executável.
+
+- '-O3': Otimizações mais custosas que podem aumentar o tamanho do executável.
+
+- '-funroll-loops': Desenrolamento de loops, aumentando o tamanho do executável.
+
+- '-Os': Otimizações para reduzir o tamanho do executável.
+
+É importante considerar os custos das otimizações, como maior complexidade na depuração e maior tempo/memória de compilação. Geralmente, '-O0' é usado para depuração e '-O2' para desenvolvimento e implantação.
+
+\section{6.6 Otimização e depuração}
+
+Com o GCC, é possível usar otimização em combinação com a opção de depuração '-g'. Muitos outros compiladores não permitem isso.
+Ao usar depuração e otimização juntas, as reorganizações internas feitas pelo otimizador podem dificultar a compreensão do que está acontecendo ao examinar um programa otimizado no depurador. Por exemplo, variáveis temporárias geralmente são eliminadas e a ordem das instruções pode ser alterada.
+No entanto, quando um programa trava inesperadamente, qualquer informação de depuração é melhor do que nenhuma, portanto, o uso de '-g' é recomendado para programas otimizados, tanto para desenvolvimento quanto para implantação. A opção de depuração '-g' é habilitada por padrão para versões dos pacotes GNU, juntamente com a opção de otimização '-O2'.
+
+\section{6.7 Otimização e avisos do compilador}
+
+Quando a otimização é ativada, o GCC pode produzir avisos adicionais que não aparecem ao compilar sem otimização.
+
+Como parte do processo de otimização, o compilador examina o uso de todas as variáveis e seus valores iniciais - isso é chamado de análise de fluxo de dados. Isso serve como base para outras estratégias de otimização, como agendamento de instruções. Um efeito colateral da análise de fluxo de dados é que o compilador pode detectar o uso de variáveis não inicializadas.
+
+A opção '-Wuninitialized' (incluída em '-Wall') avisa sobre variáveis que são lidas sem serem inicializadas. Ela só funciona quando o programa é compilado com otimização, para que a análise de fluxo de dados seja ativada. A seguinte função contém um exemplo de tal variável:
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+int sign(int x)
+{
+    int s;
+    if (x > 0)
+        s = 1;
+    else if (x < 0)
+        s = -1;
+    return s;
+}\end{lstlisting}
+\end{scriptsize}
+
+A função funciona corretamente para a maioria dos argumentos, mas tem um bug quando x é zero - nesse caso, o valor de retorno da variável s será indefinido.
+
+Compilar o programa apenas com a opção '-Wall' não produz nenhum aviso, porque a análise de fluxo de dados não é realizada sem otimização:
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+$ gcc -Wall -c uninit.c
+}\end{lstlisting}
+\end{scriptsize}
+
+Para gerar um aviso, o programa deve ser compilado com '-Wall' e otimização simultaneamente. Na prática, o nível de otimização '-O2' é necessário para obter bons avisos:
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+$ gcc -Wall -O2 -c uninit.c
+uninit.c: In function 'sign':
+uninit.c:4: aviso: 's' might be used uninitialized in this function
+}\end{lstlisting}
+\end{scriptsize}
+
+
+Isso detecta corretamente a possibilidade de a variável s ser usada sem ser definida.
+
+Observe que, embora o GCC geralmente encontre a maioria das variáveis não inicializadas, ele faz isso usando heurísticas que ocasionalmente podem perder alguns casos complicados ou emitir falsos avisos sobre outros. Nessa última situação, muitas vezes é possível reescrever as linhas relevantes de maneira mais simples que remove o aviso e melhora a legibilidade do código-fonte.

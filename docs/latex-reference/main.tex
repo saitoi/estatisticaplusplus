@@ -1,0 +1,49 @@
+\documentclass[12pt, a4paper, english, brazil, oneside, chapter=TITLE, section=TITLE]{abntex2}
+\input{formatacao} % Formatação do documento
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAPA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\instituicao{UNIVERSIDADE FEDERAL DO RIO DE JANEIRO}
+\title{COMPILANDO PROGRAMAS EM C}
+\autor{Leonardo Veiga e Nicolas da Silva}
+\local{Rio de Janeiro}
+\data{Abril de 2023}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeglossaries
+% ---
+% Entradas do glossário
+% ---
+\input{glossario.tex}
+
+\begin{document}
+\pretextual
+\setcounter{page}{1}
+\imprimircapa
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LISTA DE FIGURAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\listoffigures*
+\cleardoublepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LISTA DE TABELAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABREVIATURAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{abreviaturas.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SUMÁRIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TEXTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textual
+\input{capitulo1}
+\input{capitulo2}
+\input{capitulo3}
+\input{capitulo4}
+\input{capitulo5}
+\input{capitulo6}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GLOSSÁRIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\postextual
+\clearpage
+\addcontentsline{toc}{chapter}{GLOSSÁRIO} %\glossaryname
+\printglossary
+
+\end{document}

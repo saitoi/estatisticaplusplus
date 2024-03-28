@@ -1,0 +1,116 @@
+\chapter{Capítulo 3}
+
+\section{Bandeiras de Aviso do Compilador}
+
+O GCC compila programas usando o dialeto GNU da linguagem C como base, que incorpora o padrão ANSI C e várias extensões do GNU C. Essas extensões incluem recursos como declarações de variáveis no meio de um bloco de código, expressões com efeitos colaterais e construtores de atributos, entre outros. No entanto, programas válidos escritos em ANSI C podem conflitar com algumas extensões do GNU C.
+
+Para lidar com esses conflitos, o GCC oferece várias opções de linha de comando, conhecidas como flags, que permitem aos desenvolvedores controlar o comportamento do compilador ao compilar o código fonte. A flag "-ansi" é usada para desabilitar as extensões do GNU C que conflitam com o padrão ANSI C. A flag "-pedantic" desabilita todas as extensões do GNU C, não apenas aquelas que conflitam com o padrão ANSI.
+
+No capítulo anterior, usamos a flag -Wall na compilação do nosso programa. Essa flag é uma combinação de várias flags de aviso especializadas que detectam erros comuns de programação. Cada uma das flags contidas em -Wall pode ser usada individualmente. Algumas dessas flags são:
+
+\begin{itemize}
+    \item Wcomment: avisa sobre problemas de formatação em comentários, como comentários dentro de comentários.
+
+    \item Wformat: avisa sobre o uso incorreto de formatação em strings em funções como printf e scanf.
+
+    \item Wunused: avisa sobre variáveis que foram declaradas mas não foram usadas no programa.
+
+    \item Wimplicit: avisa sobre funções que foram usadas sem serem declaradas, o que pode acontecer se esquecer de incluir o arquivo de cabeçalho.
+
+    \item Wreturn-type: avisa sobre funções que não retornam nenhum valor mas que não foram declaradas como "void".
+\end{itemize}
+
+    O GCC também inclui outras flags de aviso úteis, como:
+
+\begin{itemize}
+    \item W: uma flag geral, semelhante a -Wall, que avisa sobre diversos erros comuns.
+    
+    \item Wconversion: avisa sobre conversões implícitas de tipo, como entre float e integer, que podem causar resultados inesperados.
+    
+    \item Wshadow: avisa sobre a declaração de variáveis em um escopo em que elas já foram declaradas.
+    
+    \item Wtraditional: avisa sobre partes do código que seriam interpretadas de forma diferente por um compilador ANSI/ISO e um pré-ANSI.
+\end{itemize}
+
+Se você quiser que o programa pare de compilar se houver qualquer aviso das flags que você aplicou, use a flag -Werror.
+
+Usar flags ao compilar um programa é uma boa prática, mas a grande quantidade pode tornar a escolha de quais usar difícil. Com isso em mente, recomendamos que, em geral, as seguintes flags sejam usadas:
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+$ gcc -ansi -pedantic -Wall -W
+\end{lstlisting}
+\end{scriptsize}
+
+
+\section{Usando o Pré-processador}
+
+% Parou de compilar dnv, daqui a pouco volta a funcionar
+
+Como dito no capítulo inicial, pré-processador é o componente do GCC responsável por processar e manipular o código-fonte antes da compilação começar. Ele lê o código-fonte e realiza um conjunto de operações, incluindo substituição de macros, inclusão de arquivos e compilação condicional. Essas operações são definidas por um conjunto de diretivas, que são comandos especiais que começam com o símbolo "\#".
+
+Uma macro é um pedaço de código ao qual é dado um nome e definida por meio do uso da diretiva \#define. Essa diretiva permite que você atribua um nome a um valor, uma expressão ou até mesmo a um bloco de código, tornando mais fácil e conveniente usar esse nome em vez de repetir o código completo sempre que for necessário. Abaixo está um exemplo de código que utiliza macros:
+
+\begin{scriptsize}
+\estiloC
+\begin{lstlisting}
+#include <stdio.h>
+
+#define NUM 10
+
+int main()
+{
+    printf("The value of NUM is: %d\n", NUM);
+    return 0;
+}
+\end{lstlisting}
+\end{scriptsize}
+
+O pré-processador substitui as ocorrências da macro pelo seu conteúdo correspondente. Assim, quando compilarmos e executarmos o arquivo acima, será exibida a mensagem:
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+The value of NUM is: 10
+\end{lstlisting}
+\end{scriptsize}
+
+Podemos querer executar uma parte do programa somente quando certa macro estiver definida. Para isso, delimitamos tal seção do código com as diretivas \#ifdef e \#endif:
+
+% O CODIGO ABAIXO ESTA DANDO PROBLEMA, NAO TIRE ELE DO COMENTARIO
+
+\begin{comment}
+\begin{scriptsize}
+\estiloC
+\begin{lstlisting}
+#include <stdio.h>
+
+int main()
+{
+#ifdef NUM
+    printf("The value of NUM is: %d\n", NUM);
+#endif
+    return 0;
+}
+\end{lstlisting}
+\end{scriptsize}
+\end{comment}
+
+Nesse caso, como a macro NUM não está definida no código fonte, nada será exibido ao executar o programa. No entanto, podemos definir a macro NUM quando compilarmos o programa. Para isso, usamos a opção '-DNAME' para definiremos a macro com nome NAME e, se quisermos designar um valor a ela, escrevemos '-DNAME=valor':
+
+\begin{scriptsize}
+\estilobash
+\begin{lstlisting}
+$ gcc -Wall -DNUM=5 programa.c -o programa
+$ ./programa
+The value of NUM is: 5
+\end{lstlisting}
+\end{scriptsize}
+
+
+\section{Compilando para Debugar (NOTAS POR ENQUANTO)}
+
+Existe uma forma de fazer debugging com a flag -g tal que, se o programa crashar, a parte problemática do código pode ser facilmente encontrada.
+
+Esse capítulo é relativamente grande e usar exemplos vai ser bem importante. Escrever isso em um outro capitulo (chapter 4)

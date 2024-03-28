@@ -1,0 +1,12 @@
+\glossaryentry{Linguagem de Programação?\glsnextpages \glossentry{linguagem_de_programacao}|glsseeformat[Veja também]{codigo_fonte}}{Z}
+\glossaryentry{Arquivo Objeto?\glsnextpages \glossentry{arquivo_objeto}|glsseeformat[Veja também]{codigo_fonte,codigo_objeto,arquivo_executavel}}{Z}
+\glossaryentry{Linguagem de Programação?\glsnextpages \glossentry{linguagem_de_programacao}|setentrycounter[]{page}"\glsnumberformat}{5}
+\glossaryentry{Código Fonte?\glossentry{codigo_fonte}|setentrycounter[]{page}"\glsnumberformat}{5}
+\glossaryentry{Código Fonte?\glossentry{codigo_fonte}|setentrycounter[]{page}"\glsnumberformat}{5}
+\glossaryentry{Arquivo Objeto?\glsnextpages \glossentry{arquivo_objeto}|setentrycounter[]{page}"\glsnumberformat}{5}
+\glossaryentry{Código Objeto?\glossentry{codigo_objeto}|setentrycounter[]{page}"\glsnumberformat}{5}
+\glossaryentry{Arquivo Executável?\glossentry{arquivo_executavel}|setentrycounter[]{page}"\glsnumberformat}{5}
+\glossaryentry{Código Fonte?\glossentry{codigo_fonte}|setentrycounter[]{page}"\glsnumberformat}{5}
+\glossaryentry{Assembly?\glossentry{assembly}|setentrycounter[]{page}"\glsnumberformat}{7}
+\glossaryentry{Bytecode?\glossentry{bytecode}|setentrycounter[]{page}"\glsnumberformat}{8}
+\glossaryentry{Bootstrapping?\glossentry{bootstrapping}|setentrycounter[]{page}"\glsnumberformat}{9}
