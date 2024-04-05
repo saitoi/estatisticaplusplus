@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     var tabs = document.querySelectorAll('.individual-tab');
-    var contentDivs = document.querySelectorAll('.sidebar-content');
+    // Adjust the selector to target specific classes
+    var contentDivs = document.querySelectorAll('.content-c, .content-julia, .content-r');
 
     function switchTab(tabId) {
         contentDivs.forEach(div => {
-            div.style.display = div.id === tabId ? 'block' : 'none';
+            // Check if the div's class list contains the target class
+            div.style.display = div.classList.contains(tabId) ? 'block' : 'none';
         });
     }
 
@@ -16,8 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add "active" class to the clicked tab
             tab.classList.add('active');
 
-            var contentId = 'content-' + tab.id.split('-')[1];
-            switchTab(contentId);
+            // Construct the class name to match
+            var contentClass = 'content-' + tab.id.split('-')[1];
+            switchTab(contentClass);
         });
     });
 });
