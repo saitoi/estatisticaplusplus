@@ -1,0 +1,95 @@
+<div id="chapter1">
+    <div id="content">
+        <h1>1. Introdução</h1>
+        <p>
+            Neste capítulo visamos apresentar a linguagem Fortran (na versão Fortran 90) do zero, supondo pouca familiaridade
+            com programação, mas algum conhecimento de métodos numéricos. Ao longo deste capítulo vamos introduzir os 
+            conhecimentos necessários para construirmos um dos métodos numéricos mais simples e clássicos: o Método da 
+            Bisseção. E, para além de introduzirmos o ferramental, vamos construir um código para este método ao longo 
+            das seções, de forma que ao final do capítulo teremos uma implementação funcional do método em Fortran.
+        </p>
+
+        <!-- Primeira Seção -->
+        <h2 id="secao1.1">1.1. Características da Linguagem Fortran</h2>
+
+        <p>
+            Fortran, especialmente na sua versão 90, apresenta-se como uma <strong>linguagem de programação compilada</strong>.
+            Isso significa que o código-fonte, escrito em Fortran, é transformado pelo compilador em código de máquina,
+            diretamente executável pelo computador. Nesta seção, exploraremos as características básicas e a estrutura de um 
+            programa em Fortran, juntamente com a compilação e execução de um arquivo fonte.
+        </p>
+
+        <ul>
+            <li><strong>Estrutura de um programa:</strong> A programação em Fortran começa com um bloco <code>program</code>,
+                que define o início do código executável. Todas as operações e declarações de variáveis são feitas dentro 
+                deste bloco.</li>
+            <li><strong>Compilação e execução:</strong> Um programa em Fortran é transformado em código de máquina através
+                de um compilador, como o gfortran. O arquivo resultante é um executável que pode ser diretamente executado
+                no sistema operacional.</li>
+            <li><strong>Tipagem forte:</strong> Fortran é uma linguagem fortemente tipada, o que significa que o tipo de
+                cada variável deve ser explicitamente declarado (integer, real, complex, character, logical).</li>
+            <li><strong>Operações básicas:</strong> Fortran oferece uma gama de operadores aritméticos e lógicos padrão, 
+                permitindo a realização de cálculos e manipulações lógicas dentro do programa.</li>
+        </ul>
+
+        <p>
+            Ao fim desta seção, teremos uma compreensão suficiente sobre a base da programação em Fortran, preparando o 
+            terreno para abordagens mais complexas em seções subsequentes.
+        </p>
+
+        <!-- Segunda Seção -->
+        <h2 id="secao1.2">1.2. Estrutura Básica de um Programa</h2>
+
+        <p>
+            A estrutura básica de um programa em Fortran é composta pelo bloco <code>program</code>, seguido por declarações
+            de variáveis e o corpo principal do programa que contém a lógica a ser executada. O programa é finalizado com 
+            <code>end program</code>. Esta estrutura garante uma organização clara e a fácil localização de erros e funções
+            dentro do código.
+        </p>
+
+        <p>
+            Exemplo de um programa simples em Fortran:
+        </p>
+        <pre>
+            <code>
+                program exemplo
+                    print *, 'Olá mundo!'
+                end program exemplo
+            </code>
+        </pre>
+
+        <p>
+            Este exemplo demonstra um programa que imprime "Olá mundo!" na tela, ilustrando a simplicidade da escrita de
+            programas em Fortran e a forma como são estruturados.
+        </p>
+
+        <!-- Terceira Seção -->
+        <h2 id="secao1.3">1.3. Variáveis e Tipos de Dados</h2>
+
+        <p>
+            Fortran define variáveis dentro de tipos específicos que determinam a natureza dos dados que a variável pode
+            armazenar. A declaração de tipos é rigorosa, suportando tipos como <code>integer</code>, <code>real</code>, 
+            <code>complex</code>, <code>character</code>, e <code>logical</code>, cada um com usos específicos dentro 
+            de cálculos matemáticos ou manipulações de dados.
+        </p>
+
+        <p>
+            As variáveis em Fortran são declaradas da seguinte forma, onde o tipo de dados precede o nome da variável, 
+            garantindo clareza e rigor na tipagem:
+        </p>
+        <pre>
+            <code>
+                integer :: contador
+                real :: distancia
+                complex :: z
+                character(len=1) :: letra
+                logical :: valido
+            </code>
+        </pre>
+
+        <p>
+            Essa seção introduzirá o conceito de variáveis e tipos de dados, fundamentais para a manipulação de informações
+            e a realização de cálculos dentro de programas em Fortran.
+        </p>
+    </div>
+</div>
